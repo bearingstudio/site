@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Lastik';
+    src: url('Lastik.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --color-bg: #fafafa;
     --color-surface: #ffffff;
@@ -7,8 +15,8 @@
     --color-border-light: #f0f0f0;
     --color-accent: #0d0d0d;
     
-    --font-display: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-body: 'Crimson Pro', Georgia, serif;
+--font-display: 'Lastik', -apple-system, BlinkMacSystemFont, sans-serif;
+--font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
     
     --spacing: clamp(1rem, 3vw, 2rem);
     --gap: clamp(0.5rem, 2vw, 1rem);

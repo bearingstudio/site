@@ -181,6 +181,7 @@ body {
     line-height: 1.3;
     color: var(--color-text-secondary);
     font-style: normal;
+    letter-spacing: -0.03em;
 }
 
 .hero-description {
@@ -191,6 +192,7 @@ body {
     color: var(--color-text-secondary);
     max-width: 540px;
     margin-top: 0.5rem;
+    letter-spacing: -0.03em;
 }
 
 .hero-cta {

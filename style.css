@@ -15,7 +15,7 @@
     --color-border-light: #f0f0f0;
     --color-accent: #0d0d0d;
     
---font-display: 'Lastik', -apple-system, BlinkMacSystemFont, sans-serif;
+--font-display: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
 --font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
     
     --spacing: clamp(1rem, 3vw, 2rem);
@@ -166,6 +166,7 @@ body {
 }
 
 .hero-title {
+    font-family: 'Lastik', var(--font-display);
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 500;
     line-height: 0.95;

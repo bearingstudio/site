@@ -15,8 +15,8 @@
     --color-border-light: #f0f0f0;
     --color-accent: #0d0d0d;
     
---font-display: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
---font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+--font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+--font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     
     --spacing: clamp(1rem, 3vw, 2rem);
     --gap: clamp(0.5rem, 2vw, 1rem);

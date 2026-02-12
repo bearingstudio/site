@@ -61,17 +61,6 @@ function updateActiveNav() {
 window.addEventListener('scroll', updateActiveNav);
 updateActiveNav();
 
-// Parallax effect for hero image (subtle)
-const heroImage = document.querySelector('.hero-image');
-if (heroImage) {
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallax = scrolled * 0.3;
-        if (scrolled < window.innerHeight) {
-            heroImage.style.transform = `translateY(${parallax}px)`;
-        }
-    });
-}
 
 // Intersection Observer for staggered animations
 const observerOptions = {

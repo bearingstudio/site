@@ -6,7 +6,7 @@
     <title>bearing studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,15 +30,28 @@
     <section class="hero" id="work">
         <div class="dot-grid"></div>
         <div class="hero-container">
-            <div class="hero-image">
-                <img src="cayenne-hero.jpg" alt="First-generation Porsche Cayenne">
+
+            <!-- Video block with Cayenne title overlaid -->
+            <div class="hero-video-wrap">
+                <div class="hero-video-overlay">
+                    <h1 class="hero-title">Cayenne</h1>
+                </div>
+                <div class="hero-video-frame">
+                    <iframe
+                        src="https://player.vimeo.com/video/1164607524?h=adc9e04aca&autoplay=1&loop=1&muted=1&background=1&controls=0"
+                        frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
             </div>
+
+            <!-- Text block below video -->
             <div class="hero-content">
                 <div class="hero-meta">
                     <span class="hero-date">Jan. 2026</span>
                     <span class="hero-status">Latest Project</span>
                 </div>
-                <h1 class="hero-title">Cayenne</h1>
                 <h2 class="hero-subtitle">Design Empathy in the Digital Age</h2>
                 <p class="hero-description">
                     Bearing Studio's inaugural publication examines industrial design ethics and the design empathy framework — with insight from Lynette Cox, powertrain engineer at Rivian and formerly Lucid Motors — through a lens from the past: the first-generation Porsche Cayenne.
@@ -50,6 +63,7 @@
                     </svg>
                 </a>
             </div>
+
         </div>
     </section>
 

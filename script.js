@@ -2,25 +2,20 @@
    BEARING STUDIO — script.js
    ============================================ */
 
-// ─── NAV: show background after splash ────────
-const nav = document.querySelector('.nav');
-const splash = document.getElementById('splash');
+// ─── NAV ──────────────────────────────────────
+const nav = document.getElementById('nav');
 
-const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) {
-            nav.classList.add('scrolled');
-            nav.style.opacity = '1';
-            nav.style.pointerEvents = 'auto';
-        } else {
-            nav.classList.remove('scrolled');
-            nav.style.opacity = '0';
-            nav.style.pointerEvents = 'none';
-        }
-    });
-}, { threshold: 0.1 });
+// Nav always visible, gets dark glass on scroll
+nav.style.opacity = '1';
+nav.classList.add('scrolled'); // start scrolled since no splash
 
-navObserver.observe(splash);
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+}, { passive: true });
 
 // ─── SMOOTH SCROLL ────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -38,7 +33,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ─── ACTIVE NAV LINKS ─────────────────────────
-const sections = document.querySelectorAll('section[id], div[id]');
+const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
@@ -70,15 +65,3 @@ document.querySelectorAll('.projects, .about, .contact, .footer').forEach(el => 
     el.classList.add('reveal');
     revealObserver.observe(el);
 });
-
-// ─── HIDE SCROLL HINT ON FIRST SCROLL ─────────
-const scrollHint = document.querySelector('.splash-scroll');
-let hintHidden = false;
-
-window.addEventListener('scroll', () => {
-    if (!hintHidden && window.scrollY > 40) {
-        scrollHint.style.opacity = '0';
-        scrollHint.style.transition = 'opacity 0.4s ease';
-        hintHidden = true;
-    }
-}, { passive: true });

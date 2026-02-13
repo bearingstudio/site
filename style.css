@@ -10,13 +10,13 @@
 }
 
 :root {
-    --color-bg: #0d0d0d;
-    --color-surface: #141414;
-    --color-surface-2: #1a1a1a;
-    --color-text: #f0f0f0;
-    --color-text-secondary: #888888;
-    --color-border: #2a2a2a;
-    --color-accent: #f0f0f0;
+    --color-bg: #d8d8d8;
+    --color-surface: #cecece;
+    --color-surface-2: #c4c4c4;
+    --color-text: #1f1f1f;
+    --color-text-secondary: #555555;
+    --color-border: #b8b8b8;
+    --color-accent: #1f1f1f;
     --color-red: #e02020;
 
     --font-display: 'Lastik', -apple-system, sans-serif;
@@ -45,7 +45,7 @@ body {
 .dot-grid {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.12) 0.5px, transparent 0.5px);
+    background-image: radial-gradient(circle, rgba(0,0,0,0.12) 0.5px, transparent 0.5px);
     background-size: 24px 24px;
     pointer-events: none;
     z-index: 0;
@@ -76,17 +76,17 @@ body {
 }
 
 .splash-logo {
-    height: 78px;
+    height: 52px;
     width: auto;
 }
 
 .splash-location {
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: 0.9rem;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.45);
-    letter-spacing: 0.08em;
-    text-transform: none;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
 }
 
 .splash-scroll {
@@ -137,32 +137,38 @@ body {
 
 .nav.scrolled {
     background-color: rgba(13, 13, 13, 0.92);
-    backdrop-filter: blur(20px) saturate(180%);
-    border-bottom-color: var(--color-border);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border-bottom-color: rgba(255,255,255,0.08);
 }
 
 .nav-content {
     max-width: 1600px;
     margin: 0 auto;
     padding: 1.25rem clamp(1.5rem, 4vw, 3rem);
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
 }
 
 .logo-image {
-    height: 32px;
+    height: 45px;
     width: auto;
+    display: block;
+}
+
+.nav-spacer {
     display: block;
 }
 
 .nav-links {
     display: flex;
     gap: 2.5rem;
+    justify-content: center;
 }
 
 .nav-links a {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.55);
     text-decoration: none;
     font-size: 0.9375rem;
     font-weight: 400;
@@ -178,13 +184,13 @@ body {
     left: 0;
     width: 0;
     height: 0.5px;
-    background-color: var(--color-text);
+    background-color: rgba(255,255,255,0.8);
     transition: width 0.3s ease;
 }
 
-.nav-links a:hover { color: var(--color-text); }
+.nav-links a:hover { color: rgba(255,255,255,0.9); }
 .nav-links a:hover::after { width: 100%; }
-.nav-links a.active { color: var(--color-text); }
+.nav-links a.active { color: rgba(255,255,255,0.9); }
 
 /* ============================================
    HERO
@@ -202,7 +208,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 0.5px);
+    background-image: radial-gradient(circle, rgba(0,0,0,0.08) 0.5px, transparent 0.5px);
     background-size: 24px 24px;
     pointer-events: none;
 }

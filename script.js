@@ -2,30 +2,37 @@
    BEARING STUDIO — script.js
    ============================================ */
 
-// ─── NAV ──────────────────────────────────────
-const nav = document.getElementById('nav');
+// ─── NAV: sticky, always present ──────────────
+// Nothing needed — nav is position:sticky in CSS
 
-// Nav always visible, gets dark glass on scroll
-nav.style.opacity = '1';
-nav.classList.add('scrolled'); // start scrolled since no splash
+// ─── PARALLAX: title + subtitle scroll up ─────
+const heroTitle = document.getElementById('heroTitle');
+const heroSubtitle = document.getElementById('heroVideoSubtitle');
+const heroWrap = document.querySelector('.hero-video-wrap');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
+    if (!heroWrap) return;
+    const rect = heroWrap.getBoundingClientRect();
+    const scrolled = -rect.top; // positive when scrolled past top
+
+    if (scrolled > -window.innerHeight && scrolled < rect.height) {
+        const offset = Math.max(0, scrolled * 0.45);
+        if (heroTitle)   heroTitle.style.transform   = `translateY(-${offset}px)`;
+        if (heroSubtitle) heroSubtitle.style.transform = `translateY(-${offset * 0.7}px)`;
     }
 }, { passive: true });
 
 // ─── SMOOTH SCROLL ────────────────────────────
+const nav = document.getElementById('nav');
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const navHeight = nav.offsetHeight;
+            const navHeight = nav ? nav.offsetHeight : 0;
             window.scrollTo({
-                top: target.getBoundingClientRect().top + window.pageYOffset - navHeight - 32,
+                top: target.getBoundingClientRect().top + window.pageYOffset - navHeight - 24,
                 behavior: 'smooth'
             });
         }

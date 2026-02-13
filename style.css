@@ -76,17 +76,17 @@ body {
 }
 
 .splash-logo {
-    height: 52px;
+    height: 78px;
     width: auto;
 }
 
 .splash-location {
     font-family: var(--font-display);
-    font-size: 0.9rem;
+    font-size: 1.35rem;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.45);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-transform: none;
 }
 
 .splash-scroll {
@@ -131,7 +131,8 @@ body {
     z-index: 1000;
     background-color: rgba(13, 13, 13, 0);
     border-bottom: 0.5px solid transparent;
-    transition: background-color 0.4s ease, border-color 0.4s ease;
+    transition: background-color 0.4s ease, border-color 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
 }
 
 .nav.scrolled {

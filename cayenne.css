@@ -1,0 +1,343 @@
+/* ============================================
+   CAYENNE PROJECT PAGE
+   cayenne.css
+   ============================================ */
+
+.cayenne-page {
+    background-color: var(--color-bg);
+    cursor: crosshair;
+}
+
+/* ── Hero ── */
+.cay-hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.cay-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.cay-hero-bg iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 125%;
+    height: 140%;
+    transform: translate(-50%, -50%);
+    border: none;
+    pointer-events: none;
+}
+
+.cay-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85) 0%,
+        rgba(0,0,0,0.2) 50%,
+        transparent 100%
+    );
+}
+
+.cay-hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.cay-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+}
+
+.cay-title {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: normal;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+}
+
+.cay-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: -0.02em;
+}
+
+.cay-hero-meta {
+    display: flex;
+    gap: 3rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid rgba(255,255,255,0.15);
+}
+
+.cay-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.cay-meta-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+}
+
+.cay-meta-value {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: -0.01em;
+}
+
+/* ── Shared container ── */
+.cay-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+/* ── Section labels ── */
+.cay-section-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+}
+
+/* ── Typography ── */
+.cay-heading {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--color-text);
+    margin-top: 1rem;
+}
+
+.cay-lede {
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+}
+
+.cay-body {
+    font-size: clamp(1rem, 1.3vw, 1.125rem);
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+}
+
+.cay-body.large {
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    color: var(--color-text);
+    font-weight: 400;
+    margin-top: 2rem;
+}
+
+.cay-body:last-child { margin-bottom: 0; }
+
+/* ── Intro ── */
+.cay-intro {
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    border-bottom: 0.5px solid var(--color-border);
+}
+
+.cay-intro-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* ── Pull Quote ── */
+.cay-pullquote {
+    padding: clamp(4rem, 8vw, 7rem) 0;
+    border-bottom: 0.5px solid var(--color-border);
+    background-color: var(--color-surface);
+}
+
+.cay-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.5vw, 2.75rem);
+    font-weight: normal;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    color: var(--color-text);
+    max-width: 900px;
+    border-left: 2px solid var(--color-text);
+    padding-left: 2.5rem;
+    margin: 0;
+}
+
+/* ── Feature section ── */
+.cay-feature {
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    border-bottom: 0.5px solid var(--color-border);
+}
+
+.cay-feature-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* ── Strip video ── */
+.cay-strip {
+    width: 100%;
+    aspect-ratio: 21 / 6;
+    overflow: hidden;
+    background-color: #000;
+    position: relative;
+}
+
+.cay-strip-video {
+    position: absolute;
+    inset: 0;
+}
+
+.cay-strip-video iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 125%;
+    height: 150%;
+    transform: translate(-50%, -50%);
+    border: none;
+    pointer-events: none;
+}
+
+/* ── Interview ── */
+.cay-interview {
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    border-bottom: 0.5px solid var(--color-border);
+}
+
+.cay-interview-header {
+    margin-bottom: 4rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 0.5px solid var(--color-border);
+}
+
+.cay-interview-title {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--color-text-secondary);
+    margin-top: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.cay-interview-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.cay-qa {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.cay-question {
+    font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+    font-weight: 500;
+    line-height: 1.65;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+}
+
+.cay-answer {
+    font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    letter-spacing: -0.01em;
+}
+
+/* ── Closing ── */
+.cay-closing {
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    border-bottom: 0.5px solid var(--color-border);
+}
+
+.cay-closing-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* ── Back link ── */
+.cay-back {
+    padding: 3rem 0;
+    border-bottom: 0.5px solid var(--color-border);
+}
+
+.cay-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    transition: color 0.2s ease, gap 0.2s ease;
+    letter-spacing: -0.01em;
+}
+
+.cay-back-link:hover {
+    color: var(--color-text);
+    gap: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .cay-intro-grid,
+    .cay-feature-grid,
+    .cay-closing-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .cay-qa {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .cay-hero-meta {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .cay-hero-overlay { padding: 2rem; }
+    .cay-quote { font-size: clamp(1.25rem, 5vw, 1.75rem); padding-left: 1.5rem; }
+    .cay-strip { aspect-ratio: 16 / 9; }
+}

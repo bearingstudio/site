@@ -37,6 +37,11 @@ body {
     color: var(--color-text);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    cursor: crosshair;
+}
+
+a, button, .hero-expand-btn, .project-item {
+    cursor: crosshair;
 }
 
 /* ============================================
@@ -239,7 +244,7 @@ body {
     pointer-events: none;
 }
 
-/* Two-column overlay grid — vertically centered */
+/* Two-column overlay grid — slightly above center */
 .hero-video-overlay {
     position: absolute;
     inset: 0;
@@ -247,7 +252,10 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    padding: 2.5rem 3rem;
+    padding-top: 20%;
+    padding-bottom: 2.5rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
     gap: 3rem;
     background: linear-gradient(
         to top,
@@ -298,7 +306,7 @@ body {
     flex-direction: row-reverse;
     align-items: center;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.65);
+    border: 1.75px solid rgba(255,255,255,0.75);
     cursor: pointer;
     pointer-events: all;
     transition: border-color 0.3s ease;

@@ -12,12 +12,11 @@ const heroWrap = document.querySelector('.hero-video-wrap');
 
 window.addEventListener('scroll', () => {
     if (!heroWrap) return;
-    const rect = heroWrap.getBoundingClientRect();
-    const scrolled = -rect.top; // positive when scrolled past top
+    const scrolled = window.pageYOffset;
 
-    if (scrolled > -window.innerHeight && scrolled < rect.height) {
-        const offset = Math.max(0, scrolled * 0.45);
-        if (heroTitle)   heroTitle.style.transform   = `translateY(-${offset}px)`;
+    if (scrolled < window.innerHeight * 1.5) {
+        const offset = scrolled * 0.45;
+        if (heroTitle)    heroTitle.style.transform    = `translateY(-${offset}px)`;
         if (heroSubtitle) heroSubtitle.style.transform = `translateY(-${offset * 0.7}px)`;
     }
 }, { passive: true });

@@ -221,38 +221,40 @@ body {
 .hero-video-frame {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 5.5;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     background-color: #000;
+    max-height: 85vh;
 }
 
 .hero-video-frame iframe {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* Oversize to eliminate black letterbox bars */
-    width: 125%;
-    height: 125%;
+    /* 4:3 source — fill width, crop top/bottom */
+    width: 100%;
+    height: 140%;
     transform: translate(-50%, -50%);
     border: none;
     pointer-events: none;
 }
 
-/* Title + subtitle centered over video */
+/* Title + subtitle anchored bottom-left */
 .hero-video-overlay {
     position: absolute;
     inset: 0;
     z-index: 2;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 2.5rem 3rem;
+    gap: 0.625rem;
     background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.1) 0%,
-        rgba(0,0,0,0.45) 50%,
-        rgba(0,0,0,0.6) 100%
+        to top,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.2) 50%,
+        transparent 100%
     );
     pointer-events: none;
 }
@@ -271,8 +273,8 @@ body {
 
 .hero-video-subtitle {
     font-family: var(--font-body);
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    font-weight: 700;
+    font-size: clamp(1.125rem, 2.1vw, 1.625rem);
+    font-weight: 600;
     color: rgba(255,255,255,0.88);
     letter-spacing: -0.025em;
     text-shadow: 0 1px 12px rgba(0,0,0,0.5);

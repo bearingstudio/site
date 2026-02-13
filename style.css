@@ -282,72 +282,7 @@ body {
     transition: transform 0.05s linear;
 }
 
-/* ── Text block below video ── */
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 6vw, 6rem);
-    max-width: 900px;
-}
-
-.hero-meta {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.hero-date { color: var(--color-text); }
-
-.hero-status {
-    color: var(--color-text-secondary);
-    padding: 0.3rem 0.875rem;
-    border: 0.5px solid var(--color-border);
-    border-radius: 20px;
-    font-size: 0.72rem;
-}
-
-/* Subtitle in overlay only — hide the one in hero-content */
-.hero-subtitle { display: none; }
-
-.hero-description {
-    font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
-    font-weight: 300;
-    line-height: 1.75;
-    color: var(--color-text-secondary);
-    letter-spacing: -0.01em;
-    max-width: 760px;
-}
-
-.hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.9rem 1.875rem;
-    background-color: transparent;
-    color: var(--color-text);
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 400;
-    border: 0.5px solid var(--color-border);
-    transition: all 0.25s ease;
-    align-self: flex-start;
-    margin-top: 0.5rem;
-    letter-spacing: -0.01em;
-}
-
-.hero-cta:hover {
-    background-color: var(--color-text);
-    color: var(--color-bg);
-    border-color: var(--color-text);
-}
-
-.hero-cta:hover svg { transform: translateX(4px); }
-.hero-cta svg { transition: transform 0.25s ease; }
+/* hero-content removed — all content lives in overlay */
 
 @media (max-width: 768px) {
     .hero-video-frame { aspect-ratio: 16 / 9; }

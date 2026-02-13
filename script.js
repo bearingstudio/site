@@ -5,19 +5,20 @@
 // ─── NAV: sticky, always present ──────────────
 // Nothing needed — nav is position:sticky in CSS
 
-// ─── PARALLAX: title + subtitle scroll up ─────
-const heroTitle = document.getElementById('heroTitle');
-const heroSubtitle = document.getElementById('heroVideoSubtitle');
-const heroWrap = document.querySelector('.hero-video-wrap');
+// ─── PARALLAX: left + right columns float up ──
+const heroLeft  = document.getElementById('heroLeft');
+const heroRight = document.getElementById('heroRight');
+const heroWrap  = document.querySelector('.hero-video-wrap');
 
 window.addEventListener('scroll', () => {
     if (!heroWrap) return;
     const scrolled = window.pageYOffset;
 
     if (scrolled < window.innerHeight * 1.5) {
-        const offset = scrolled * 0.45;
-        if (heroTitle)    heroTitle.style.transform    = `translateY(-${offset}px)`;
-        if (heroSubtitle) heroSubtitle.style.transform = `translateY(-${offset * 0.7}px)`;
+        const offsetLeft  = scrolled * 0.45;
+        const offsetRight = scrolled * 0.35; // slightly slower for depth
+        if (heroLeft)  heroLeft.style.transform  = `translateY(-${offsetLeft}px)`;
+        if (heroRight) heroRight.style.transform = `translateY(-${offsetRight}px)`;
     }
 }, { passive: true });
 

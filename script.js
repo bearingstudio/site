@@ -10,8 +10,12 @@ const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (!entry.isIntersecting) {
             nav.classList.add('scrolled');
+            nav.style.opacity = '1';
+            nav.style.pointerEvents = 'auto';
         } else {
             nav.classList.remove('scrolled');
+            nav.style.opacity = '0';
+            nav.style.pointerEvents = 'none';
         }
     });
 }, { threshold: 0.1 });

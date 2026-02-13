@@ -239,20 +239,20 @@ body {
     pointer-events: none;
 }
 
-/* Two-column overlay grid */
+/* Two-column overlay grid — vertically centered */
 .hero-video-overlay {
     position: absolute;
     inset: 0;
     z-index: 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: end;
+    align-items: center;
     padding: 2.5rem 3rem;
     gap: 3rem;
     background: linear-gradient(
         to top,
-        rgba(0,0,0,0.78) 0%,
-        rgba(0,0,0,0.2) 55%,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.15) 60%,
         transparent 100%
     );
     pointer-events: none;
@@ -270,7 +270,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 1.25rem;
     will-change: transform;
 }
 
@@ -319,26 +318,83 @@ body {
 .hero-overlay-cta:hover svg { transform: translateX(4px); }
 .hero-overlay-cta svg { transition: transform 0.25s ease; }
 
-.hero-overlay-description {
+/* ── Expanding Learn More button ── */
+.hero-expand-btn {
+    display: inline-flex;
+    flex-direction: row-reverse; /* label on right, text expands left */
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.65);
+    cursor: pointer;
+    pointer-events: all;
+    transition: border-color 0.3s ease;
+}
+
+.hero-expand-btn:hover {
+    border-color: #ffffff;
+}
+
+/* Collapsed text area — hidden by default */
+.hero-expand-text {
+    max-width: 0;
+    overflow: hidden;
+    transition: max-width 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+}
+
+.hero-expand-btn:hover .hero-expand-text {
+    max-width: 360px;
+    padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+}
+
+.hero-expand-text p {
     font-family: var(--font-body);
-    font-size: clamp(0.8125rem, 1vw, 0.9375rem);
+    font-size: 0.8125rem;
     font-weight: 300;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.72);
-    text-align: right;
-    max-width: 400px;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    line-height: 1.65;
+    color: rgba(255,255,255,0.85);
+    white-space: normal;
+    width: 320px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+}
+
+/* The always-visible label pill */
+.hero-expand-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.125rem;
+    white-space: nowrap;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+}
+
+.hero-expand-btn:hover .hero-expand-label svg {
+    transform: rotate(180deg);
+}
+
+.hero-expand-label svg {
+    transition: transform 0.35s ease;
 }
 
 @media (max-width: 768px) {
     .hero-video-overlay {
         grid-template-columns: 1fr;
+        align-items: flex-end;
         padding: 1.5rem;
         gap: 1.5rem;
     }
     .hero-video-frame { aspect-ratio: 16 / 9; }
     .hero-overlay-right { align-items: flex-start; }
-    .hero-overlay-description { text-align: left; }
+    .hero-expand-btn:hover .hero-expand-text {
+        max-width: 260px;
+    }
+    .hero-expand-text p { width: 220px; }
 }
 
 /* ============================================

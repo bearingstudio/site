@@ -6,163 +6,144 @@
     <title>bearing studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Dot Grid Background -->
-    <div class="dot-grid"></div>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-content">
-            <a href="#" class="logo">
-                <img src="your-logo.png" alt="bearing studio" class="logo-image">
-            </a>
-            <div class="nav-links">
-                <a href="#work">Work</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
+    <!-- ── SPLASH ── -->
+    <section class="splash" id="splash">
+        <div class="dot-grid"></div>
+        <div class="splash-identity">
+            <img src="bearing-logo-white.png" alt="bearing studio" class="splash-logo">
+            <p class="splash-location">Austin, Texas</p>
         </div>
-    </nav>
-
-    <!-- Hero Project: Cayenne -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-meta">
-                    <span class="hero-date">Jan. 2026</span>
-                    <span class="hero-status">Latest Project</span>
-                </div>
-                <h1 class="hero-title">Cayenne</h1>
-                <h2 class="hero-subtitle">Design Empathy in the Digital Age</h2>
-                <p class="hero-description">
-                    Bearing Studio's first publication examines industrial design ethics and the design empathy framework through the lens of the first-generation Porsche Cayenne. Featuring insight from Lynette Cox, powertrain engineer at Rivian and formerly Lucid Motors.                </p>
-                <a href="#" class="hero-cta">
-                    <span>Explore Project</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-            </div>
-            <div class="hero-image">
-                <img src="cayenne-hero.jpg" alt="Porsche Cayenne - First Generation">
-            </div>
+        <div class="splash-scroll">
+            <span class="scroll-label">Scroll</span>
+            <svg class="scroll-arrow" width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="8" y1="0" x2="8" y2="20" stroke="white" stroke-width="1" stroke-opacity="0.5"/>
+                <polyline points="2,15 8,22 14,15" stroke="white" stroke-width="1" stroke-opacity="0.5" fill="none"/>
+            </svg>
         </div>
     </section>
 
-    <!-- Projects Grid -->
-    <section class="projects" id="work">
-        <div class="projects-container">
-            <div class="section-header">
-                <h3 class="section-label">More Work</h3>
+    <!-- ── MAIN SITE ── -->
+    <div class="site" id="site">
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="nav-content">
+                <a href="#splash" class="logo">
+                    <img src="bearing-logo-white.png" alt="bearing studio" class="logo-image">
+                </a>
+                <div class="nav-links">
+                    <a href="#work">Work</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
             </div>
-            
-            <div class="projects-grid">
-                <!-- Project 2 - Coming Soon -->
-                <article class="project-item coming-soon">
-                    <div class="project-border">
+        </nav>
+
+        <!-- Hero: Cayenne -->
+        <section class="hero" id="work">
+            <div class="hero-container">
+                <div class="hero-image">
+                    <img src="cayenne-hero.jpg" alt="First-generation Porsche Cayenne">
+                </div>
+                <div class="hero-content">
+                    <div class="hero-meta">
+                        <span class="hero-date">Jan. 2026</span>
+                        <span class="hero-status">Latest Project</span>
+                    </div>
+                    <h1 class="hero-title">Cayenne</h1>
+                    <h2 class="hero-subtitle">Design Empathy in the Digital Age</h2>
+                    <p class="hero-description">
+                        Bearing Studio's inaugural publication examines industrial design ethics and the design empathy framework — with insight from Lynette Cox, powertrain engineer at Rivian and formerly Lucid Motors — through a lens from the past: the first-generation Porsche Cayenne.
+                    </p>
+                    <a href="cayenne.html" class="hero-cta">
+                        <span>Explore Project</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="projects">
+            <div class="projects-container">
+                <h3 class="section-label">More Work</h3>
+                <div class="projects-grid">
+
+                    <article class="project-item coming-soon">
                         <div class="project-visual">
-                            <div class="coming-soon-content">
-                                <span class="coming-soon-text">Coming Soon</span>
-                            </div>
+                            <span class="coming-soon-text">Coming Soon</span>
                         </div>
                         <div class="project-hover-info">
                             <h4 class="project-hover-title">Next Publication</h4>
-                            <p class="project-hover-desc">Stay tuned for our upcoming exploration</p>
+                            <p class="project-hover-desc">Stay tuned for the next exploration</p>
                         </div>
-                    </div>
-                </article>
+                    </article>
 
-                <!-- Project 3 - Coming Soon -->
-                <article class="project-item coming-soon">
-                    <div class="project-border">
+                    <article class="project-item coming-soon">
                         <div class="project-visual">
-                            <div class="coming-soon-content">
-                                <span class="coming-soon-text">Coming Soon</span>
-                            </div>
+                            <span class="coming-soon-text">Coming Soon</span>
+                        </div>
+                        <div class="project-hover-info">
+                            <h4 class="project-hover-title">In Development</h4>
+                            <p class="project-hover-desc">More projects underway</p>
+                        </div>
+                    </article>
+
+                    <article class="project-item coming-soon">
+                        <div class="project-visual">
+                            <span class="coming-soon-text">Coming Soon</span>
                         </div>
                         <div class="project-hover-info">
                             <h4 class="project-hover-title">Future Work</h4>
-                            <p class="project-hover-desc">More projects in development</p>
+                            <p class="project-hover-desc">Watch this space</p>
                         </div>
-                    </div>
-                </article>
+                    </article>
 
-                <!-- Project 4 - Coming Soon -->
-                <article class="project-item coming-soon">
-                    <div class="project-border">
-                        <div class="project-visual">
-                            <div class="coming-soon-content">
-                                <span class="coming-soon-text">Coming Soon</span>
-                            </div>
-                        </div>
-                        <div class="project-hover-info">
-                            <h4 class="project-hover-title">In Progress</h4>
-                            <p class="project-hover-desc">Currently under development</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Add actual projects here - example template: -->
-                <!--
-                <article class="project-item">
-                    <div class="project-border">
-                        <div class="project-visual">
-                            <img src="project-image.jpg" alt="Project title">
-                        </div>
-                        <div class="project-hover-info">
-                            <h4 class="project-hover-title">Project Title</h4>
-                            <p class="project-hover-desc">Brief description of the project that appears on hover</p>
-                        </div>
-                    </div>
-                </article>
-                -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-container">
-            <div class="section-header">
-                <h3 class="section-label">About</h3>
-            </div>
-            <div class="about-content">
-                <p class="about-text large">
-                    Bearing Studio explores the intersection of design, technology, and human experience through long-form publications and research.
-                </p>
-                <p class="about-text">
-                    We believe great design begins with empathy—understanding not just what people need, but why they need it. Our work examines the ethical dimensions of industrial design, the evolution of technology, and the stories behind the objects that shape our lives.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-container">
-            <div class="section-header">
-                <h3 class="section-label">Connect</h3>
-            </div>
-            <div class="contact-content">
-                <a href="mailto:hello@bearingstudio.com" class="contact-email">hello@bearingstudio.com</a>
-                <div class="contact-social">
-                    <a href="#" class="social-link">LinkedIn</a>
-                    <a href="#" class="social-link">Instagram</a>
-                    <a href="#" class="social-link">Twitter</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <p class="footer-text">© 2026 bearing studio. All rights reserved.</p>
-        </div>
-    </footer>
+        <!-- About -->
+        <section class="about" id="about">
+            <div class="about-container">
+                <h3 class="section-label">About</h3>
+                <div class="about-content">
+                    <p class="about-text large">Bearing Studio is a multidisciplinary design practice based in Austin, Texas.</p>
+                    <p class="about-text">We explore the intersection of design, technology, and human experience — through publications, products, and whatever the work demands.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact" id="contact">
+            <div class="contact-container">
+                <h3 class="section-label">Connect</h3>
+                <div class="contact-content">
+                    <a href="mailto:hello@bearingstudio.com" class="contact-email">hello@bearingstudio.com</a>
+                    <div class="contact-social">
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <p class="footer-text">© 2026 bearing studio. Austin, Texas.</p>
+            </div>
+        </footer>
+
+    </div><!-- /site -->
 
     <script src="script.js"></script>
 </body>

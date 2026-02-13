@@ -124,7 +124,7 @@ body {
    NAVIGATION
    ============================================ */
 .nav {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
@@ -145,14 +145,14 @@ body {
 .nav-content {
     max-width: 1600px;
     margin: 0 auto;
-    padding: 1.25rem clamp(1.5rem, 4vw, 3rem);
+    padding: 1.1rem clamp(1.5rem, 4vw, 3rem);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
 }
 
 .logo-image {
-    height: 45px;
+    height: 48px;
     width: auto;
     display: block;
 }

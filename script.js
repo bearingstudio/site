@@ -6,19 +6,32 @@
 // Nothing needed — nav is position:sticky in CSS
 
 // ─── PARALLAX: left + right columns float up ──
+// ─── PARALLAX: left + right columns float up ──
 const heroLeft  = document.getElementById('heroLeft');
 const heroRight = document.getElementById('heroRight');
 const heroWrap  = document.querySelector('.hero-video-wrap');
 
-window.addEventListener('scroll', () => {
-    if (!heroWrap) return;
-    const scrolled = window.pageYOffset;
+// ─── PARALLAX: cayenne hero content ───────────
+const cayHeroContent = document.querySelector('.cay-hero-content');
+const cayHero        = document.querySelector('.cay-hero');
 
-    if (scrolled < window.innerHeight * 1.5) {
-        const offsetLeft  = scrolled * 0.45;
-        const offsetRight = scrolled * 0.35; // slightly slower for depth
-        if (heroLeft)  heroLeft.style.transform  = `translateY(-${offsetLeft}px)`;
-        if (heroRight) heroRight.style.transform = `translateY(-${offsetRight}px)`;
+window.addEventListener('scroll', () => {
+    // Index page parallax
+    if (heroWrap) {
+        const scrolled = window.pageYOffset;
+        if (scrolled < window.innerHeight * 1.5) {
+            const offsetLeft  = scrolled * 0.45;
+            const offsetRight = scrolled * 0.35;
+            if (heroLeft)  heroLeft.style.transform  = `translateY(-${offsetLeft}px)`;
+            if (heroRight) heroRight.style.transform = `translateY(-${offsetRight}px)`;
+        }
+    }
+    // Cayenne page parallax
+    if (cayHeroContent && cayHero) {
+        const scrolled = window.pageYOffset;
+        if (scrolled < window.innerHeight) {
+            cayHeroContent.style.transform = `translateY(-${scrolled * 0.25}px)`;
+        }
     }
 }, { passive: true });
 

@@ -348,5 +348,53 @@
 
     .cay-hero-overlay { padding: 2rem 2rem 2.5rem; }
     .cay-quote { font-size: clamp(1.25rem, 5vw, 1.75rem); padding-left: 1.5rem; }
-    .cay-strip { aspect-ratio: 16 / 9; }
+}
+
+@media (max-width: 640px) {
+    /* Cayenne hero: fix the massive black bar above title */
+    .cay-hero {
+        height: 100svh; /* use small viewport height — excludes browser chrome */
+    }
+
+    .cay-hero-bg iframe {
+        /* On mobile, make iframe taller to fill without black bars */
+        width: 200%;
+        height: 100%;
+        left: 50%;
+        top: 50%;
+    }
+
+    .cay-hero-overlay {
+        padding: 1.5rem 1.5rem 2rem;
+        gap: 2rem;
+        justify-content: flex-end;
+    }
+
+    .cay-hero-content {
+        text-align: center;
+        align-items: center;
+    }
+
+    .cay-title { font-size: clamp(3rem, 14vw, 5rem); }
+    .cay-subtitle { font-size: 1rem; }
+
+    .cay-hero-meta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem 2rem;
+        justify-content: center;
+        padding-bottom: 1rem;
+    }
+
+    /* Editorial sections: tighter padding on mobile */
+    .cay-intro,
+    .cay-feature,
+    .cay-interview,
+    .cay-closing {
+        padding: 3.5rem 0;
+    }
+
+    /* Interview Q&A: question slightly smaller */
+    .cay-question { font-size: 0.9375rem; }
+    .cay-answer   { font-size: 0.9375rem; }
 }

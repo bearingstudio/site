@@ -750,6 +750,183 @@ a, button, .hero-expand-btn, .project-item {
 }
 
 /* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Skip link */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    background: #fff;
+    color: #000;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 2px solid #000;
+    transition: top 0.15s ease;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Focus styles — visible for keyboard users */
+:focus-visible {
+    outline: 2px solid rgba(255,255,255,0.9);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+/* On light backgrounds */
+.about :focus-visible,
+.contact :focus-visible,
+.projects :focus-visible,
+.footer :focus-visible {
+    outline-color: #1f1f1f;
+}
+
+/* Nav: make room for a11y menu on right */
+.nav-content {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* A11y trigger button */
+.a11y-menu-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.a11y-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: none;
+    border: 0.5px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.55);
+    padding: 0.4rem 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    cursor: crosshair;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    border-radius: 2px;
+}
+.a11y-trigger:hover,
+.a11y-trigger[aria-expanded="true"] {
+    color: rgba(255,255,255,0.9);
+    border-color: rgba(255,255,255,0.6);
+}
+.a11y-trigger-label {
+    display: none;
+}
+@media (min-width: 900px) {
+    .a11y-trigger-label { display: inline; }
+}
+
+/* Dropdown menu */
+.a11y-menu {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    min-width: 200px;
+    background: rgba(18,18,18,0.96);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 0.5px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 0.75rem 0;
+    z-index: 2000;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+.a11y-menu[hidden] { display: none; }
+
+.a11y-menu-heading {
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    padding: 0 1rem 0.5rem;
+}
+
+.a11y-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 300;
+    padding: 0.625rem 1rem;
+    cursor: crosshair;
+    text-align: left;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.a11y-option:hover {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.95);
+}
+.a11y-option[aria-pressed="true"] {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+}
+.a11y-option[aria-pressed="true"]::after {
+    content: '✓';
+    margin-left: auto;
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+.a11y-icon {
+    font-size: 0.875rem;
+    width: 1.25rem;
+    text-align: center;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+/* ── Toggle: Larger text ── */
+body.a11y-large-text {
+    font-size: 112.5%;
+}
+body.a11y-large-text .cay-body { font-size: 1.125rem; }
+body.a11y-large-text .nav-links a { font-size: 1rem; }
+
+/* ── Toggle: High contrast ── */
+body.a11y-high-contrast {
+    --color-bg: #ffffff;
+    --color-surface: #f0f0f0;
+    --color-surface-2: #e0e0e0;
+    --color-text: #000000;
+    --color-text-secondary: #222222;
+    --color-border: #000000;
+}
+body.a11y-high-contrast .nav {
+    background-color: #000;
+    border-bottom-color: #fff;
+}
+body.a11y-high-contrast .cay-title,
+body.a11y-high-contrast .hero-title {
+    text-shadow: none;
+}
+
+/* ── Toggle: Reduce motion ── */
+@media (prefers-reduced-motion: reduce),
+body.a11y-reduce-motion {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ============================================
    ANIMATIONS
    ============================================ */
 @keyframes fadeInUp {

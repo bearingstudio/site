@@ -12,27 +12,54 @@
 </head>
 <body class="cayenne-page">
 
+    <!-- Skip to main content -->
+    <a href="#cay-main" class="skip-link">Skip to main content</a>
+
     <!-- Navigation -->
-    <nav class="nav scrolled" id="nav">
+    <nav class="nav scrolled" id="nav" aria-label="Main navigation">
         <div class="nav-content">
-            <a href="index.html" class="logo">
-                <img src="bearing-logo-white.png" alt="bearing studio" class="logo-image">
+            <a href="index.html" class="logo" aria-label="Bearing Studio — home">
+                <img src="bearing-logo-white.png" alt="" class="logo-image" aria-hidden="true">
             </a>
-            <div class="nav-links">
-                <a href="index.html#work">Work</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#contact">Contact</a>
+            <div class="nav-links" role="list">
+                <a href="index.html#work" role="listitem">Work</a>
+                <a href="index.html#about" role="listitem">About</a>
+                <a href="index.html#contact" role="listitem">Contact</a>
             </div>
-            <div class="nav-spacer"></div>
+            <div class="a11y-menu-wrap">
+                <button class="a11y-trigger" aria-expanded="false" aria-controls="a11y-menu" aria-label="Accessibility options">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <circle cx="12" cy="5" r="1.5"/>
+                        <path d="M12 8v4m0 0-3 5m3-5 3 5M9 11H6m12 0h-3"/>
+                    </svg>
+                    <span class="a11y-trigger-label">Accessibility</span>
+                </button>
+                <div class="a11y-menu" id="a11y-menu" role="menu" aria-label="Accessibility options" hidden>
+                    <p class="a11y-menu-heading">Display</p>
+                    <button class="a11y-option" role="menuitem" data-action="text-size" aria-pressed="false">
+                        <span class="a11y-icon">Aa</span>
+                        <span>Larger text</span>
+                    </button>
+                    <button class="a11y-option" role="menuitem" data-action="high-contrast" aria-pressed="false">
+                        <span class="a11y-icon">◑</span>
+                        <span>High contrast</span>
+                    </button>
+                    <button class="a11y-option" role="menuitem" data-action="reduce-motion" aria-pressed="false">
+                        <span class="a11y-icon">⊘</span>
+                        <span>Reduce motion</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </nav>
 
     <!-- Hero -->
-    <header class="cay-hero">
+    <header class="cay-hero" id="cay-main">
         <div class="cay-hero-bg">
             <iframe
                 src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
                 frameborder="0"
+                title="Cayenne — Design Empathy in the Digital Age, background video"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowfullscreen>
             </iframe>

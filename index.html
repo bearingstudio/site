@@ -11,18 +11,46 @@
 </head>
 <body>
 
+    <!-- Skip to main content (keyboard users) -->
+    <a href="#work" class="skip-link">Skip to main content</a>
+
     <!-- Navigation -->
-    <nav class="nav" id="nav">
+    <nav class="nav" id="nav" aria-label="Main navigation">
         <div class="nav-content">
-            <a href="#" class="logo">
-                <img src="bearing-logo-white.png" alt="bearing studio" class="logo-image">
+            <a href="#" class="logo" aria-label="Bearing Studio — home">
+                <img src="bearing-logo-white.png" alt="" class="logo-image" aria-hidden="true">
             </a>
-            <div class="nav-links">
-                <a href="#work">Work</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+            <div class="nav-links" role="list">
+                <a href="#work" role="listitem">Work</a>
+                <a href="#about" role="listitem">About</a>
+                <a href="#contact" role="listitem">Contact</a>
             </div>
-            <div class="nav-spacer"></div>
+
+            <!-- Accessibility menu -->
+            <div class="a11y-menu-wrap">
+                <button class="a11y-trigger" aria-expanded="false" aria-controls="a11y-menu" aria-label="Accessibility options">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <circle cx="12" cy="5" r="1.5"/>
+                        <path d="M12 8v4m0 0-3 5m3-5 3 5M9 11H6m12 0h-3"/>
+                    </svg>
+                    <span class="a11y-trigger-label">Accessibility</span>
+                </button>
+                <div class="a11y-menu" id="a11y-menu" role="menu" aria-label="Accessibility options" hidden>
+                    <p class="a11y-menu-heading">Display</p>
+                    <button class="a11y-option" role="menuitem" data-action="text-size" aria-pressed="false">
+                        <span class="a11y-icon">Aa</span>
+                        <span>Larger text</span>
+                    </button>
+                    <button class="a11y-option" role="menuitem" data-action="high-contrast" aria-pressed="false">
+                        <span class="a11y-icon">◑</span>
+                        <span>High contrast</span>
+                    </button>
+                    <button class="a11y-option" role="menuitem" data-action="reduce-motion" aria-pressed="false">
+                        <span class="a11y-icon">⊘</span>
+                        <span>Reduce motion</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -42,14 +70,14 @@
 
                     <!-- Right: expanding button — Learn More → Explore Project on hover -->
                     <div class="hero-overlay-right" id="heroRight">
-                        <a href="cayenne.html" class="hero-expand-btn">
-                            <div class="hero-expand-text">
+                        <a href="cayenne.html" class="hero-expand-btn" aria-label="Explore Cayenne — Design Empathy in the Digital Age">
+                            <div class="hero-expand-text" aria-hidden="true">
                                 <p>Bearing Studio's inaugural publication examines industrial ethics and the design empathy framework through the first-generation Porsche Cayenne, with insights from Lynette Cox, powertrain engineer at Rivian and formerly Lucid Motors.</p>
                             </div>
                             <div class="hero-expand-label">
                                 <span class="label-default">Explore Project</span>
                                 <span class="label-hover">Explore Project</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                                     <path d="M5 12h14M12 5l7 7-7 7"/>
                                 </svg>
                             </div>
@@ -61,6 +89,7 @@
                     <iframe
                         src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
                         frameborder="0"
+                        title="Cayenne — Design Empathy in the Digital Age, background video"
                         allow="autoplay; fullscreen; picture-in-picture"
                         allowfullscreen>
                     </iframe>
@@ -73,7 +102,7 @@
     <!-- Projects Grid -->
     <section class="projects">
         <div class="projects-container">
-            <h3 class="section-label">More Work</h3>
+            <p class="section-label" aria-hidden="true">More Work</p>
             <div class="projects-grid">
 
                 <article class="project-item coming-soon">
@@ -113,7 +142,7 @@
     <!-- About -->
     <section class="about" id="about">
         <div class="about-container">
-            <h3 class="section-label">About</h3>
+            <h2 class="section-label">About</h2>
             <div class="about-content">
                 <p class="about-text large">Bearing Studio is a multidisciplinary design practice based in Austin, Texas.</p>
                 <p class="about-text">We explore the intersection of design, technology, and human experience — through publications, products, and whatever the work demands.</p>
@@ -124,7 +153,7 @@
     <!-- Contact -->
     <section class="contact" id="contact">
         <div class="contact-container">
-            <h3 class="section-label">Connect</h3>
+            <h2 class="section-label">Connect</h2>
             <div class="contact-content">
                 <a href="mailto:bearingstudio@pm.me" class="contact-email">bearingstudio@pm.me</a>
                 <div class="contact-social">

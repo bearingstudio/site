@@ -251,11 +251,8 @@ a, button, .hero-expand-btn, .project-item {
     z-index: 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding-top: 20%;
-    padding-bottom: 2.5rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    align-items: flex-end;
+    padding: 2.5rem 3rem;
     gap: 3rem;
     background: linear-gradient(
         to top,
@@ -352,7 +349,7 @@ a, button, .hero-expand-btn, .project-item {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
+    padding: 1rem 1.25rem;
     white-space: nowrap;
     font-family: var(--font-body);
     font-size: 0.875rem;
@@ -410,7 +407,7 @@ a, button, .hero-expand-btn, .project-item {
         max-height: none;
     }
 
-    /* Hide the overlay entirely — text moves below */
+    /* Hide overlay — handled per-slide in 640px breakpoint */
     .hero-video-overlay {
         display: none;
     }
@@ -475,33 +472,42 @@ a, button, .hero-expand-btn, .project-item {
     margin-bottom: 0.25rem;
 }
 
-/* Carousel controls bar */
+/* Carousel controls — overlaid inside the carousel at bottom center */
 .carousel-controls {
-    display: flex;
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-    padding: 1rem 0 0.5rem;
+    gap: 1rem;
+    padding: 0.5rem 0.875rem;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    border: 0.5px solid rgba(255,255,255,0.12);
+    pointer-events: all;
 }
 
-/* Arrow buttons — reuse the same visual language as the expand button */
+/* Arrow buttons */
 .carousel-arrow {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 1.75rem;
+    height: 1.75rem;
     background: none;
-    border: 0.5px solid rgba(255,255,255,0.25);
-    color: rgba(255,255,255,0.5);
+    border: 0.5px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.6);
     cursor: crosshair;
     transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
     flex-shrink: 0;
 }
 .carousel-arrow:hover {
-    border-color: rgba(255,255,255,0.8);
+    border-color: rgba(255,255,255,0.9);
     color: #fff;
-    background: rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.08);
 }
 
 /* Dots */
@@ -852,25 +858,42 @@ a, button, .hero-expand-btn, .project-item {
     }
     .a11y-trigger-label { display: none; }
 
-    /* ── INDEX HERO MOBILE TEXT CARD ── */
-    /* Inject a text+button block below the video using the hero-container */
-    .hero-container {
-        display: block;
+    /* ── INDEX HERO MOBILE — carousel aware ── */
+
+    /* Carousel + slides fill width */
+    .hero-carousel,
+    .hero-slide,
+    .hero-video-wrap {
+        width: 100%;
+    }
+
+    /* Slide 1 (video): video on top, content card below */
+    .hero-slide:not(.hero-slide-placeholder-slide) .hero-video-wrap {
+        display: flex;
+        flex-direction: column;
         background-color: var(--color-bg);
-        padding: 1.75rem 1.5rem 2rem;
         border-bottom: 0.5px solid var(--color-border);
     }
 
-    /* Show the left overlay content as a block below the video */
-    .hero-video-overlay {
+    /* Video frame: 16:9 */
+    .hero-video-frame {
+        aspect-ratio: 16 / 9;
+        max-height: none;
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    /* Hide overlay on slide 1 — content renders as a card below video */
+    .hero-slide:first-child .hero-video-overlay {
         display: flex;
         position: static;
         flex-direction: column;
         background: none;
-        padding: 0;
-        gap: 1.25rem;
+        padding: 1.5rem 1.25rem 1.75rem;
+        gap: 1rem;
         pointer-events: all;
         grid-template-columns: unset;
+        align-items: stretch;
     }
 
     .hero-overlay-left {
@@ -891,7 +914,7 @@ a, button, .hero-expand-btn, .project-item {
         font-weight: 600;
     }
 
-    /* Right side: expand button full width */
+    /* Expand button: full width, column layout, text always visible */
     .hero-overlay-right {
         align-items: stretch;
         width: 100%;
@@ -904,9 +927,9 @@ a, button, .hero-expand-btn, .project-item {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
         width: 100%;
+        align-self: auto;
     }
 
-    /* Always show text on mobile */
     .hero-expand-btn .hero-expand-text {
         max-width: 100%;
         padding: 0.875rem 1.25rem 0;
@@ -918,7 +941,7 @@ a, button, .hero-expand-btn, .project-item {
         color: var(--color-text-secondary);
     }
     .hero-expand-btn .label-default { display: none; }
-    .hero-expand-btn .label-hover { display: inline; }
+    .hero-expand-btn .label-hover   { display: inline; }
     .hero-expand-label {
         color: var(--color-text);
         width: 100%;
@@ -928,6 +951,68 @@ a, button, .hero-expand-btn, .project-item {
         padding: 0.875rem 1.25rem;
     }
     .hero-expand-label svg { stroke: var(--color-text); }
+
+    /* Placeholder slides (2+): keep overlay absolute over dark bg */
+    .hero-slide-placeholder {
+        aspect-ratio: 4 / 3;
+        max-height: 60vw;
+        position: relative;
+    }
+    .hero-slide-placeholder .hero-video-overlay {
+        display: grid;
+        position: absolute;
+        inset: 0;
+        grid-template-columns: 1fr 1fr;
+        align-items: flex-end;
+        padding: 1.5rem;
+        gap: 1rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+        pointer-events: none;
+    }
+    .hero-slide-placeholder .hero-expand-btn {
+        flex-direction: row-reverse;
+        border-color: rgba(255,255,255,0.75);
+        background: rgba(255,255,255,0.06);
+        backdrop-filter: blur(12px) saturate(160%);
+        -webkit-backdrop-filter: blur(12px) saturate(160%);
+        width: auto;
+        pointer-events: all;
+    }
+    .hero-slide-placeholder .hero-expand-text { display: none; }
+    .hero-slide-placeholder .hero-expand-label {
+        color: #fff;
+        border-top: none;
+        margin-top: 0;
+        padding: 1rem 1.25rem;
+        width: auto;
+        justify-content: center;
+    }
+    .hero-slide-placeholder .hero-expand-label svg { stroke: #fff; }
+    .hero-slide-placeholder .label-default { display: inline; }
+    .hero-slide-placeholder .label-hover   { display: none; }
+
+    /* Controls: sit below the carousel, not absolutely positioned on mobile */
+    .carousel-controls {
+        position: static;
+        transform: none;
+        display: flex;
+        justify-content: center;
+        padding: 0.875rem 0;
+        background: var(--color-bg);
+        border-bottom: 0.5px solid var(--color-border);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-radius: 0;
+    }
+    .carousel-arrow {
+        border-color: var(--color-border);
+        color: var(--color-text-secondary);
+    }
+    .carousel-dot { background: rgba(0,0,0,0.2); }
+    .carousel-dot.active { background: rgba(0,0,0,0.7); }
 
     /* ── OTHER SECTIONS ── */
     .projects-grid { grid-template-columns: 1fr; }

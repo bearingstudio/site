@@ -891,11 +891,23 @@ a, button, .hero-expand-btn, .project-item {
 }
 
 /* ── Toggle: Larger text ── */
+/* ── Toggle: Larger text ── */
 body.a11y-large-text {
-    font-size: 112.5%;
+    --text-scale: 1.15;
 }
-body.a11y-large-text .cay-body { font-size: 1.125rem; }
-body.a11y-large-text .nav-links a { font-size: 1rem; }
+body.a11y-large-text p,
+body.a11y-large-text li,
+body.a11y-large-text .cay-body,
+body.a11y-large-text .cay-lede,
+body.a11y-large-text .cay-question,
+body.a11y-large-text .cay-answer,
+body.a11y-large-text .hero-expand-text p,
+body.a11y-large-text .about-bio,
+body.a11y-large-text .contact-intro {
+    font-size: 1.125rem !important;
+    line-height: 1.75 !important;
+}
+body.a11y-large-text .nav-links a { font-size: 1rem !important; }
 
 /* ── Toggle: High contrast ── */
 body.a11y-high-contrast {
@@ -916,14 +928,21 @@ body.a11y-high-contrast .hero-title {
 }
 
 /* ── Toggle: Reduce motion ── */
-@media (prefers-reduced-motion: reduce),
-body.a11y-reduce-motion {
+@media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+}
+body.a11y-reduce-motion *,
+body.a11y-reduce-motion *::before,
+body.a11y-reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
 }
 
 /* ============================================

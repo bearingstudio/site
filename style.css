@@ -304,7 +304,7 @@ a, button, .hero-expand-btn, .project-item {
 .hero-expand-btn {
     display: inline-flex;
     flex-direction: row-reverse;
-    align-items: center;
+    align-items: stretch;
     overflow: hidden;
     border: 1.75px solid rgba(255,255,255,0.75);
     cursor: pointer;
@@ -314,6 +314,7 @@ a, button, .hero-expand-btn, .project-item {
     background: rgba(255,255,255,0.06);
     backdrop-filter: blur(12px) saturate(160%);
     -webkit-backdrop-filter: blur(12px) saturate(160%);
+    height: 3rem;
 }
 
 .hero-expand-btn:hover {
@@ -328,11 +329,13 @@ a, button, .hero-expand-btn, .project-item {
     transition: max-width 0.55s cubic-bezier(0.4, 0, 0.2, 1),
                 padding 0.55s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 .hero-expand-btn:hover .hero-expand-text {
     max-width: 520px;
-    padding: 0.875rem 1.75rem;
+    padding: 0 1.75rem;
 }
 
 .hero-expand-text p {
@@ -660,43 +663,35 @@ a, button, .hero-expand-btn, .project-item {
     .nav-content {
         padding: 0.875rem 1.25rem;
         grid-template-columns: 1fr auto 1fr;
-        position: relative;
-    }
-    .nav-spacer { display: none; }
-
-    /* Logo moves to center column */
-    .logo {
-        grid-column: 2;
-        display: flex;
-        justify-content: center;
-    }
-    .logo-image { height: 36px; }
-
-    /* A11y menu moves to right column */
-    .a11y-menu-wrap {
-        grid-column: 3;
-        justify-content: flex-end;
-        order: 3;
     }
 
-    /* Hamburger button — left column */
-    .nav-hamburger {
+    /* nav-left: show hamburger, hide logo */
+    .nav-left {
         grid-column: 1;
-        grid-row: 1;
+        justify-content: flex-start;
+    }
+    .nav-left .logo { display: none; }
+    .nav-left .logo-image { height: 36px; }
+
+    /* Nav-links: centered logo shown via hamburger grid trick */
+    /* The logo we show centered is a duplicate approach — instead we repurpose col 2 */
+    /* Show centered logo via a11y col swap: nav-links becomes col 2 hidden, a11y col 3 */
+
+    /* Hamburger: visible on mobile */
+    .nav-hamburger {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
         background: none;
         border: none;
         cursor: pointer;
         padding: 0.25rem;
         color: rgba(255,255,255,0.6);
-        order: 1;
     }
     .nav-hamburger:hover { color: #fff; }
 
-    /* Hide regular nav links, show as fullscreen drawer */
+    /* Center logo: repurpose nav-links column for centered logo */
     .nav-links {
+        grid-column: 2;
         display: none;
         position: fixed;
         inset: 0;
@@ -709,9 +704,7 @@ a, button, .hero-expand-btn, .project-item {
         gap: 2.5rem;
         z-index: 999;
     }
-    .nav-links.open {
-        display: flex;
-    }
+    .nav-links.open { display: flex; }
     .nav-links a {
         font-size: 1.75rem;
         font-weight: 300;
@@ -720,8 +713,20 @@ a, button, .hero-expand-btn, .project-item {
     }
     .nav-links a:hover { color: #fff; }
 
-    /* Close button inside drawer */
+    /* Show logo centered — use a pseudo-element on nav-content */
+    .nav-content::before {
+        content: '';
+        grid-column: 2;
+        grid-row: 1;
+        background: url('bearing-logo-white.png') center/auto 36px no-repeat;
+        width: 100%;
+        height: 36px;
+        pointer-events: none;
+    }
+
+    /* Close button */
     .nav-close {
+        display: block;
         position: absolute;
         top: 1.25rem;
         right: 1.25rem;
@@ -735,7 +740,11 @@ a, button, .hero-expand-btn, .project-item {
     }
     .nav-close:hover { color: #fff; }
 
-    /* Hide a11y label text on mobile */
+    /* A11y menu: right column */
+    .a11y-menu-wrap {
+        grid-column: 3;
+        justify-content: flex-end;
+    }
     .a11y-trigger-label { display: none; }
 
     /* ── INDEX HERO MOBILE TEXT CARD ── */
@@ -861,12 +870,18 @@ a, button, .hero-expand-btn, .project-item {
     outline-color: #1f1f1f;
 }
 
-/* Nav: make room for a11y menu on right */
-.nav-content {
-    grid-template-columns: 1fr 1fr 1fr;
+/* Hamburger and close — desktop hidden, mobile only */
+.nav-hamburger,
+.nav-close {
+    display: none;
 }
 
-/* A11y trigger button */
+/* nav-left wraps logo (and hidden hamburger) on desktop */
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
 .a11y-menu-wrap {
     display: flex;
     justify-content: flex-end;

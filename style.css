@@ -261,14 +261,14 @@ a, button, .hero-expand-btn, .project-item {
     pointer-events: none;
 }
 
-/* Two-column overlay grid — slightly above center */
+/* Two-column overlay — left col fills space, right col hugs button to right edge */
 .hero-video-overlay {
     position: absolute;
     inset: 0;
     z-index: 2;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: flex-end;
+    grid-template-columns: 1fr auto;
+    align-items: end;
     padding: 2.5rem 3rem;
     gap: 3rem;
     background: linear-gradient(
@@ -478,10 +478,7 @@ a, button, .hero-expand-btn, .project-item {
     position: relative;
 }
 
-.hero-slide-placeholder .hero-video-overlay {
-    position: absolute;
-    inset: 0;
-}
+/* Placeholder overlay — identical to main overlay, no overrides needed */
 
 /* Placeholder title — invisible but holds exact same vertical space as real h1 */
 .hero-title-placeholder {
@@ -976,8 +973,8 @@ a, button, .hero-expand-btn, .project-item {
         display: grid;
         position: absolute;
         inset: 0;
-        grid-template-columns: 1fr 1fr;
-        align-items: flex-end;
+        grid-template-columns: 1fr auto;
+        align-items: end;
         padding: 1.5rem;
         gap: 1rem;
         background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);

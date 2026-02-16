@@ -146,24 +146,41 @@ a, button, .hero-expand-btn, .project-item {
     margin: 0 auto;
     padding: 1.1rem clamp(1.5rem, 4vw, 3rem);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto auto 1fr auto;
     align-items: center;
+    gap: 0;
+}
+
+/* Desktop: nav-left (hamburger hidden) takes no space */
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Desktop: logo is col 2 */
+.logo {
+    margin-right: 0;
+}
+
+/* Desktop: nav-links centered in col 3 */
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+}
+
+/* Desktop: a11y in col 4 */
+.a11y-menu-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
 }
 
 .logo-image {
     height: 47px;
     width: auto;
     display: block;
-}
-
-.nav-spacer {
-    display: block;
-}
-
-.nav-links {
-    display: flex;
-    gap: 2.5rem;
-    justify-content: center;
 }
 
 .nav-links a {
@@ -297,10 +314,10 @@ a, button, .hero-expand-btn, .project-item {
     text-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
-/* ── Expanding button — Learn More → Explore Project ── */
+/* ── Expanding button — expands LEFT toward center ── */
 .hero-expand-btn {
     display: inline-flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     overflow: hidden;
     border: 1.75px solid rgba(255,255,255,0.75);
@@ -312,6 +329,8 @@ a, button, .hero-expand-btn, .project-item {
     backdrop-filter: blur(12px) saturate(160%);
     -webkit-backdrop-filter: blur(12px) saturate(160%);
     align-self: flex-start;
+    position: relative;
+    z-index: 4;
 }
 
 .hero-expand-btn:hover {
@@ -319,7 +338,7 @@ a, button, .hero-expand-btn, .project-item {
     background: rgba(255,255,255,0.1);
 }
 
-/* Collapsed text — slides open on hover */
+/* Collapsed text — slides open to the LEFT on hover */
 .hero-expand-text {
     max-width: 0;
     overflow: hidden;
@@ -349,7 +368,7 @@ a, button, .hero-expand-btn, .project-item {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 1.25rem;
+    padding: 1.25rem 1.5rem;
     white-space: nowrap;
     font-family: var(--font-body);
     font-size: 0.875rem;
@@ -464,29 +483,25 @@ a, button, .hero-expand-btn, .project-item {
     inset: 0;
 }
 
-/* Placeholder logo */
-.hero-slide-logo {
-    height: 40px;
-    width: auto;
-    opacity: 0.35;
-    margin-bottom: 0.25rem;
+/* Placeholder title — invisible h1 holds vertical space matching real title */
+.hero-title-placeholder {
+    visibility: hidden;
 }
 
-/* Carousel controls — overlaid inside the carousel at bottom center */
+/* Carousel controls — bare, bottom-left, no background pill */
 .carousel-controls {
     position: absolute;
-    bottom: 1.25rem;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 1.5rem;
+    left: 3rem;
     z-index: 3;
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.5rem 0.875rem;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(12px) saturate(140%);
-    -webkit-backdrop-filter: blur(12px) saturate(140%);
-    border: 0.5px solid rgba(255,255,255,0.12);
+    padding: 0;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
     pointer-events: all;
 }
 
@@ -770,25 +785,18 @@ a, button, .hero-expand-btn, .project-item {
 }
 
 @media (max-width: 640px) {
-    /* ── NAV: hamburger layout — hamburger left, logo center, a11y right ── */
+    /* ── NAV: hamburger left | logo center | a11y right ── */
     .nav-content {
         padding: 0.875rem 1.25rem;
         grid-template-columns: 1fr auto 1fr;
+        gap: 0;
     }
 
-    /* nav-left: show hamburger, hide logo */
+    /* Col 1: hamburger */
     .nav-left {
         grid-column: 1;
         justify-content: flex-start;
     }
-    .nav-left .logo { display: none; }
-    .nav-left .logo-image { height: 36px; }
-
-    /* Nav-links: centered logo shown via hamburger grid trick */
-    /* The logo we show centered is a duplicate approach — instead we repurpose col 2 */
-    /* Show centered logo via a11y col swap: nav-links becomes col 2 hidden, a11y col 3 */
-
-    /* Hamburger: visible on mobile */
     .nav-hamburger {
         display: flex;
         align-items: center;
@@ -800,9 +808,23 @@ a, button, .hero-expand-btn, .project-item {
     }
     .nav-hamburger:hover { color: #fff; }
 
-    /* Center logo: repurpose nav-links column for centered logo */
-    .nav-links {
+    /* Col 2: logo centered */
+    .logo {
         grid-column: 2;
+        display: flex;
+        justify-content: center;
+    }
+    .logo-image { height: 36px; }
+
+    /* Col 3: a11y right */
+    .a11y-menu-wrap {
+        grid-column: 3;
+        justify-content: flex-end;
+    }
+    .a11y-trigger-label { display: none; }
+
+    /* Nav-links: hidden by default, fullscreen drawer when open */
+    .nav-links {
         display: none;
         position: fixed;
         inset: 0;
@@ -814,6 +836,7 @@ a, button, .hero-expand-btn, .project-item {
         justify-content: center;
         gap: 2.5rem;
         z-index: 999;
+        grid-column: unset;
     }
     .nav-links.open { display: flex; }
     .nav-links a {
@@ -824,18 +847,7 @@ a, button, .hero-expand-btn, .project-item {
     }
     .nav-links a:hover { color: #fff; }
 
-    /* Show logo centered — use a pseudo-element on nav-content */
-    .nav-content::before {
-        content: '';
-        grid-column: 2;
-        grid-row: 1;
-        background: url('bearing-logo-white.png') center/auto 36px no-repeat;
-        width: 100%;
-        height: 36px;
-        pointer-events: none;
-    }
-
-    /* Close button */
+    /* Close button inside drawer */
     .nav-close {
         display: block;
         position: absolute;
@@ -851,12 +863,8 @@ a, button, .hero-expand-btn, .project-item {
     }
     .nav-close:hover { color: #fff; }
 
-    /* A11y menu: right column */
-    .a11y-menu-wrap {
-        grid-column: 3;
-        justify-content: flex-end;
-    }
-    .a11y-trigger-label { display: none; }
+    /* Remove pseudo-element if any lingering */
+    .nav-content::before { display: none; }
 
     /* ── INDEX HERO MOBILE — carousel aware ── */
 
@@ -970,7 +978,7 @@ a, button, .hero-expand-btn, .project-item {
         pointer-events: none;
     }
     .hero-slide-placeholder .hero-expand-btn {
-        flex-direction: row-reverse;
+        flex-direction: row;
         border-color: rgba(255,255,255,0.75);
         background: rgba(255,255,255,0.06);
         backdrop-filter: blur(12px) saturate(160%);
@@ -978,12 +986,11 @@ a, button, .hero-expand-btn, .project-item {
         width: auto;
         pointer-events: all;
     }
-    .hero-slide-placeholder .hero-expand-text { display: none; }
     .hero-slide-placeholder .hero-expand-label {
         color: #fff;
         border-top: none;
         margin-top: 0;
-        padding: 1rem 1.25rem;
+        padding: 1.25rem 1.5rem;
         width: auto;
         justify-content: center;
     }
@@ -991,21 +998,16 @@ a, button, .hero-expand-btn, .project-item {
     .hero-slide-placeholder .label-default { display: inline; }
     .hero-slide-placeholder .label-hover   { display: none; }
 
-    /* Controls: sit below the carousel, not absolutely positioned on mobile */
+    /* Controls: sit below the carousel on mobile, no pill */
     .carousel-controls {
         position: static;
         transform: none;
+        left: auto;
         display: flex;
         justify-content: center;
         padding: 0.875rem 0;
         background: var(--color-bg);
         border-bottom: 0.5px solid var(--color-border);
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        border-left: none;
-        border-right: none;
-        border-top: none;
-        border-radius: 0;
     }
     .carousel-arrow {
         border-color: var(--color-border);
@@ -1064,19 +1066,6 @@ a, button, .hero-expand-btn, .project-item {
 .nav-hamburger,
 .nav-close {
     display: none;
-}
-
-/* nav-left wraps logo (and hidden hamburger) on desktop */
-.nav-left {
-    display: flex;
-    align-items: center;
-}
-
-.a11y-menu-wrap {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: relative;
 }
 
 .a11y-trigger {

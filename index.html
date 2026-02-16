@@ -65,46 +65,117 @@
         </div>
     </nav>
 
-    <!-- Hero: Cayenne -->
+    <!-- Hero: Carousel -->
     <section class="hero" id="work">
         <div class="dot-grid"></div>
         <div class="hero-container">
 
-            <div class="hero-video-wrap">
-                <div class="hero-video-overlay">
+            <div class="hero-carousel" id="heroCarousel" aria-label="Featured projects">
 
-                    <!-- Left: title + subtitle only -->
-                    <div class="hero-overlay-left" id="heroLeft">
-                        <h1 class="hero-title">Cayenne</h1>
-                        <p class="hero-video-subtitle">Design Empathy in the Digital Age</p>
-                    </div>
-
-                    <!-- Right: expanding button — Learn More → Explore Project on hover -->
-                    <div class="hero-overlay-right" id="heroRight">
-                        <a href="cayenne.html" class="hero-expand-btn" aria-label="Explore Cayenne — Design Empathy in the Digital Age">
-                            <div class="hero-expand-text" aria-hidden="true">
-                                <p>Bearing Studio's inaugural publication examines industrial ethics and the design empathy framework through the first-generation Porsche Cayenne, with insights from Lynette Cox, powertrain engineer at Rivian and formerly Lucid Motors.</p>
+                <!-- ── Slide 1: Cayenne (active) ── -->
+                <div class="hero-slide active" data-index="0">
+                    <div class="hero-video-wrap">
+                        <div class="hero-video-overlay">
+                            <div class="hero-overlay-left" id="heroLeft">
+                                <h1 class="hero-title">Cayenne</h1>
+                                <p class="hero-video-subtitle">Design Empathy in the Digital Age</p>
                             </div>
-                            <div class="hero-expand-label">
-                                <span class="label-default">Explore Project</span>
-                                <span class="label-hover">Explore Project</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
+                            <div class="hero-overlay-right" id="heroRight">
+                                <a href="cayenne.html" class="hero-expand-btn" aria-label="Explore Cayenne — Design Empathy in the Digital Age">
+                                    <div class="hero-expand-text" aria-hidden="true">
+                                        <p>Bearing Studio's inaugural publication examines industrial ethics and the design empathy framework through the first-generation Porsche Cayenne, with insights from Lynette Cox, powertrain engineer at Rivian and formerly Lucid Motors.</p>
+                                    </div>
+                                    <div class="hero-expand-label">
+                                        <span class="label-default">Explore Project</span>
+                                        <span class="label-hover">Explore Project</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
+                        </div>
+                        <div class="hero-video-frame">
+                            <iframe
+                                src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
+                                frameborder="0"
+                                title="Cayenne — Design Empathy in the Digital Age, background video"
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                     </div>
+                </div>
 
+                <!-- ── Slide 2: Coming soon ── -->
+                <div class="hero-slide" data-index="1">
+                    <div class="hero-video-wrap hero-slide-placeholder">
+                        <div class="hero-video-overlay">
+                            <div class="hero-overlay-left">
+                                <img src="bearing-logo-white.png" alt="Bearing Studio" class="hero-slide-logo">
+                                <p class="hero-video-subtitle">Coming this year</p>
+                            </div>
+                            <div class="hero-overlay-right">
+                                <a href="#" class="hero-expand-btn" aria-label="Coming soon project">
+                                    <div class="hero-expand-label">
+                                        <span class="label-default">Explore Project</span>
+                                        <span class="label-hover">Explore Project</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="hero-video-frame">
-                    <iframe
-                        src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
-                        frameborder="0"
-                        title="Cayenne — Design Empathy in the Digital Age, background video"
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+
+                <!-- ── Slide 3: Coming soon ── -->
+                <div class="hero-slide" data-index="2">
+                    <div class="hero-video-wrap hero-slide-placeholder">
+                        <div class="hero-video-overlay">
+                            <div class="hero-overlay-left">
+                                <img src="bearing-logo-white.png" alt="Bearing Studio" class="hero-slide-logo">
+                                <p class="hero-video-subtitle">Coming this year</p>
+                            </div>
+                            <div class="hero-overlay-right">
+                                <a href="#" class="hero-expand-btn" aria-label="Coming soon project">
+                                    <div class="hero-expand-label">
+                                        <span class="label-default">Explore Project</span>
+                                        <span class="label-hover">Explore Project</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+            </div><!-- /hero-carousel -->
+
+            <!-- Carousel controls -->
+            <div class="carousel-controls" aria-label="Carousel navigation">
+
+                <button class="carousel-arrow carousel-prev" id="carouselPrev" aria-label="Previous project">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+
+                <div class="carousel-dots" role="tablist" aria-label="Project slides">
+                    <button class="carousel-dot active" role="tab" aria-selected="true"  aria-label="Slide 1: Cayenne"         data-dot="0"></button>
+                    <button class="carousel-dot"        role="tab" aria-selected="false" aria-label="Slide 2: Coming soon"     data-dot="1"></button>
+                    <button class="carousel-dot"        role="tab" aria-selected="false" aria-label="Slide 3: Coming soon"     data-dot="2"></button>
+                </div>
+
+                <button class="carousel-arrow carousel-next" id="carouselNext" aria-label="Next project">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+
             </div>
 
         </div>

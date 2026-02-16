@@ -95,10 +95,51 @@ if (hamburger && navDrawer) {
 // ─── NAV: sticky, always present ──────────────
 // Nothing needed — nav is position:sticky in CSS
 
-// ─── PARALLAX ─────────────────────────────────
+// ─── CAROUSEL ─────────────────────────────────
+const slides   = document.querySelectorAll('.hero-slide');
+const dots     = document.querySelectorAll('.carousel-dot');
+const prevBtn  = document.getElementById('carouselPrev');
+const nextBtn  = document.getElementById('carouselNext');
+
+if (slides.length > 0) {
+    let current = 0;
+
+    const goTo = (index) => {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        dots[current].setAttribute('aria-selected', 'false');
+
+        current = (index + slides.length) % slides.length;
+
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        dots[current].setAttribute('aria-selected', 'true');
+    };
+
+    prevBtn && prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn && nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => goTo(parseInt(dot.dataset.dot)));
+    });
+
+    // Swipe support for mobile
+    let touchStartX = 0;
+    const carousel = document.getElementById('heroCarousel');
+    if (carousel) {
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        carousel.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+        }, { passive: true });
+    }
+}
+
+
 const heroLeft       = document.getElementById('heroLeft');
 const heroRight      = document.getElementById('heroRight');
-const heroWrap       = document.querySelector('.hero-video-wrap');
 const cayHeroContent = document.querySelector('.cay-hero-content');
 const cayHero        = document.querySelector('.cay-hero');
 
@@ -109,8 +150,9 @@ const prefersReducedMotion = () =>
 window.addEventListener('scroll', () => {
     if (prefersReducedMotion()) return;
 
-    // Index page parallax
-    if (heroWrap) {
+    // Index page parallax — only on active slide
+    const activeWrap = document.querySelector('.hero-slide.active .hero-video-wrap');
+    if (activeWrap) {
         const scrolled = window.pageYOffset;
         if (scrolled < window.innerHeight * 1.5) {
             if (heroLeft)  heroLeft.style.transform  = `translateY(-${scrolled * 0.45}px)`;

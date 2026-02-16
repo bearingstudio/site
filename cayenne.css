@@ -351,42 +351,80 @@
 }
 
 @media (max-width: 640px) {
-    /* Cayenne hero: fix the massive black bar above title */
+    /* ── CAYENNE HERO: video on top, text below ── */
     .cay-hero {
-        height: 100svh; /* use small viewport height — excludes browser chrome */
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--color-bg);
+    }
+
+    /* Video: 16:9, sits at top */
+    .cay-hero-bg {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        flex-shrink: 0;
     }
 
     .cay-hero-bg iframe {
-        /* On mobile, make iframe taller to fill without black bars */
-        width: 200%;
-        height: 100%;
-        left: 50%;
+        position: absolute;
         top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        transform: translate(-50%, -50%);
     }
 
+    /* Overlay becomes a static block below the video */
     .cay-hero-overlay {
-        padding: 1.5rem 1.5rem 2rem;
-        gap: 2rem;
-        justify-content: flex-end;
+        position: static;
+        background: none;
+        padding: 1.75rem 1.5rem 0;
+        gap: 1.5rem;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 
     .cay-hero-content {
-        text-align: center;
-        align-items: center;
+        text-align: left;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 
-    .cay-title { font-size: clamp(3rem, 14vw, 5rem); }
-    .cay-subtitle { font-size: 1rem; }
+    .cay-title {
+        font-size: clamp(2.5rem, 12vw, 3.5rem);
+        color: var(--color-text);
+        text-shadow: none;
+    }
 
+    .cay-subtitle {
+        font-size: 1rem;
+        color: var(--color-text);
+        font-weight: 600;
+    }
+
+    .cay-label {
+        color: var(--color-text-secondary);
+    }
+
+    /* Meta row: horizontal, wrapping, left-aligned */
     .cay-hero-meta {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1rem 2rem;
-        justify-content: center;
-        padding-bottom: 1rem;
+        gap: 1rem 2.5rem;
+        justify-content: flex-start;
+        border-top: 0.5px solid var(--color-border);
+        padding-top: 1.25rem;
+        padding-bottom: 2rem;
+        width: 100%;
+        max-width: 100%;
     }
 
-    /* Editorial sections: tighter padding on mobile */
+    .cay-meta-label { color: var(--color-text-secondary); }
+    .cay-meta-value { color: var(--color-text); }
+
+    /* ── EDITORIAL SECTIONS ── */
     .cay-intro,
     .cay-feature,
     .cay-interview,
@@ -394,7 +432,7 @@
         padding: 3.5rem 0;
     }
 
-    /* Interview Q&A: question slightly smaller */
+    .cay-title-page { font-size: clamp(2rem, 10vw, 3rem); }
     .cay-question { font-size: 0.9375rem; }
     .cay-answer   { font-size: 0.9375rem; }
 }

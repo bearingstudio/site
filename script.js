@@ -7,7 +7,6 @@ const a11yTrigger = document.querySelector('.a11y-trigger');
 const a11yMenu    = document.querySelector('.a11y-menu');
 
 if (a11yTrigger && a11yMenu) {
-    // Open / close
     a11yTrigger.addEventListener('click', (e) => {
         e.stopPropagation();
         const isOpen = a11yTrigger.getAttribute('aria-expanded') === 'true';
@@ -15,13 +14,11 @@ if (a11yTrigger && a11yMenu) {
         a11yMenu.hidden = isOpen;
     });
 
-    // Close on outside click
     document.addEventListener('click', () => {
         a11yTrigger.setAttribute('aria-expanded', 'false');
         a11yMenu.hidden = true;
     });
 
-    // Close on Escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             a11yTrigger.setAttribute('aria-expanded', 'false');
@@ -30,17 +27,17 @@ if (a11yTrigger && a11yMenu) {
         }
     });
 
-    // Toggle options
+    // text-size targets <html>, others target <body>
     const toggleMap = {
-        'text-size':      'a11y-large-text',
-        'high-contrast':  'a11y-high-contrast',
-        'reduce-motion':  'a11y-reduce-motion',
+        'text-size':     { el: document.documentElement, cls: 'a11y-large-text' },
+        'high-contrast': { el: document.body,            cls: 'a11y-high-contrast' },
+        'reduce-motion': { el: document.body,            cls: 'a11y-reduce-motion' },
     };
 
     // Restore saved preferences
-    Object.entries(toggleMap).forEach(([action, cls]) => {
+    Object.entries(toggleMap).forEach(([action, { el, cls }]) => {
         if (localStorage.getItem(action) === 'true') {
-            document.body.classList.add(cls);
+            el.classList.add(cls);
         }
     });
 
@@ -48,44 +45,76 @@ if (a11yTrigger && a11yMenu) {
     document.querySelectorAll('.a11y-option').forEach(btn => {
         const action = btn.dataset.action;
         const active = localStorage.getItem(action) === 'true';
-        btn.setAttribute('aria-pressed', active);
+        btn.setAttribute('aria-pressed', String(active));
     });
 
     // Handle toggle clicks
     document.querySelectorAll('.a11y-option').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const action = btn.dataset.action;
-            const cls    = toggleMap[action];
-            const isOn   = document.body.classList.toggle(cls);
-            btn.setAttribute('aria-pressed', isOn);
+            const action       = btn.dataset.action;
+            const { el, cls }  = toggleMap[action];
+            const isOn         = el.classList.toggle(cls);
+            btn.setAttribute('aria-pressed', String(isOn));
             localStorage.setItem(action, isOn);
         });
+    });
+}
+
+// ─── HAMBURGER NAV ────────────────────────────
+const hamburger = document.getElementById('nav-hamburger');
+const navClose  = document.getElementById('nav-close');
+const navDrawer = document.getElementById('nav-drawer');
+
+if (hamburger && navDrawer) {
+    hamburger.addEventListener('click', () => {
+        navDrawer.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        navClose && navClose.focus();
+    });
+
+    const closeDrawer = () => {
+        navDrawer.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+    };
+
+    navClose && navClose.addEventListener('click', closeDrawer);
+
+    // Close on link click
+    navDrawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', closeDrawer);
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navDrawer.classList.contains('open')) closeDrawer();
     });
 }
 
 // ─── NAV: sticky, always present ──────────────
 // Nothing needed — nav is position:sticky in CSS
 
-// ─── PARALLAX: left + right columns float up ──
-// ─── PARALLAX: left + right columns float up ──
-const heroLeft  = document.getElementById('heroLeft');
-const heroRight = document.getElementById('heroRight');
-const heroWrap  = document.querySelector('.hero-video-wrap');
-
-// ─── PARALLAX: cayenne hero content ───────────
+// ─── PARALLAX ─────────────────────────────────
+const heroLeft       = document.getElementById('heroLeft');
+const heroRight      = document.getElementById('heroRight');
+const heroWrap       = document.querySelector('.hero-video-wrap');
 const cayHeroContent = document.querySelector('.cay-hero-content');
 const cayHero        = document.querySelector('.cay-hero');
 
+const prefersReducedMotion = () =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    document.body.classList.contains('a11y-reduce-motion');
+
 window.addEventListener('scroll', () => {
+    if (prefersReducedMotion()) return;
+
     // Index page parallax
     if (heroWrap) {
         const scrolled = window.pageYOffset;
         if (scrolled < window.innerHeight * 1.5) {
-            const offsetLeft  = scrolled * 0.45;
-            const offsetRight = scrolled * 0.35;
-            if (heroLeft)  heroLeft.style.transform  = `translateY(-${offsetLeft}px)`;
-            if (heroRight) heroRight.style.transform = `translateY(-${offsetRight}px)`;
+            if (heroLeft)  heroLeft.style.transform  = `translateY(-${scrolled * 0.45}px)`;
+            if (heroRight) heroRight.style.transform = `translateY(-${scrolled * 0.35}px)`;
         }
     }
     // Cayenne page parallax

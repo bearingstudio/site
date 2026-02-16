@@ -656,15 +656,87 @@ a, button, .hero-expand-btn, .project-item {
 }
 
 @media (max-width: 640px) {
-    /* ── NAV ── */
+    /* ── NAV: hamburger layout — hamburger left, logo center, a11y right ── */
     .nav-content {
         padding: 0.875rem 1.25rem;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: 1fr auto 1fr;
+        position: relative;
     }
     .nav-spacer { display: none; }
-    .nav-links { gap: 1.5rem; justify-content: flex-end; }
-    .nav-links a { font-size: 0.8125rem; }
+
+    /* Logo moves to center column */
+    .logo {
+        grid-column: 2;
+        display: flex;
+        justify-content: center;
+    }
     .logo-image { height: 36px; }
+
+    /* A11y menu moves to right column */
+    .a11y-menu-wrap {
+        grid-column: 3;
+        justify-content: flex-end;
+        order: 3;
+    }
+
+    /* Hamburger button — left column */
+    .nav-hamburger {
+        grid-column: 1;
+        grid-row: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.25rem;
+        color: rgba(255,255,255,0.6);
+        order: 1;
+    }
+    .nav-hamburger:hover { color: #fff; }
+
+    /* Hide regular nav links, show as fullscreen drawer */
+    .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(10,10,10,0.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        z-index: 999;
+    }
+    .nav-links.open {
+        display: flex;
+    }
+    .nav-links a {
+        font-size: 1.75rem;
+        font-weight: 300;
+        color: rgba(255,255,255,0.7);
+        letter-spacing: -0.02em;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    /* Close button inside drawer */
+    .nav-close {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.5);
+        cursor: pointer;
+        font-size: 1.5rem;
+        line-height: 1;
+        padding: 0.5rem;
+    }
+    .nav-close:hover { color: #fff; }
+
+    /* Hide a11y label text on mobile */
+    .a11y-trigger-label { display: none; }
 
     /* ── INDEX HERO MOBILE TEXT CARD ── */
     /* Inject a text+button block below the video using the hero-container */
@@ -755,7 +827,7 @@ a, button, .hero-expand-btn, .project-item {
 
 /* Skip link */
 .skip-link {
-    position: absolute;
+    position: fixed;
     top: -100%;
     left: 1rem;
     z-index: 9999;
@@ -766,9 +838,14 @@ a, button, .hero-expand-btn, .project-item {
     font-weight: 500;
     text-decoration: none;
     border: 2px solid #000;
+    border-radius: 2px;
     transition: top 0.15s ease;
+    pointer-events: none;
 }
-.skip-link:focus { top: 1rem; }
+.skip-link:focus {
+    top: 1rem;
+    pointer-events: auto;
+}
 
 /* Focus styles — visible for keyboard users */
 :focus-visible {
@@ -891,23 +968,10 @@ a, button, .hero-expand-btn, .project-item {
 }
 
 /* ── Toggle: Larger text ── */
-/* ── Toggle: Larger text ── */
-body.a11y-large-text {
-    --text-scale: 1.15;
+/* ── Toggle: Larger text — 20% uniform scale via html root ── */
+html.a11y-large-text {
+    font-size: 120%;
 }
-body.a11y-large-text p,
-body.a11y-large-text li,
-body.a11y-large-text .cay-body,
-body.a11y-large-text .cay-lede,
-body.a11y-large-text .cay-question,
-body.a11y-large-text .cay-answer,
-body.a11y-large-text .hero-expand-text p,
-body.a11y-large-text .about-bio,
-body.a11y-large-text .contact-intro {
-    font-size: 1.125rem !important;
-    line-height: 1.75 !important;
-}
-body.a11y-large-text .nav-links a { font-size: 1rem !important; }
 
 /* ── Toggle: High contrast ── */
 body.a11y-high-contrast {

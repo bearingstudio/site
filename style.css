@@ -314,10 +314,10 @@ a, button, .hero-expand-btn, .project-item {
     text-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
-/* ── Expanding button — expands LEFT toward center ── */
+/* ── Expanding button — label right, expands LEFT on hover ── */
 .hero-expand-btn {
     display: inline-flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items: center;
     overflow: hidden;
     border: 1.75px solid rgba(255,255,255,0.75);
@@ -368,7 +368,7 @@ a, button, .hero-expand-btn, .project-item {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1.25rem 1.5rem;
+    padding: calc(1.25rem + 3px) 1.5rem;
     white-space: nowrap;
     font-family: var(--font-body);
     font-size: 0.875rem;
@@ -483,16 +483,21 @@ a, button, .hero-expand-btn, .project-item {
     inset: 0;
 }
 
-/* Placeholder title — invisible h1 holds vertical space matching real title */
+/* Placeholder title — invisible but holds exact same vertical space as real h1 */
 .hero-title-placeholder {
     visibility: hidden;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
 }
 
-/* Carousel controls — bare, bottom-left, no background pill */
+/* Carousel controls — centered at bottom, no background */
 .carousel-controls {
     position: absolute;
     bottom: 1.5rem;
-    left: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 3;
     display: inline-flex;
     align-items: center;
@@ -503,6 +508,7 @@ a, button, .hero-expand-btn, .project-item {
     -webkit-backdrop-filter: none;
     border: none;
     pointer-events: all;
+    white-space: nowrap;
 }
 
 /* Arrow buttons */
@@ -978,7 +984,7 @@ a, button, .hero-expand-btn, .project-item {
         pointer-events: none;
     }
     .hero-slide-placeholder .hero-expand-btn {
-        flex-direction: row;
+        flex-direction: row-reverse;
         border-color: rgba(255,255,255,0.75);
         background: rgba(255,255,255,0.06);
         backdrop-filter: blur(12px) saturate(160%);

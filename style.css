@@ -270,12 +270,12 @@ a, button { cursor: crosshair; }
     background: rgba(255,255,255,0.12);
 }
 
-/* Label pill — NEVER changes size, not even on hover */
+/* Label pill — sets the height of the entire button. Fixed, never changes. */
 .hero-expand-label {
     display: inline-flex;
     align-items: center;
     gap: 0.625rem;
-    padding: 2rem 1.5rem;        /* taller — matches ~4 lines of body text in the panel */
+    padding: 1.375rem 1.5rem;
     white-space: nowrap;
     font-family: var(--font-body);
     font-size: 0.9375rem;
@@ -294,7 +294,6 @@ a, button { cursor: crosshair; }
     transition: opacity 0.18s ease;
 }
 .label-hover {
-    /* Sits on top of label-default, invisible until hovered */
     position: absolute;
     left: 1.5rem;
     opacity: 0;
@@ -313,7 +312,8 @@ a, button { cursor: crosshair; }
 }
 .hero-expand-btn:hover .hero-expand-label svg { transform: translateX(3px); }
 
-/* Text panel — collapsed, slides open LEFT on hover */
+/* Text panel — slides open to the LEFT only. Height is clamped by the button's
+   align-items:center + the label height. Text wraps normally inside. */
 .hero-expand-text {
     max-width: 0;
     overflow: hidden;
@@ -322,21 +322,19 @@ a, button { cursor: crosshair; }
     padding: 0;
     display: flex;
     align-items: center;
-    /* Keep content inline while animating */
-    white-space: nowrap;
+    align-self: stretch;         /* fills the label height exactly, no more */
 }
 .hero-expand-btn:hover .hero-expand-text {
-    max-width: 310px;
-    padding: 2rem 1.5rem;        /* vertical matches label padding exactly */
+    max-width: 340px;
+    padding: 0 1.5rem;           /* horizontal padding only — zero vertical */
 }
-/* Inner paragraph — narrow enough to wrap at ~4 lines, matching label height */
 .hero-expand-text p {
-    width: 240px;
-    white-space: normal;
+    width: 280px;
+    white-space: normal;         /* wraps naturally inside the fixed-height box */
     font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 300;
-    line-height: 1.65;
+    line-height: 1.6;
     color: rgba(255,255,255,0.88);
     text-align: left;
     flex-shrink: 0;

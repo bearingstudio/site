@@ -325,11 +325,11 @@ a, button { cursor: crosshair; }
     align-self: stretch;         /* fills the label height exactly, no more */
 }
 .hero-expand-btn:hover .hero-expand-text {
-    max-width: 420px;
+    max-width: 480px;
     padding: 0 1.5rem;
 }
 .hero-expand-text p {
-    width: 360px;
+    width: 420px;
     white-space: normal;
     font-family: var(--font-body);
     font-size: 0.8125rem;

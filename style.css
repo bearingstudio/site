@@ -280,13 +280,12 @@ a, button, .hero-expand-btn, .project-item {
     pointer-events: none;
 }
 
-/* ── Wide prev/next zones — left and right thirds of the full carousel ── */
-/* Each zone is ~33% wide, full height, invisible until hovered */
+/* ── Prev/next zones — narrow edge strips, arrows always visible ── */
 .hero-zone {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 33%;
+    width: 12%;                  /* narrow strips — only the edges */
     background: transparent;
     border: none;
     cursor: crosshair;
@@ -296,24 +295,23 @@ a, button, .hero-expand-btn, .project-item {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease;
 }
 .hero-zone-prev { left: 0; }
 .hero-zone-next { right: 0; }
 
-/* Arrow SVGs — hidden by default, fade in on hover */
+/* Arrows always visible at low opacity, brighten on hover */
 .hero-zone svg {
-    width: 32px;
-    height: 32px;
-    stroke: rgba(255,255,255,0);
-    transition: stroke 0.25s ease, transform 0.25s ease;
+    width: 28px;
+    height: 28px;
+    stroke: rgba(255,255,255,0.45);
+    transition: stroke 0.2s ease, transform 0.2s ease;
     flex-shrink: 0;
 }
 .hero-zone:hover svg {
-    stroke: rgba(255,255,255,0.7);
+    stroke: rgba(255,255,255,0.9);
 }
-.hero-zone-prev:hover svg { transform: translateX(-3px); }
-.hero-zone-next:hover svg { transform: translateX(3px); }
+.hero-zone-prev:hover svg { transform: translateX(-2px); }
+.hero-zone-next:hover svg { transform: translateX(2px); }
 
 /* Center block: title + button side by side, centered in the frame */
 .hero-overlay-center {

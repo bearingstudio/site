@@ -325,12 +325,12 @@ a, button { cursor: crosshair; }
     align-self: stretch;         /* fills the label height exactly, no more */
 }
 .hero-expand-btn:hover .hero-expand-text {
-    max-width: 340px;
-    padding: 0 1.5rem;           /* horizontal padding only — zero vertical */
+    max-width: 420px;
+    padding: 0 1.5rem;
 }
 .hero-expand-text p {
-    width: 280px;
-    white-space: normal;         /* wraps naturally inside the fixed-height box */
+    width: 360px;
+    white-space: normal;
     font-family: var(--font-body);
     font-size: 0.8125rem;
     font-weight: 300;

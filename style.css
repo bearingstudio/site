@@ -138,6 +138,7 @@ a, button, .hero-expand-btn, .project-item {
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.25), 0 1px 0 rgba(255,255,255,0.04);
     opacity: 1;
 }
 
@@ -261,39 +262,58 @@ a, button, .hero-expand-btn, .project-item {
     pointer-events: none;
 }
 
-/* Two-column overlay — centered vertically, content in middle of frame */
+/* Overlay — content sits in the lower third, letting video breathe above */
 .hero-video-overlay {
     position: absolute;
     inset: 0;
     z-index: 2;
     display: flex;
-    align-items: center;       /* ← vertically centered */
+    align-items: flex-end;
     justify-content: center;
-    padding: 0;
+    padding: 0 0 10% 0;        /* bottom padding places content ~10% above floor */
     background: linear-gradient(
         to top,
-        rgba(0,0,0,0.55) 0%,
-        rgba(0,0,0,0.15) 60%,
+        rgba(0,0,0,0.60) 0%,
+        rgba(0,0,0,0.20) 50%,
         transparent 100%
     );
     pointer-events: none;
 }
 
-/* Wide invisible click zones — left 30% and right 30% of the carousel */
+/* ── Wide prev/next zones — left and right thirds of the full carousel ── */
+/* Each zone is ~33% wide, full height, invisible until hovered */
 .hero-zone {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 30%;
+    width: 33%;
     background: transparent;
     border: none;
     cursor: crosshair;
     pointer-events: all;
-    z-index: 3;
+    z-index: 5;
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
 }
 .hero-zone-prev { left: 0; }
 .hero-zone-next { right: 0; }
+
+/* Arrow SVGs — hidden by default, fade in on hover */
+.hero-zone svg {
+    width: 32px;
+    height: 32px;
+    stroke: rgba(255,255,255,0);
+    transition: stroke 0.25s ease, transform 0.25s ease;
+    flex-shrink: 0;
+}
+.hero-zone:hover svg {
+    stroke: rgba(255,255,255,0.7);
+}
+.hero-zone-prev:hover svg { transform: translateX(-3px); }
+.hero-zone-next:hover svg { transform: translateX(3px); }
 
 /* Center block: title + button side by side, centered in the frame */
 .hero-overlay-center {
@@ -313,14 +333,12 @@ a, button, .hero-expand-btn, .project-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.875rem;
-    will-change: transform;
 }
 
 .hero-overlay-right {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    will-change: transform;
 }
 
 .hero-title {
@@ -377,7 +395,7 @@ a, button, .hero-expand-btn, .project-item {
 
 .hero-expand-btn:hover .hero-expand-text {
     max-width: 520px;
-    padding: 0 1.75rem;
+    padding: 2rem 1.75rem;      /* vertical padding matches label height visually */
 }
 
 .hero-expand-text p {
@@ -391,15 +409,15 @@ a, button, .hero-expand-btn, .project-item {
     text-align: left;
 }
 
-/* Label — bigger, chunkier padding to match original reference */
+/* Label — tall and chunky, height should visually match the expanded text panel */
 .hero-expand-label {
     display: inline-flex;
     align-items: center;
-    gap: 0.625rem;
-    padding: 1.5rem 2rem;       /* ← restored to chunky size */
+    gap: 0.75rem;
+    padding: 3rem 2.25rem;      /* tall vertical padding to match text panel height */
     white-space: nowrap;
     font-family: var(--font-body);
-    font-size: 1rem;             /* ← slightly larger text */
+    font-size: 1rem;
     font-weight: 400;
     color: #ffffff;
     letter-spacing: -0.01em;
@@ -519,7 +537,7 @@ a, button, .hero-expand-btn, .project-item {
     letter-spacing: -0.04em;
 }
 
-/* Carousel controls — centered at bottom, no background */
+/* Carousel controls — dots only, centered at bottom, no background */
 .carousel-controls {
     position: absolute;
     bottom: 1.5rem;
@@ -536,26 +554,6 @@ a, button, .hero-expand-btn, .project-item {
     border: none;
     pointer-events: all;
     white-space: nowrap;
-}
-
-/* Arrow buttons */
-.carousel-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.75rem;
-    height: 1.75rem;
-    background: none;
-    border: 0.5px solid rgba(255,255,255,0.3);
-    color: rgba(255,255,255,0.6);
-    cursor: crosshair;
-    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-    flex-shrink: 0;
-}
-.carousel-arrow:hover {
-    border-color: rgba(255,255,255,0.9);
-    color: #fff;
-    background: rgba(255,255,255,0.08);
 }
 
 /* Dots */
@@ -1007,15 +1005,16 @@ a, button, .hero-expand-btn, .project-item {
         display: flex;
         position: absolute;
         inset: 0;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
-        background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+        padding: 0 0 10% 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.20) 50%, transparent 100%);
         pointer-events: none;
     }
     .hero-slide-placeholder .hero-overlay-center {
         grid-template-columns: 1fr auto;
         align-items: center;
-        padding: 1.5rem;
+        padding: 0 1.5rem 1.5rem;
         gap: 1rem;
     }
     .hero-slide-placeholder .hero-expand-btn {
@@ -1049,10 +1048,6 @@ a, button, .hero-expand-btn, .project-item {
         padding: 0.875rem 0;
         background: var(--color-bg);
         border-bottom: 0.5px solid var(--color-border);
-    }
-    .carousel-arrow {
-        border-color: var(--color-border);
-        color: var(--color-text-secondary);
     }
     .carousel-dot { background: rgba(0,0,0,0.2); }
     .carousel-dot.active { background: rgba(0,0,0,0.7); }
@@ -1224,24 +1219,6 @@ body.a11y-high-contrast .nav {
 body.a11y-high-contrast .cay-title,
 body.a11y-high-contrast .hero-title {
     text-shadow: none;
-}
-
-/* ── Toggle: Reduce motion ── */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-}
-body.a11y-reduce-motion *,
-body.a11y-reduce-motion *::before,
-body.a11y-reduce-motion *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
 }
 
 /* ============================================

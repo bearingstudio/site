@@ -27,11 +27,10 @@ if (a11yTrigger && a11yMenu) {
         }
     });
 
-    // text-size targets <html>, others target <body>
+    // text-size targets <html>, high-contrast targets <body>
     const toggleMap = {
         'text-size':     { el: document.documentElement, cls: 'a11y-large-text' },
         'high-contrast': { el: document.body,            cls: 'a11y-high-contrast' },
-        'reduce-motion': { el: document.body,            cls: 'a11y-reduce-motion' },
     };
 
     // Restore saved preferences
@@ -98,8 +97,6 @@ if (hamburger && navDrawer) {
 // ─── CAROUSEL ─────────────────────────────────
 const slides   = document.querySelectorAll('.hero-slide');
 const dots     = document.querySelectorAll('.carousel-dot');
-const prevBtn  = document.getElementById('carouselPrev');
-const nextBtn  = document.getElementById('carouselNext');
 
 if (slides.length > 0) {
     let current = 0;
@@ -116,8 +113,10 @@ if (slides.length > 0) {
         dots[current].setAttribute('aria-selected', 'true');
     };
 
-    prevBtn && prevBtn.addEventListener('click', () => goTo(current - 1));
-    nextBtn && nextBtn.addEventListener('click', () => goTo(current + 1));
+    // Dot clicks
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => goTo(parseInt(dot.dataset.dot)));
+    });
 
     // Wide click zones — invisible left/right areas on each slide
     document.querySelectorAll('.hero-zone-prev').forEach(btn => {
@@ -145,36 +144,6 @@ if (slides.length > 0) {
     }
 }
 
-
-const heroLeft       = document.getElementById('heroLeft');   // .hero-overlay-center on slide 1
-const heroRight      = document.getElementById('heroRight');  // .hero-overlay-right on slide 1
-const cayHeroContent = document.querySelector('.cay-hero-content');
-const cayHero        = document.querySelector('.cay-hero');
-
-const prefersReducedMotion = () =>
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-    document.body.classList.contains('a11y-reduce-motion');
-
-window.addEventListener('scroll', () => {
-    if (prefersReducedMotion()) return;
-
-    // Index page parallax — only on active slide
-    const activeWrap = document.querySelector('.hero-slide.active .hero-video-wrap');
-    if (activeWrap) {
-        const scrolled = window.pageYOffset;
-        if (scrolled < window.innerHeight * 1.5) {
-            if (heroLeft)  heroLeft.style.transform  = `translateY(-${scrolled * 0.45}px)`;
-            if (heroRight) heroRight.style.transform = `translateY(-${scrolled * 0.35}px)`;
-        }
-    }
-    // Cayenne page parallax
-    if (cayHeroContent && cayHero) {
-        const scrolled = window.pageYOffset;
-        if (scrolled < window.innerHeight) {
-            cayHeroContent.style.transform = `translateY(-${scrolled * 0.25}px)`;
-        }
-    }
-}, { passive: true });
 
 // ─── SMOOTH SCROLL ────────────────────────────
 const nav = document.getElementById('nav');

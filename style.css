@@ -280,12 +280,13 @@ a, button, .hero-expand-btn, .project-item {
     pointer-events: none;
 }
 
-/* ── Prev/next zones — narrow edge strips, no arrow SVGs (moved to controls bar) ── */
+/* ── Prev/next zones — bottom strip only, same height as dots region ── */
+/* Imaginary rectangle: bottom of frame → up to dots level (~4rem tall) */
 .hero-zone {
     position: absolute;
-    top: 0;
     bottom: 0;
-    width: 12%;
+    height: 4rem;                /* matches the dots bar height */
+    width: 33%;                  /* left third / right third */
     background: transparent;
     border: none;
     cursor: crosshair;
@@ -341,11 +342,11 @@ a, button, .hero-expand-btn, .project-item {
     text-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
-/* ── Expanding button — label right, expands LEFT on hover (CD-drive style, no height change) ── */
+/* ── Expanding button — label right, expands LEFT on hover (CD-drive, no height change) ── */
 .hero-expand-btn {
     display: inline-flex;
     flex-direction: row-reverse;
-    align-items: stretch;        /* stretch so text panel matches label height exactly */
+    align-items: center;
     overflow: hidden;
     border: 1.75px solid rgba(255,255,255,0.75);
     cursor: pointer;
@@ -355,9 +356,9 @@ a, button, .hero-expand-btn, .project-item {
     background: rgba(255,255,255,0.06);
     backdrop-filter: blur(12px) saturate(160%);
     -webkit-backdrop-filter: blur(12px) saturate(160%);
-    align-self: flex-start;
+    align-self: flex-start;      /* never stretch to fill container height */
     position: relative;
-    z-index: 6;                  /* above hero-zone (z-index: 5) */
+    z-index: 6;
 }
 
 .hero-expand-btn:hover {
@@ -365,7 +366,7 @@ a, button, .hero-expand-btn, .project-item {
     background: rgba(255,255,255,0.1);
 }
 
-/* Text panel — slides open LEFT, no vertical padding so height stays locked to label */
+/* Text panel — slides open LEFT only, height locked via align-self on parent */
 .hero-expand-text {
     max-width: 0;
     overflow: hidden;
@@ -373,7 +374,7 @@ a, button, .hero-expand-btn, .project-item {
                 padding 0.55s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0;
     display: flex;
-    align-items: center;         /* vertically center text within the label's height */
+    align-items: center;
 }
 
 .hero-expand-btn:hover .hero-expand-text {
@@ -520,49 +521,62 @@ a, button, .hero-expand-btn, .project-item {
     letter-spacing: -0.04em;
 }
 
-/* Carousel controls — arrows + dots on one row, centered at bottom */
+/* Carousel controls — dots centered, arrows spanning left/right thirds of bottom strip */
 .carousel-controls {
     position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;                /* the full bottom strip */
     z-index: 6;
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
-    padding: 0;
     background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     border: none;
-    pointer-events: all;
+    pointer-events: none;        /* container itself non-interactive */
     white-space: nowrap;
 }
 
-/* Prev/next arrow buttons in the controls bar */
+/* Arrows: absolutely positioned, spanning their third, centered vertically */
 .carousel-arrow {
-    display: inline-flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 33%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.75rem;
-    height: 1.75rem;
     background: none;
-    border: 0.5px solid rgba(255,255,255,0.3);
-    color: rgba(255,255,255,0.55);
+    border: none;
+    color: rgba(255,255,255,0.35);
     cursor: crosshair;
-    transition: border-color 0.2s ease, color 0.2s ease;
-    flex-shrink: 0;
+    pointer-events: all;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
 }
+.carousel-prev { left: 0; }
+.carousel-next { right: 0; }
+
 .carousel-arrow:hover {
-    border-color: rgba(255,255,255,0.9);
-    color: #fff;
+    color: rgba(255,255,255,0.95);
+    text-shadow: 0 0 14px rgba(255,255,255,0.55);
+}
+.carousel-arrow svg {
+    width: 17px;                 /* ~20% bigger than original 14px */
+    height: 17px;
+    stroke-width: 1.5;
+    pointer-events: none;
 }
 
-/* Dots */
+/* Dots: inline in the flex center, pointer-events restored */
 .carousel-dots {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    pointer-events: all;
+    position: relative;
+    z-index: 1;
 }
 .carousel-dot {
     width: 5px;

@@ -124,14 +124,6 @@ if (slides.length > 0) {
         dot.addEventListener('click', () => goTo(parseInt(dot.dataset.dot)));
     });
 
-    // Wide click zones — invisible left/right edge strips on each slide
-    document.querySelectorAll('.hero-zone-prev').forEach(btn => {
-        btn.addEventListener('click', () => goTo(current - 1));
-    });
-    document.querySelectorAll('.hero-zone-next').forEach(btn => {
-        btn.addEventListener('click', () => goTo(current + 1));
-    });
-
     dots.forEach(dot => {
         dot.addEventListener('click', () => goTo(parseInt(dot.dataset.dot)));
     });

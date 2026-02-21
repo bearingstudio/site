@@ -176,13 +176,19 @@
                     </div>
                 </div>
 
-                <!-- Carousel controls — dots only, centered at bottom -->
+                <!-- Carousel controls — arrows + dots on one row, centered at bottom -->
                 <div class="carousel-controls" aria-label="Carousel navigation">
+                    <button class="carousel-arrow carousel-prev" id="carouselPrev" aria-label="Previous project">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
                     <div class="carousel-dots" role="tablist" aria-label="Project slides">
                         <button class="carousel-dot active" role="tab" aria-selected="true"  aria-label="Slide 1: Cayenne"     data-dot="0"></button>
                         <button class="carousel-dot"        role="tab" aria-selected="false" aria-label="Slide 2: Coming soon" data-dot="1"></button>
                         <button class="carousel-dot"        role="tab" aria-selected="false" aria-label="Slide 3: Coming soon" data-dot="2"></button>
                     </div>
+                    <button class="carousel-arrow carousel-next" id="carouselNext" aria-label="Next project">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
                 </div>
 
             </div><!-- /hero-carousel -->

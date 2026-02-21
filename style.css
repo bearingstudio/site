@@ -138,7 +138,7 @@ a, button, .hero-expand-btn, .project-item {
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     border-bottom: 0.5px solid rgba(255,255,255,0.08);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.25), 0 1px 0 rgba(255,255,255,0.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.15), 0 1px 0 rgba(255,255,255,0.04);
     opacity: 1;
 }
 
@@ -280,38 +280,21 @@ a, button, .hero-expand-btn, .project-item {
     pointer-events: none;
 }
 
-/* ── Prev/next zones — narrow edge strips, arrows always visible ── */
+/* ── Prev/next zones — narrow edge strips, no arrow SVGs (moved to controls bar) ── */
 .hero-zone {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 12%;                  /* narrow strips — only the edges */
+    width: 12%;
     background: transparent;
     border: none;
     cursor: crosshair;
     pointer-events: all;
     z-index: 5;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .hero-zone-prev { left: 0; }
 .hero-zone-next { right: 0; }
-
-/* Arrows always visible at low opacity, brighten on hover */
-.hero-zone svg {
-    width: 28px;
-    height: 28px;
-    stroke: rgba(255,255,255,0.45);
-    transition: stroke 0.2s ease, transform 0.2s ease;
-    flex-shrink: 0;
-}
-.hero-zone:hover svg {
-    stroke: rgba(255,255,255,0.9);
-}
-.hero-zone-prev:hover svg { transform: translateX(-2px); }
-.hero-zone-next:hover svg { transform: translateX(2px); }
 
 /* Center block: title + button side by side, centered in the frame */
 .hero-overlay-center {
@@ -358,11 +341,11 @@ a, button, .hero-expand-btn, .project-item {
     text-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
-/* ── Expanding button — label right, expands LEFT on hover ── */
+/* ── Expanding button — label right, expands LEFT on hover (CD-drive style, no height change) ── */
 .hero-expand-btn {
     display: inline-flex;
     flex-direction: row-reverse;
-    align-items: center;
+    align-items: stretch;        /* stretch so text panel matches label height exactly */
     overflow: hidden;
     border: 1.75px solid rgba(255,255,255,0.75);
     cursor: pointer;
@@ -374,7 +357,7 @@ a, button, .hero-expand-btn, .project-item {
     -webkit-backdrop-filter: blur(12px) saturate(160%);
     align-self: flex-start;
     position: relative;
-    z-index: 4;
+    z-index: 6;                  /* above hero-zone (z-index: 5) */
 }
 
 .hero-expand-btn:hover {
@@ -382,18 +365,20 @@ a, button, .hero-expand-btn, .project-item {
     background: rgba(255,255,255,0.1);
 }
 
-/* Collapsed text — slides open to the LEFT on hover */
+/* Text panel — slides open LEFT, no vertical padding so height stays locked to label */
 .hero-expand-text {
     max-width: 0;
     overflow: hidden;
     transition: max-width 0.55s cubic-bezier(0.4, 0, 0.2, 1),
                 padding 0.55s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0;
+    display: flex;
+    align-items: center;         /* vertically center text within the label's height */
 }
 
 .hero-expand-btn:hover .hero-expand-text {
     max-width: 520px;
-    padding: 2rem 1.75rem;      /* vertical padding matches label height visually */
+    padding: 0 1.75rem;          /* horizontal only — no vertical growth */
 }
 
 .hero-expand-text p {
@@ -535,13 +520,13 @@ a, button, .hero-expand-btn, .project-item {
     letter-spacing: -0.04em;
 }
 
-/* Carousel controls — dots only, centered at bottom, no background */
+/* Carousel controls — arrows + dots on one row, centered at bottom */
 .carousel-controls {
     position: absolute;
     bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 3;
+    z-index: 6;
     display: inline-flex;
     align-items: center;
     gap: 1rem;
@@ -552,6 +537,25 @@ a, button, .hero-expand-btn, .project-item {
     border: none;
     pointer-events: all;
     white-space: nowrap;
+}
+
+/* Prev/next arrow buttons in the controls bar */
+.carousel-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    background: none;
+    border: 0.5px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.55);
+    cursor: crosshair;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+.carousel-arrow:hover {
+    border-color: rgba(255,255,255,0.9);
+    color: #fff;
 }
 
 /* Dots */

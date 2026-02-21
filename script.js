@@ -97,6 +97,8 @@ if (hamburger && navDrawer) {
 // ─── CAROUSEL ─────────────────────────────────
 const slides   = document.querySelectorAll('.hero-slide');
 const dots     = document.querySelectorAll('.carousel-dot');
+const prevBtn  = document.getElementById('carouselPrev');
+const nextBtn  = document.getElementById('carouselNext');
 
 if (slides.length > 0) {
     let current = 0;
@@ -113,12 +115,16 @@ if (slides.length > 0) {
         dots[current].setAttribute('aria-selected', 'true');
     };
 
+    // Controls bar arrows
+    prevBtn && prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn && nextBtn.addEventListener('click', () => goTo(current + 1));
+
     // Dot clicks
     dots.forEach(dot => {
         dot.addEventListener('click', () => goTo(parseInt(dot.dataset.dot)));
     });
 
-    // Wide click zones — invisible left/right areas on each slide
+    // Wide click zones — invisible left/right edge strips on each slide
     document.querySelectorAll('.hero-zone-prev').forEach(btn => {
         btn.addEventListener('click', () => goTo(current - 1));
     });

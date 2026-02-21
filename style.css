@@ -275,7 +275,7 @@ a, button { cursor: crosshair; }
     display: inline-flex;
     align-items: center;
     gap: 0.625rem;
-    padding: 1.375rem 1.5rem;    /* ~20% taller than 1.125rem */
+    padding: 2rem 1.5rem;        /* taller — matches ~4 lines of body text in the panel */
     white-space: nowrap;
     font-family: var(--font-body);
     font-size: 0.9375rem;
@@ -326,12 +326,12 @@ a, button { cursor: crosshair; }
     white-space: nowrap;
 }
 .hero-expand-btn:hover .hero-expand-text {
-    max-width: 460px;
-    padding: 0 1.5rem;
+    max-width: 310px;
+    padding: 2rem 1.5rem;        /* vertical matches label padding exactly */
 }
-/* Inner paragraph wraps once panel is fully open */
+/* Inner paragraph — narrow enough to wrap at ~4 lines, matching label height */
 .hero-expand-text p {
-    width: 360px;
+    width: 240px;
     white-space: normal;
     font-family: var(--font-body);
     font-size: 0.875rem;

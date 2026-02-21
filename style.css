@@ -262,15 +262,14 @@ a, button, .hero-expand-btn, .project-item {
     pointer-events: none;
 }
 
-/* Overlay — content sits in the lower third, letting video breathe above */
+/* Overlay — full cover, gradient, content anchored to bottom */
 .hero-video-overlay {
     position: absolute;
     inset: 0;
     z-index: 2;
     display: flex;
     align-items: flex-end;
-    justify-content: center;
-    padding: 0 0 10% 0;        /* bottom padding places content ~10% above floor */
+    justify-content: stretch;
     background: linear-gradient(
         to top,
         rgba(0,0,0,0.60) 0%,
@@ -280,30 +279,14 @@ a, button, .hero-expand-btn, .project-item {
     pointer-events: none;
 }
 
-/* ── Prev/next zones — bottom strip only, same height as dots region ── */
-/* Imaginary rectangle: bottom of frame → up to dots level (~4rem tall) */
-.hero-zone {
-    position: absolute;
-    bottom: 0;
-    height: 4rem;                /* matches the dots bar height */
-    width: 33%;                  /* left third / right third */
-    background: transparent;
-    border: none;
-    cursor: crosshair;
-    pointer-events: all;
-    z-index: 5;
-    padding: 0;
-}
-.hero-zone-prev { left: 0; }
-.hero-zone-next { right: 0; }
-
-/* Center block: title + button side by side, centered in the frame */
+/* Center block: title left, button right, sits above carousel controls */
 .hero-overlay-center {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
     gap: 3rem;
     padding: 2.5rem 3rem;
+    padding-bottom: calc(4rem + 2.5rem); /* clear the 4rem controls bar + breathing room */
     width: 100%;
     pointer-events: none;
     position: relative;
@@ -342,7 +325,8 @@ a, button, .hero-expand-btn, .project-item {
     text-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
-/* ── Expanding button — label right, expands LEFT on hover (CD-drive, no height change) ── */
+/* ── Expanding button — label right, expands LEFT on hover ── */
+/* No display:none swaps — uses visibility + position to avoid flicker */
 .hero-expand-btn {
     display: inline-flex;
     flex-direction: row-reverse;
@@ -356,7 +340,7 @@ a, button, .hero-expand-btn, .project-item {
     background: rgba(255,255,255,0.06);
     backdrop-filter: blur(12px) saturate(160%);
     -webkit-backdrop-filter: blur(12px) saturate(160%);
-    align-self: flex-start;      /* never stretch to fill container height */
+    align-self: flex-start;
     position: relative;
     z-index: 6;
 }
@@ -366,20 +350,20 @@ a, button, .hero-expand-btn, .project-item {
     background: rgba(255,255,255,0.1);
 }
 
-/* Text panel — slides open LEFT only, height locked via align-self on parent */
+/* Text panel: collapsed width, slides open LEFT only on hover */
 .hero-expand-text {
     max-width: 0;
     overflow: hidden;
-    transition: max-width 0.55s cubic-bezier(0.4, 0, 0.2, 1),
-                padding 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0;
     display: flex;
     align-items: center;
 }
 
 .hero-expand-btn:hover .hero-expand-text {
-    max-width: 520px;
-    padding: 0 1.75rem;          /* horizontal only — no vertical growth */
+    max-width: 480px;
+    padding: 0 1.5rem;
 }
 
 .hero-expand-text p {
@@ -389,52 +373,62 @@ a, button, .hero-expand-btn, .project-item {
     line-height: 1.65;
     color: rgba(255,255,255,0.88);
     white-space: normal;
-    width: 460px;
+    width: 400px;
     text-align: left;
 }
 
-/* Label — tall and chunky, height should visually match the expanded text panel */
+/* Label pill — fixed size, no layout shift on hover */
 .hero-expand-label {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 3rem 2.25rem;      /* tall vertical padding to match text panel height */
+    padding: 1.25rem 1.75rem;
     white-space: nowrap;
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 400;
     color: #ffffff;
     letter-spacing: -0.01em;
     flex-shrink: 0;
     position: relative;
+    min-width: max-content;
 }
 
-/* Default label visible, hover label hidden */
-.label-default {
-    display: inline;
-    transition: opacity 0.2s ease;
-}
-
+/* Label text swap — use opacity fade, NOT display:none (causes flicker/reflow) */
+.label-default,
 .label-hover {
-    display: none;
+    position: absolute;
+    left: 1.75rem;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
 }
+.label-default { opacity: 1; }
+.label-hover   { opacity: 0; }
 
-.hero-expand-btn:hover .label-default {
-    display: none;
-}
-
-.hero-expand-btn:hover .label-hover {
-    display: inline;
-}
-
-.hero-expand-btn:hover .hero-expand-label svg {
-    transform: translateX(3px);
-}
-
+/* Arrow SVG — right of the reserved text space */
 .hero-expand-label svg {
+    margin-left: auto;
     transition: transform 0.25s ease;
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+/* On hover: fade label swap, nudge arrow */
+.hero-expand-btn:hover .label-default { opacity: 0; }
+.hero-expand-btn:hover .label-hover   { opacity: 1; }
+.hero-expand-btn:hover .hero-expand-label svg { transform: translateX(3px); }
+
+/* Reserve space for the label text so button width never changes */
+.hero-expand-label::before {
+    content: 'Explore Project';
+    visibility: hidden;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    font-size: 0.9375rem;
+    font-weight: 400;
 }
 
 @media (max-width: 768px) {

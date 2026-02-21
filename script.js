@@ -119,6 +119,14 @@ if (slides.length > 0) {
     prevBtn && prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn && nextBtn.addEventListener('click', () => goTo(current + 1));
 
+    // Wide click zones — invisible left/right areas on each slide
+    document.querySelectorAll('.hero-zone-prev').forEach(btn => {
+        btn.addEventListener('click', () => goTo(current - 1));
+    });
+    document.querySelectorAll('.hero-zone-next').forEach(btn => {
+        btn.addEventListener('click', () => goTo(current + 1));
+    });
+
     dots.forEach(dot => {
         dot.addEventListener('click', () => goTo(parseInt(dot.dataset.dot)));
     });
@@ -138,8 +146,8 @@ if (slides.length > 0) {
 }
 
 
-const heroLeft       = document.getElementById('heroLeft');
-const heroRight      = document.getElementById('heroRight');
+const heroLeft       = document.getElementById('heroLeft');   // .hero-overlay-center on slide 1
+const heroRight      = document.getElementById('heroRight');  // .hero-overlay-right on slide 1
 const cayHeroContent = document.querySelector('.cay-hero-content');
 const cayHero        = document.querySelector('.cay-hero');
 

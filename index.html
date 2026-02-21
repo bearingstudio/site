@@ -78,23 +78,30 @@
                 <div class="hero-slide active" data-index="0">
                     <div class="hero-video-wrap">
                         <div class="hero-video-overlay">
-                            <div class="hero-overlay-left" id="heroLeft">
-                                <h1 class="hero-title">Cayenne</h1>
-                                <p class="hero-video-subtitle">Design Empathy in the Digital Age</p>
-                            </div>
-                            <div class="hero-overlay-right" id="heroRight">
-                                <a href="cayenne.html" class="hero-expand-btn" aria-label="Explore Cayenne — Design Empathy in the Digital Age">
-                                    <div class="hero-expand-text" aria-hidden="true">
-                                        <p>Bearing Studio's inaugural publication examines industrial ethics and the design empathy framework through the first-generation Porsche Cayenne, with insights from Lynette Cox, powertrain engineer at Rivian and formerly Lucid Motors.</p>
-                                    </div>
-                                    <div class="hero-expand-label">
-                                        <span class="label-default">Explore Project</span>
-                                        <span class="label-hover">Explore Project</span>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                                        </svg>
-                                    </div>
-                                </a>
+                            <!-- Wide invisible prev/next click zones — left 30% and right 30% of carousel -->
+                            <button class="hero-zone hero-zone-prev" aria-label="Previous project" id="zonePrev"></button>
+                            <button class="hero-zone hero-zone-next" aria-label="Next project" id="zoneNext"></button>
+
+                            <!-- Center block: title + subtitle + button, vertically centered -->
+                            <div class="hero-overlay-center" id="heroLeft">
+                                <div class="hero-overlay-left">
+                                    <h1 class="hero-title">Cayenne</h1>
+                                    <p class="hero-video-subtitle">Design Empathy in the Digital Age</p>
+                                </div>
+                                <div class="hero-overlay-right" id="heroRight">
+                                    <a href="cayenne.html" class="hero-expand-btn" aria-label="Explore Cayenne — Design Empathy in the Digital Age">
+                                        <div class="hero-expand-text" aria-hidden="true">
+                                            <p>Bearing Studio's inaugural publication examines industrial ethics and the design empathy framework through the first-generation Porsche Cayenne, with insights from Lynette Cox, powertrain engineer at Rivian and formerly Lucid Motors.</p>
+                                        </div>
+                                        <div class="hero-expand-label">
+                                            <span class="label-default">Explore Project</span>
+                                            <span class="label-hover">Explore Project</span>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="hero-video-frame">
@@ -113,23 +120,23 @@
                 <div class="hero-slide hero-slide-placeholder-slide" data-index="1">
                     <div class="hero-video-wrap hero-slide-placeholder">
                         <div class="hero-video-overlay">
-                            <div class="hero-overlay-left">
-                                <h1 class="hero-title hero-title-placeholder">&nbsp;</h1>
-                                <p class="hero-video-subtitle">Coming this year</p>
-                            </div>
-                            <div class="hero-overlay-right">
-                                <a href="#" class="hero-expand-btn" aria-label="Coming soon project">
-                                    <div class="hero-expand-text" aria-hidden="true">
-                                        <p></p>
-                                    </div>
-                                    <div class="hero-expand-label">
-                                        <span class="label-default">Explore Project</span>
-                                        <span class="label-hover">Explore Project</span>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                                        </svg>
-                                    </div>
-                                </a>
+                            <button class="hero-zone hero-zone-prev" aria-label="Previous project"></button>
+                            <button class="hero-zone hero-zone-next" aria-label="Next project"></button>
+                            <div class="hero-overlay-center">
+                                <div class="hero-overlay-left">
+                                    <h1 class="hero-title hero-title-placeholder">&nbsp;</h1>
+                                    <p class="hero-video-subtitle">Coming this year</p>
+                                </div>
+                                <div class="hero-overlay-right">
+                                    <a href="#" class="hero-expand-btn" aria-label="Coming soon project">
+                                        <div class="hero-expand-text" aria-hidden="true"><p></p></div>
+                                        <div class="hero-expand-label">
+                                            <span class="label-default">Explore Project</span>
+                                            <span class="label-hover">Explore Project</span>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -139,23 +146,23 @@
                 <div class="hero-slide hero-slide-placeholder-slide" data-index="2">
                     <div class="hero-video-wrap hero-slide-placeholder">
                         <div class="hero-video-overlay">
-                            <div class="hero-overlay-left">
-                                <h1 class="hero-title hero-title-placeholder">&nbsp;</h1>
-                                <p class="hero-video-subtitle">Coming this year</p>
-                            </div>
-                            <div class="hero-overlay-right">
-                                <a href="#" class="hero-expand-btn" aria-label="Coming soon project">
-                                    <div class="hero-expand-text" aria-hidden="true">
-                                        <p></p>
-                                    </div>
-                                    <div class="hero-expand-label">
-                                        <span class="label-default">Explore Project</span>
-                                        <span class="label-hover">Explore Project</span>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                                        </svg>
-                                    </div>
-                                </a>
+                            <button class="hero-zone hero-zone-prev" aria-label="Previous project"></button>
+                            <button class="hero-zone hero-zone-next" aria-label="Next project"></button>
+                            <div class="hero-overlay-center">
+                                <div class="hero-overlay-left">
+                                    <h1 class="hero-title hero-title-placeholder">&nbsp;</h1>
+                                    <p class="hero-video-subtitle">Coming this year</p>
+                                </div>
+                                <div class="hero-overlay-right">
+                                    <a href="#" class="hero-expand-btn" aria-label="Coming soon project">
+                                        <div class="hero-expand-text" aria-hidden="true"><p></p></div>
+                                        <div class="hero-expand-label">
+                                            <span class="label-default">Explore Project</span>
+                                            <span class="label-hover">Explore Project</span>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

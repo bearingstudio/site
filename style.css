@@ -261,16 +261,15 @@ a, button, .hero-expand-btn, .project-item {
     pointer-events: none;
 }
 
-/* Two-column overlay — left col fills space, right col hugs button to right edge */
+/* Two-column overlay — centered vertically, content in middle of frame */
 .hero-video-overlay {
     position: absolute;
     inset: 0;
     z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    padding: 2.5rem 3rem;
-    gap: 3rem;
+    display: flex;
+    align-items: center;       /* ← vertically centered */
+    justify-content: center;
+    padding: 0;
     background: linear-gradient(
         to top,
         rgba(0,0,0,0.55) 0%,
@@ -278,6 +277,35 @@ a, button, .hero-expand-btn, .project-item {
         transparent 100%
     );
     pointer-events: none;
+}
+
+/* Wide invisible click zones — left 30% and right 30% of the carousel */
+.hero-zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30%;
+    background: transparent;
+    border: none;
+    cursor: crosshair;
+    pointer-events: all;
+    z-index: 3;
+    padding: 0;
+}
+.hero-zone-prev { left: 0; }
+.hero-zone-next { right: 0; }
+
+/* Center block: title + button side by side, centered in the frame */
+.hero-overlay-center {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+    padding: 2.5rem 3rem;
+    width: 100%;
+    pointer-events: none;
+    position: relative;
+    z-index: 4;
 }
 
 .hero-overlay-left {
@@ -363,15 +391,15 @@ a, button, .hero-expand-btn, .project-item {
     text-align: left;
 }
 
-/* Label — swaps text on hover */
+/* Label — bigger, chunkier padding to match original reference */
 .hero-expand-label {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: calc(1.25rem + 3px) 1.5rem;
+    gap: 0.625rem;
+    padding: 1.5rem 2rem;       /* ← restored to chunky size */
     white-space: nowrap;
     font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-size: 1rem;             /* ← slightly larger text */
     font-weight: 400;
     color: #ffffff;
     letter-spacing: -0.01em;
@@ -403,6 +431,8 @@ a, button, .hero-expand-btn, .project-item {
 
 .hero-expand-label svg {
     transition: transform 0.25s ease;
+    width: 16px;
+    height: 16px;
 }
 
 @media (max-width: 768px) {
@@ -900,11 +930,16 @@ a, button, .hero-expand-btn, .project-item {
         position: static;
         flex-direction: column;
         background: none;
+        padding: 0;
+        pointer-events: all;
+        align-items: stretch;
+    }
+
+    .hero-slide:first-child .hero-overlay-center {
+        display: flex;
+        flex-direction: column;
         padding: 1.5rem 1.25rem 1.75rem;
         gap: 1rem;
-        pointer-events: all;
-        grid-template-columns: unset;
-        align-items: stretch;
     }
 
     .hero-overlay-left {
@@ -963,22 +998,25 @@ a, button, .hero-expand-btn, .project-item {
     }
     .hero-expand-label svg { stroke: var(--color-text); }
 
-    /* Placeholder slides (2+): keep overlay absolute over dark bg */
     .hero-slide-placeholder {
         aspect-ratio: 4 / 3;
         max-height: 60vw;
         position: relative;
     }
     .hero-slide-placeholder .hero-video-overlay {
-        display: grid;
+        display: flex;
         position: absolute;
         inset: 0;
-        grid-template-columns: 1fr auto;
-        align-items: end;
-        padding: 1.5rem;
-        gap: 1rem;
+        align-items: center;
+        justify-content: center;
         background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
         pointer-events: none;
+    }
+    .hero-slide-placeholder .hero-overlay-center {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        padding: 1.5rem;
+        gap: 1rem;
     }
     .hero-slide-placeholder .hero-expand-btn {
         flex-direction: row-reverse;
@@ -993,7 +1031,7 @@ a, button, .hero-expand-btn, .project-item {
         color: #fff;
         border-top: none;
         margin-top: 0;
-        padding: 1.25rem 1.5rem;
+        padding: 1.5rem 2rem;
         width: auto;
         justify-content: center;
     }

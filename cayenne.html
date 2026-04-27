@@ -1,181 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cayenne — bearing studio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="cayenne.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cayenne — Bearing Studio</title>
+  <meta name="description" content="Design empathy in the digital age. An independent paper on serviceability, planned obsolescence, and the software-defined vehicle.">
+  <meta property="og:title" content="Cayenne — Bearing Studio">
+  <meta property="og:description" content="Design empathy in the digital age. An independent paper on serviceability, planned obsolescence, and the software-defined vehicle.">
+  <meta property="og:image" content="LogoSM.png">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://bearingstudio.co/cayenne.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cayenne — Bearing Studio">
+  <meta name="twitter:description" content="Design empathy in the digital age.">
+  <meta name="twitter:image" content="LogoSM.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="system.css">
+  <link rel="stylesheet" href="cayenne.css">
 </head>
 <body class="cayenne-page">
 
-    <!-- Skip to main content -->
-    <a href="#cay-main" class="skip-link">Skip to main content</a>
+<a href="#cay-main" class="skip-link">Skip to main content</a>
 
-    <!-- Navigation -->
-    <nav class="nav scrolled" id="nav" aria-label="Main navigation">
-        <div class="nav-content">
-
-            <!-- Col 1: Hamburger (mobile only) -->
-            <div class="nav-left">
-                <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                        <path d="M3 12h18M3 6h18M3 18h18"/>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Col 2: Logo -->
-            <a href="index.html" class="logo" aria-label="Bearing Studio — home">
-                <img src="bearing-logo-white.png" alt="" class="logo-image" aria-hidden="true">
-            </a>
-
-            <!-- Col 3: Nav links (centered) -->
-            <div class="nav-links" role="list" id="nav-drawer">
-                <button class="nav-close" id="nav-close" aria-label="Close menu">✕</button>
-                <a href="index.html#work" role="listitem">Work</a>
-                <a href="index.html#about" role="listitem">About</a>
-                <a href="index.html#contact" role="listitem">Contact</a>
-            </div>
-
-            <!-- Col 4: Accessibility menu -->
-            <div class="a11y-menu-wrap">
-                <button class="a11y-trigger" aria-expanded="false" aria-controls="a11y-menu" aria-label="Accessibility options">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                        <circle cx="12" cy="5" r="1.5"/>
-                        <path d="M12 8v4m0 0-3 5m3-5 3 5M9 11H6m12 0h-3"/>
-                    </svg>
-                    <span class="a11y-trigger-label">Accessibility</span>
-                </button>
-                <div class="a11y-menu" id="a11y-menu" role="menu" aria-label="Accessibility options" hidden>
-                    <p class="a11y-menu-heading">Display</p>
-                    <button class="a11y-option" role="menuitem" data-action="text-size" aria-pressed="false">
-                        <span class="a11y-icon">Aa</span>
-                        <span>Larger text</span>
-                    </button>
-                    <button class="a11y-option" role="menuitem" data-action="high-contrast" aria-pressed="false">
-                        <span class="a11y-icon">◑</span>
-                        <span>High contrast</span>
-                    </button>
-                </div>
-            </div>
+<!-- ── NAV ── -->
+<nav class="bs-nav" aria-label="Main navigation">
+  <div class="bs-nav-row">
+    <div class="bs-island bs-nav-unified">
+      <a href="index.html" class="bs-logo-island" aria-label="Bearing Studio — home">
+        <img src="bearing-logo-white.png" alt="Bearing Studio">
+      </a>
+      <div class="bs-nav-links" role="list">
+        <a href="index.html#work-index" role="listitem" data-color="red">Work Index</a>
+        <a href="index.html#about" role="listitem" data-color="yellow">About</a>
+        <a href="index.html#contact" role="listitem" data-color="blue">Contact</a>
+      </div>
+      <div class="bs-a11y-wrap">
+        <button id="a11y-toggle" class="bs-a11y-btn" aria-expanded="false" aria-label="Accessibility options">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="5" r="1.5"/>
+            <path d="M12 8v4m0 0-3 5m3-5 3 5M9 11H6m12 0h-3"/>
+          </svg>
+        </button>
+        <div id="a11y-menu" class="bs-a11y-menu" role="menu" aria-label="Accessibility options">
+          <p class="label">Display</p>
+          <button class="bs-a11y-option" role="menuitem" aria-pressed="false" data-toggle="large-text">
+            <span class="icon">Aa</span><span class="label">Larger text</span><span class="check">✓</span>
+          </button>
+          <button class="bs-a11y-option" role="menuitem" aria-pressed="false" data-toggle="high-contrast">
+            <span class="icon">◑</span><span class="label">High contrast</span><span class="check">✓</span>
+          </button>
         </div>
-    </nav>
-
-    <!-- Hero -->
-    <header class="cay-hero" id="cay-main">
-        <div class="cay-hero-bg">
-            <iframe
-                src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
-                frameborder="0"
-                title="Cayenne — Design Empathy in the Digital Age, background video"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-        </div>
-        <div class="cay-hero-overlay">
-            <div class="cay-hero-content">
-                <h1 class="cay-title">Cayenne</h1>
-                <p class="cay-subtitle">Design Empathy in the Digital Age</p>
-                <p class="cay-label">Bearing Studio — Publication No. 01</p>
-            </div>
-            <div class="cay-hero-meta">
-                <div class="cay-meta-item">
-                    <span class="cay-meta-label">Published</span>
-                    <span class="cay-meta-value">March 2026</span>
-                </div>
-                <div class="cay-meta-item">
-                    <span class="cay-meta-label">Subject</span>
-                    <span class="cay-meta-value">First-Generation Porsche Cayenne</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Introduction -->
-    <section class="cay-intro">
-        <div class="cay-container">
-            <div class="cay-intro-grid">
-                <div class="cay-intro-left">
-                    <p class="cay-section-label">Introduction</p>
-                </div>
-                <div class="cay-intro-right">
-                    <p class="cay-lede">What happens when a moonshot product ages into a used car?</p>
-                    <p class="cay-body">The subject vehicle was purchased by the author in July 2024 as an automotive project with no prior mechanical experience and the goal of turning it into a daily driver. The experience brought about a desire to understand how design decisions affect long-term ownership viability.</p>
-                    <p class="cay-body">Over 18 months and almost 8,000 miles, numerous repair and maintenance procedures were performed, documenting component failures, costs, and serviceability challenges. This analysis draws directly from that hands-on experience, supplemented by manufacturer documentation, regulatory archives, and industry research.</p>
-                    <p class="cay-body">This white paper focusing on serviceability and the software-defined vehicle seeks to answer that question using a 21-year-old first generation Porsche Cayenne and the design empathy framework — examining the pattern of industrial design neglect they show historically and concurrently, as well as proposing solutions to build better vehicles for the future.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pull Quote -->
-    <section class="cay-pullquote">
-        <div class="cay-container">
-            <blockquote class="cay-quote">
-                "You can't understand good design if you do not understand people; design is made for people." —Dieter Rams
-            </blockquote>
-        </div>
-    </section>
-
-    <!-- Feature: Design Empathy Framework -->
-    <section class="cay-feature">
-        <div class="cay-container">
-            <div class="cay-feature-grid">
-                <div class="cay-feature-left">
-                    <p class="cay-section-label">The Framework</p>
-                    <h2 class="cay-heading">What is Design Empathy?</h2>
-                </div>
-                <div class="cay-feature-right">
-                    <p class="cay-body">Design empathy is the practice of anticipating a product's complete impact on users across its entire lifecycle — from acquisition through daily use, failure, repair, and end-of-life.</p>
-                    <p class="cay-body">Empathetic design assumes products will be used in unforeseen ways, outlive their warranty periods, change hands, and eventually fail. It minimizes harm, cost, and complexity when those inevitable events occur, rather than externalizing these consequences to users. This keeps products in use longer, reducing environmental impact and maintaining the brand's reputation across ownership cycles.</p>
-                    <p class="cay-body">As the automotive industry enters the digital age, the pattern of neglect has evolved in scope, scale, and execution. Components that used to be difficult to service a decade ago are becoming impossible to address independently — software locked, built into larger assemblies that have to be replaced in full, and externally dependent on the companies that made them.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Closing -->
-    <section class="cay-closing">
-        <div class="cay-container">
-            <div class="cay-closing-grid">
-                <div class="cay-closing-left">
-                    <p class="cay-section-label">Conclusion</p>
-                </div>
-                <div class="cay-closing-right">
-                    <p class="cay-body">In addition to this paper's industrial critique, it also functions as a defense of curiosity and awe held by a younger version of myself. Growing up in the rapidly evolving 2000s, this machine of seemingly infinite capability and wonder left a lasting impression that shaped my design ideals.</p>
-                    <p class="cay-body">I wonder about not the future of that outlook, but the ability to act on it. Lately, it seems that outlook is becoming walled off, monetized, and taken for granted by companies willing to bolster their bottom line at a collective spiritual cost that will only become detrimental to them in the long term. This is not a new phenomenon, but the rapid proliferation of it is.</p>
-                    <p class="cay-body">The relationship between us and our tools is changing. We are currently at a crossroads that will define the next generation of ownership beyond just the car, and whether these industrial experiments become pervasive norms at our expense.</p>
-                    <p class="cay-body large">Bearing Studio's first publication. More to come.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Back to home -->
-    <div class="cay-back">
-        <div class="cay-container">
-            <a href="index.html" class="cay-back-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M19 12H5M12 5l-7 7 7 7"/>
-                </svg>
-                <span>Back to bearing studio</span>
-            </a>
-        </div>
+      </div>
     </div>
+  </div>
+</nav>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <p class="footer-text"></p>
-        </div>
-    </footer>
+<!-- ── HERO ── -->
+<header class="cay-hero" id="cay-main">
+  <div class="cay-hero-bg">
+    <iframe
+      src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+      title="Cayenne — background video">
+    </iframe>
+  </div>
+  <div class="cay-hero-overlay">
+    <div class="cay-hero-content">
+      <p class="cay-label">Bearing Studio — Publication No. 01</p>
+      <h1 class="cay-title">Cayenne</h1>
+      <p class="cay-subtitle">Design Empathy in the Digital Age</p>
+    </div>
+  </div>
+</header>
 
-    <script src="script.js"></script>
+<!-- ── DATELINE ── -->
+<div class="cay-dateline">
+  <div class="cay-container">
+    <div class="cay-dateline-inner">
+      <span>Publication No. 01</span>
+      <span class="cay-dateline-sep">·</span>
+      <span>Summer 2026</span>
+      <span class="cay-dateline-sep">·</span>
+      <span>Paper · 64 pp</span>
+      <span class="cay-dateline-sep">·</span>
+      <span>Zane Zahran &amp; Lynette Cox</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── INTRODUCTION ── -->
+<section class="cay-intro" id="cay-intro">
+  <div class="cay-container">
+    <div class="cay-intro-grid">
+      <div class="cay-intro-left">
+        <p class="cay-section-label">Introduction</p>
+      </div>
+      <div class="cay-intro-right">
+        <p class="cay-lede">What happens when a moonshot product ages into a used car?</p>
+        <p class="cay-body">Purchased in July 2024 with no prior mechanical experience, a 2005 Porsche Cayenne 955 became the subject of an 18-month, 8,000-mile investigation into how design decisions shape the long arc of ownership — and what it costs when they don't.</p>
+        <p class="cay-body">This paper examines serviceability, planned obsolescence, and the software-defined vehicle through that lens, proposing a design empathy framework for building products that hold their integrity across ownership cycles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PULL QUOTE ── -->
+<section class="cay-pullquote">
+  <div class="cay-container">
+    <blockquote class="cay-quote">
+      "You can't understand good design if you do not understand people; design is made for people." —Dieter Rams
+    </blockquote>
+  </div>
+</section>
+
+<!-- ── PAPER READER ── -->
+<section class="cay-reader" id="cay-paper">
+  <div class="cay-reader-head">
+    <div class="cay-container cay-reader-controls">
+      <p class="cay-section-label">The Paper</p>
+      <div class="cay-reader-actions">
+        <button class="cay-reader-btn" id="cay-prev" aria-label="Previous page">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="cay-reader-pagecount"><span id="cay-page-current">—</span> / <span id="cay-page-total">—</span></span>
+        <button class="cay-reader-btn" id="cay-next" aria-label="Next page">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <a href="cayenne-paper.pdf" download class="cay-reader-btn" aria-label="Download PDF">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v13M5 16l7 7 7-7"/><path d="M3 21h18"/></svg>
+          <span>Download</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="cay-reader-frame" id="cay-reader-frame">
+    <div class="cay-reader-placeholder">
+      <p class="cay-section-label" style="margin-bottom:1rem">Paper coming Summer 2026</p>
+      <p class="cay-body" style="text-align:center;max-width:400px">The full publication will be embedded here at release. Download will be available for offline reading.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── COLOPHON ── -->
+<section class="cay-colophon">
+  <div class="cay-container">
+    <div class="cay-colophon-grid">
+      <div>
+        <p class="cay-section-label" style="margin-bottom:1.25rem">Author</p>
+        <p class="cay-col-name">Zane Zahran</p>
+        <p class="cay-col-role">Bearing Studio</p>
+        <p class="cay-col-role">Austin, Texas</p>
+      </div>
+      <div>
+        <p class="cay-section-label" style="margin-bottom:1.25rem">Contributor</p>
+        <p class="cay-col-name">Lynette Cox</p>
+        <p class="cay-col-role">Powertrain Engineer</p>
+      </div>
+      <div>
+        <p class="cay-section-label" style="margin-bottom:1.25rem">Publication</p>
+        <p class="cay-col-role">Bearing Studio</p>
+        <p class="cay-col-role">No. 01 · Summer 2026</p>
+        <p class="cay-col-role">64 pages</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BACK ── -->
+<div class="cay-back">
+  <div class="cay-container">
+    <a href="index.html" class="cay-back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      <span>Back to Bearing Studio</span>
+    </a>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="bs-footer">
+  <div class="bs-container-wide bs-footer-grid">
+    <div>
+      <p class="t-label" style="margin-bottom:1rem">Contact</p>
+      <a href="mailto:bearingstudio@pm.me" class="bs-link" style="font-size:0.9375rem">bearingstudio@pm.me</a>
+    </div>
+    <div class="bs-footer-right">
+      <p class="t-meta" style="font-size:0.7rem;color:var(--text-dim)">
+        © 2026 Bearing Studio — All rights reserved
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn  = document.getElementById('a11y-toggle');
+  var menu = document.getElementById('a11y-menu');
+  function openMenu(o) {
+    menu.classList.toggle('is-open', o);
+    btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(e){ e.stopPropagation(); openMenu(!menu.classList.contains('is-open')); });
+  document.addEventListener('click', function(e){ if (!menu.contains(e.target) && e.target !== btn) openMenu(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') openMenu(false); });
+  var toggles = {
+    'large-text':    { cls: 'bs-a11y-large-text',   target: document.documentElement, key: 'bs-large-text' },
+    'high-contrast': { cls: 'bs-a11y-high-contrast', target: document.body,            key: 'bs-high-contrast' }
+  };
+  Object.keys(toggles).forEach(function(name){
+    var t = toggles[name];
+    try {
+      if (localStorage.getItem(t.key) === 'true') t.target.classList.add(t.cls);
+      var optBtn = document.querySelector('[data-toggle="' + name + '"]');
+      if (optBtn) optBtn.setAttribute('aria-pressed', localStorage.getItem(t.key) === 'true' ? 'true' : 'false');
+    } catch(e) {}
+  });
+  document.querySelectorAll('[data-toggle]').forEach(function(opt){
+    opt.addEventListener('click', function(e){
+      e.stopPropagation();
+      var name = opt.getAttribute('data-toggle');
+      var t = toggles[name];
+      var on = !t.target.classList.contains(t.cls);
+      t.target.classList.toggle(t.cls, on);
+      opt.setAttribute('aria-pressed', on ? 'true' : 'false');
+      try { localStorage.setItem(t.key, String(on)); } catch(err) {}
+    });
+  });
+})();
+</script>
 </body>
 </html>

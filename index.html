@@ -1,254 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bearing studio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bearing Studio</title>
+<meta name="description" content="Strategy-driven independent design practice.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Bearing Studio">
+<meta property="og:description" content="Strategy-driven independent design practice.">
+<meta property="og:image" content="LogoSM.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bearingstudio.co">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bearing Studio">
+<meta name="twitter:description" content="Strategy-driven independent design practice.">
+<meta name="twitter:image" content="LogoSM.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<link rel="stylesheet" href="system.css">
+
 </head>
 <body>
 
-    <!-- Skip to main content (keyboard users) -->
-    <a href="#work" class="skip-link">Skip to main content</a>
+<a href="#work-index" class="skip-link">Skip to main content</a>
 
-    <!-- Navigation -->
-    <nav class="nav" id="nav" aria-label="Main navigation">
-        <div class="nav-content">
-            <!-- Col 1: Hamburger (mobile only) -->
-            <div class="nav-left">
-                <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                        <path d="M3 12h18M3 6h18M3 18h18"/>
-                    </svg>
-                </button>
-            </div>
+<!-- ── NAV ── -->
+<nav class="bs-nav" aria-label="Main navigation">
+  <div class="bs-nav-row">
+    <div class="bs-island bs-nav-unified">
 
-            <!-- Col 2: Logo (always centered) -->
-            <a href="#" class="logo" aria-label="Bearing Studio — home">
-                    <img src="bearing-logo-white.png" alt="" class="logo-image" aria-hidden="true">
-                </a>
+      <!-- Logo -->
+      <a href="#" class="bs-logo-island" aria-label="Bearing Studio — home">
+        <img src="bearing-logo-white.png" alt="Bearing Studio">
+      </a>
 
-            <!-- Col 2: Nav links (centered) -->
-            <div class="nav-links" role="list" id="nav-drawer">
-                <button class="nav-close" id="nav-close" aria-label="Close menu">✕</button>
-                <a href="#work" role="listitem">Work</a>
-                <a href="#about" role="listitem">About</a>
-                <a href="#contact" role="listitem">Contact</a>
-            </div>
+      <!-- Links — absolutely centered within the island -->
+      <div class="bs-nav-links" role="list">
+        <a href="#work-index" role="listitem" data-color="red">Work Index</a>
+        <a href="#about" role="listitem" data-color="yellow">About</a>
+        <a href="#contact" role="listitem" data-color="blue">Contact</a>
+      </div>
 
-            <!-- Col 3: Accessibility menu -->
-            <div class="a11y-menu-wrap">
-                <button class="a11y-trigger" aria-expanded="false" aria-controls="a11y-menu" aria-label="Accessibility options">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                        <circle cx="12" cy="5" r="1.5"/>
-                        <path d="M12 8v4m0 0-3 5m3-5 3 5M9 11H6m12 0h-3"/>
-                    </svg>
-                    <span class="a11y-trigger-label">Accessibility</span>
-                </button>
-                <div class="a11y-menu" id="a11y-menu" role="menu" aria-label="Accessibility options" hidden>
-                    <p class="a11y-menu-heading">Display</p>
-                    <button class="a11y-option" role="menuitem" data-action="text-size" aria-pressed="false">
-                        <span class="a11y-icon">Aa</span>
-                        <span>Larger text</span>
-                    </button>
-                    <button class="a11y-option" role="menuitem" data-action="high-contrast" aria-pressed="false">
-                        <span class="a11y-icon">◑</span>
-                        <span>High contrast</span>
-                    </button>
-                </div>
-            </div>
+      <!-- Accessibility — icon only, no separate island -->
+      <div class="bs-a11y-wrap">
+        <button id="a11y-toggle" class="bs-a11y-btn" aria-expanded="false" aria-label="Accessibility options">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="5" r="1.5"/>
+            <path d="M12 8v4m0 0-3 5m3-5 3 5M9 11H6m12 0h-3"/>
+          </svg>
+        </button>
+        <div id="a11y-menu" class="bs-a11y-menu" role="menu" aria-label="Accessibility options">
+          <p class="label">Display</p>
+          <button class="bs-a11y-option" role="menuitem" aria-pressed="false" data-toggle="large-text">
+            <span class="icon">Aa</span><span class="label">Larger text</span><span class="check">✓</span>
+          </button>
+          <button class="bs-a11y-option" role="menuitem" aria-pressed="false" data-toggle="high-contrast">
+            <span class="icon">◑</span><span class="label">High contrast</span><span class="check">✓</span>
+          </button>
         </div>
-    </nav>
+      </div>
 
-    <!-- Hero: Carousel -->
-    <section class="hero" id="work">
-        <div class="dot-grid"></div>
-        <div class="hero-container">
+    </div>
+  </div>
+</nav>
 
-            <div class="hero-carousel" id="heroCarousel" aria-label="Featured projects">
+<!-- ── HERO ── -->
+<section style="position:relative;margin-top:-90px">
+  <a href="cayenne.html" class="bs-hero-link">
+    <div class="bs-hero">
+      <div class="bs-hero-video">
+        <iframe
+          src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          title="Cayenne — archival footage">
+        </iframe>
+      </div>
+      <div class="bs-hero-overlay"></div>
 
-                <!-- ── Slide 1: Cayenne (active) ── -->
-                <div class="hero-slide active" data-index="0">
-                    <div class="hero-video-wrap">
-                        <div class="hero-video-overlay">
-                            <!-- Center block: title + subtitle + button -->
-                            <div class="hero-overlay-center" id="heroLeft">
-                                <div class="hero-overlay-left">
-                                    <h1 class="hero-title">Cayenne</h1>
-                                    <p class="hero-video-subtitle">Design Empathy in the Digital Age</p>
-                                </div>
-                                <div class="hero-overlay-right" id="heroRight">
-                                    <a href="cayenne.html" class="hero-expand-btn" aria-label="Explore Cayenne — Design Empathy in the Digital Age">
-                                        <div class="hero-expand-text" aria-hidden="true">
-                                            <p>Design ethics and planned obsolescence in the automotive sector examined through a first generation Porsche Cayenne restoration, with insights from powertrain engineer Lynette Cox.</p>
-                                        </div>
-                                        <div class="hero-expand-label">
-                                            <span class="label-default">Explore Project</span>
-                                            <span class="label-hover">Explore Project</span>
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hero-video-frame">
-                            <iframe
-                                src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
-                                frameborder="0"
-                                title="Cayenne — Design Empathy in the Digital Age, background video"
-                                allow="autoplay; fullscreen; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ── Slide 2: Coming soon ── -->
-                <div class="hero-slide hero-slide-placeholder-slide" data-index="1">
-                    <div class="hero-video-wrap hero-slide-placeholder">
-                        <div class="hero-video-overlay">
-                            <div class="hero-overlay-center">
-                                <div class="hero-overlay-left">
-                                    <h1 class="hero-title hero-title-placeholder">&nbsp;</h1>
-                                    <p class="hero-video-subtitle">Coming this year</p>
-                                </div>
-                                <div class="hero-overlay-right">
-                                    <a href="#" class="hero-expand-btn" aria-label="Coming soon project">
-                                        <div class="hero-expand-text" aria-hidden="true"><p></p></div>
-                                        <div class="hero-expand-label">
-                                            <span class="label-default">Explore Project</span>
-                                            <span class="label-hover">Explore Project</span>
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ── Slide 3: Coming soon ── -->
-                <div class="hero-slide hero-slide-placeholder-slide" data-index="2">
-                    <div class="hero-video-wrap hero-slide-placeholder">
-                        <div class="hero-video-overlay">
-                            <div class="hero-overlay-center">
-                                <div class="hero-overlay-left">
-                                    <h1 class="hero-title hero-title-placeholder">&nbsp;</h1>
-                                    <p class="hero-video-subtitle">Coming this year</p>
-                                </div>
-                                <div class="hero-overlay-right">
-                                    <a href="#" class="hero-expand-btn" aria-label="Coming soon project">
-                                        <div class="hero-expand-text" aria-hidden="true"><p></p></div>
-                                        <div class="hero-expand-label">
-                                            <span class="label-default">Explore Project</span>
-                                            <span class="label-hover">Explore Project</span>
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Carousel controls — arrows + dots on one row, centered at bottom -->
-                <div class="carousel-controls" aria-label="Carousel navigation">
-                    <button class="carousel-arrow carousel-prev" id="carouselPrev" aria-label="Previous project">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-                    </button>
-                    <div class="carousel-dots" role="tablist" aria-label="Project slides">
-                        <button class="carousel-dot active" role="tab" aria-selected="true"  aria-label="Slide 1: Cayenne"     data-dot="0"></button>
-                        <button class="carousel-dot"        role="tab" aria-selected="false" aria-label="Slide 2: Coming soon" data-dot="1"></button>
-                        <button class="carousel-dot"        role="tab" aria-selected="false" aria-label="Slide 3: Coming soon" data-dot="2"></button>
-                    </div>
-                    <button class="carousel-arrow carousel-next" id="carouselNext" aria-label="Next project">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-                    </button>
-                </div>
-
-            </div><!-- /hero-carousel -->
-
+      <div class="bs-hero-top">
+        <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+          <span class="tag" data-kind="new">New release</span>
+          <span class="tag" data-kind="editorial">Editorial</span>
         </div>
-    </section>
+        <p class="bs-hero-meta">Issue 01 · Summer 2026</p>
+      </div>
 
-    <!-- Projects Grid -->
-    <section class="projects">
-        <div class="projects-container">
-            <p class="section-label" aria-hidden="true">More Work</p>
-            <div class="projects-grid">
+      <div class="bs-hero-bottom">
+        <div>
+          <h1 class="t-display bs-hero-title">Cayenne</h1>
+          <p class="t-lede bs-hero-lede">Design empathy in the digital age.</p>
+        </div>
+        <div class="bs-hero-aside">
+          <p class="t-meta bs-hero-blurb">
+            An independent paper on serviceability, planned obsolescence, and the software-defined vehicle.
+          </p>
+          <span class="bs-hero-cta">
+            Read the paper
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </a>
+</section>
 
-                <article class="project-item coming-soon">
-                    <div class="project-visual">
-                        <span class="coming-soon-text">Coming Soon</span>
-                    </div>
-                    <div class="project-hover-info">
-                        <h4 class="project-hover-title">Next Publication</h4>
-                        <p class="project-hover-desc">Stay tuned for the next exploration</p>
-                    </div>
-                </article>
+<!-- ── STUDIO INTRO ── -->
+<section id="about" class="bs-intro-section">
+  <div class="bs-container-wide">
+    <div class="bs-intro-grid">
+      <div>
+        <p class="t-label">Bearing Studio</p>
+        <p class="t-meta bs-intro-meta">Est. 2026</p>
+      </div>
+      <div>
+        <p class="t-lede bs-intro-lede">
+          The industrial design practice of Zane Zahran. Working in product, hardware, and the editorial that surrounds them.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <article class="project-item coming-soon">
-                    <div class="project-visual">
-                        <span class="coming-soon-text">Coming Soon</span>
-                    </div>
-                    <div class="project-hover-info">
-                        <h4 class="project-hover-title">In Development</h4>
-                        <p class="project-hover-desc">More projects underway</p>
-                    </div>
-                </article>
+<hr class="bs-hr">
 
-                <article class="project-item coming-soon">
-                    <div class="project-visual">
-                        <span class="coming-soon-text">Coming Soon</span>
-                    </div>
-                    <div class="project-hover-info">
-                        <h4 class="project-hover-title">Future Work</h4>
-                        <p class="project-hover-desc">Watch this space</p>
-                    </div>
-                </article>
+<!-- ── WORK INDEX ── -->
+<section id="work-index" class="bs-work-section">
+  <div class="bs-container-wide">
+    <div class="bs-index-head">
+      <h2 class="t-display bs-index-title">Work Index</h2>
+      <div class="bs-index-filters">
+        <button class="bs-filter is-active" data-filter="all">All</button>
+        <button class="bs-filter" data-filter="editorial">Editorial</button>
+        <button class="bs-filter" data-filter="design">Design</button>
+      </div>
+    </div>
 
+    <ol class="bs-index">
+      <li class="bs-index-row" data-tags="editorial">
+        <a href="cayenne.html" class="bs-index-link">
+          <div class="bs-index-num t-meta">01</div>
+          <div class="bs-index-media">
+            <div class="bs-cardmedia">
+              <iframe
+                src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
+                allow="autoplay"
+                title="Cayenne preview">
+              </iframe>
             </div>
-        </div>
-    </section>
-
-    <!-- About -->
-    <section class="about" id="about">
-        <div class="about-container">
-            <h2 class="section-label">About</h2>
-            <div class="about-content">
-                <p class="about-text large">Bearing Studio is a multidisciplinary design practice based in Austin, Texas.</p>
-                <p class="about-text">We explore the intersection of design, technology, and human experience — through publications, products, and whatever the work demands.</p>
+          </div>
+          <div class="bs-index-body">
+            <div class="bs-index-titleline">
+              <h3 class="t-display bs-index-projecttitle">Cayenne</h3>
+              <span class="bs-index-status">Released</span>
             </div>
-        </div>
-    </section>
+            <p class="t-lede bs-index-subtitle">Design Empathy in the Digital Age</p>
+            <p class="t-body bs-index-summary">
+              An independent paper on serviceability, planned obsolescence, and the software-defined vehicle, framed through the restoration of a first-generation Porsche Cayenne and a conversation with powertrain engineer Lynette Cox.
+            </p>
+            <dl class="bs-index-meta">
+              <div><dt>Released</dt><dd>Summer 2026</dd></div>
+              <div><dt>Format</dt><dd>Paper · 64 pp</dd></div>
+              <div class="bs-index-tags-cell">
+                <dt>Tags</dt>
+                <dd><span class="tag" data-kind="editorial" style="margin-right:0.4rem">Editorial</span></dd>
+              </div>
+            </dl>
+          </div>
+          <div class="bs-index-arrow" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+      </li>
 
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <div class="contact-container">
-            <h2 class="section-label">Connect</h2>
-            <div class="contact-content">
-                <a href="mailto:bearingstudio@pm.me" class="contact-email">bearingstudio@pm.me</a>
-                <div class="contact-social">
-                    <a href="#" class="social-link">LinkedIn</a>
-                    <a href="#" class="social-link">Instagram</a>
-                    <a href="#" class="social-link">Twitter</a>
-                </div>
+      <li class="bs-index-row bs-index-row-forthcoming" data-tags="">
+        <div class="bs-index-link" style="cursor:default">
+          <div class="bs-index-num t-meta" style="color:var(--text-dim)">02</div>
+          <div class="bs-index-media">
+            <div class="bs-placeholder" style="width:100%;height:100%">
+              <span class="bs-placeholder-label">Forthcoming</span>
             </div>
+          </div>
+          <div class="bs-index-body">
+            <div class="bs-index-titleline">
+              <h3 class="t-display bs-index-projecttitle" style="color:var(--text-dim)">In development</h3>
+              <span class="bs-index-status" style="opacity:0.6">Forthcoming</span>
+            </div>
+            <p class="t-body bs-index-summary" style="color:var(--text-dim)">
+              Next paper in development. Sign up below to be notified at release.
+            </p>
+          </div>
+          <div class="bs-index-arrow" aria-hidden="true" style="opacity:0.3">—</div>
         </div>
-    </section>
+      </li>
+    </ol>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <p class="footer-text"></p>
-        </div>
-    </footer>
+<!-- ── FOOTER ── -->
+<footer id="contact" class="bs-footer">
+  <div class="bs-container-wide bs-footer-grid">
+    <div>
+      <p class="t-label" style="margin-bottom:1rem">Contact</p>
+      <a href="mailto:bearingstudio@pm.me" class="bs-link" style="font-size:0.9375rem">bearingstudio@pm.me</a>
+    </div>
+    <div class="bs-footer-right">
+      <p class="t-meta" style="font-size:0.7rem;color:var(--text-dim)">
+        © 2026 Bearing Studio — All rights reserved
+      </p>
+    </div>
+  </div>
+</footer>
 
-    <script src="script.js"></script>
+<script>
+(function(){
+  // ── A11y menu ──
+  var btn = document.getElementById('a11y-toggle');
+  var menu = document.getElementById('a11y-menu');
+  function openMenu(o) {
+    menu.classList.toggle('is-open', o);
+    btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    openMenu(!menu.classList.contains('is-open'));
+  });
+  document.addEventListener('click', function(e){
+    if (!menu.contains(e.target) && e.target !== btn) openMenu(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') openMenu(false);
+  });
+
+  // Toggle states
+  var toggles = {
+    'large-text': { cls: 'bs-a11y-large-text', target: document.documentElement, key: 'bs-large-text' },
+    'high-contrast': { cls: 'bs-a11y-high-contrast', target: document.body, key: 'bs-high-contrast' }
+  };
+  Object.keys(toggles).forEach(function(name){
+    var t = toggles[name];
+    try {
+      var saved = localStorage.getItem(t.key) === 'true';
+      if (saved) t.target.classList.add(t.cls);
+      var optBtn = document.querySelector('[data-toggle="' + name + '"]');
+      if (optBtn) optBtn.setAttribute('aria-pressed', saved ? 'true' : 'false');
+    } catch(e) {}
+  });
+  document.querySelectorAll('[data-toggle]').forEach(function(opt){
+    opt.addEventListener('click', function(e){
+      e.stopPropagation();
+      var name = opt.getAttribute('data-toggle');
+      var t = toggles[name];
+      var on = !t.target.classList.contains(t.cls);
+      t.target.classList.toggle(t.cls, on);
+      opt.setAttribute('aria-pressed', on ? 'true' : 'false');
+      try { localStorage.setItem(t.key, String(on)); } catch(err) {}
+    });
+  });
+
+  // ── Filter buttons ──
+  var filters = document.querySelectorAll('.bs-filter');
+  var rows = document.querySelectorAll('.bs-index-row');
+  filters.forEach(function(f){
+    f.addEventListener('click', function(){
+      filters.forEach(function(x){ x.classList.remove('is-active'); });
+      f.classList.add('is-active');
+      var sel = f.getAttribute('data-filter');
+      rows.forEach(function(r){
+        if (sel === 'all') {
+          r.removeAttribute('data-hidden');
+        } else {
+          var tags = (r.getAttribute('data-tags') || '').split(' ');
+          r.setAttribute('data-hidden', tags.indexOf(sel) === -1 ? 'true' : 'false');
+          if (tags.indexOf(sel) !== -1) r.removeAttribute('data-hidden');
+        }
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>

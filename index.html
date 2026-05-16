@@ -4,26 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bearing Studio</title>
-<meta name="description" content="Strategy-driven independent design practice.">
 
-<!-- Open Graph -->
-<meta property="og:title" content="Bearing Studio">
-<meta property="og:description" content="Strategy-driven independent design practice.">
-<meta property="og:image" content="LogoSM.png">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://bearingstudio.co">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Bearing Studio">
-<meta name="twitter:description" content="Strategy-driven independent design practice.">
-<meta name="twitter:image" content="LogoSM.png">
-
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
 <link rel="stylesheet" href="system.css">
 
@@ -74,7 +55,7 @@
 
 <!-- ── HERO ── -->
 <section style="position:relative;margin-top:-90px">
-  <a href="cayenne.html" class="bs-hero-link">
+  <a href="#cayenne" class="bs-hero-link">
     <div class="bs-hero">
       <div class="bs-hero-video">
         <iframe
@@ -91,7 +72,7 @@
           <span class="tag" data-kind="new">New release</span>
           <span class="tag" data-kind="editorial">Editorial</span>
         </div>
-        <p class="bs-hero-meta">Issue 01 · Summer 2026</p>
+        <p class="bs-hero-meta">Issue 01 · April 2026</p>
       </div>
 
       <div class="bs-hero-bottom">
@@ -113,25 +94,6 @@
   </a>
 </section>
 
-<!-- ── STUDIO INTRO ── -->
-<section id="about" class="bs-intro-section">
-  <div class="bs-container-wide">
-    <div class="bs-intro-grid">
-      <div>
-        <p class="t-label">Bearing Studio</p>
-        <p class="t-meta bs-intro-meta">Est. 2026</p>
-      </div>
-      <div>
-        <p class="t-lede bs-intro-lede">
-          The industrial design practice of Zane Zahran. Working in product, hardware, and the editorial that surrounds them.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="bs-hr">
-
 <!-- ── WORK INDEX ── -->
 <section id="work-index" class="bs-work-section">
   <div class="bs-container-wide">
@@ -146,15 +108,11 @@
 
     <ol class="bs-index">
       <li class="bs-index-row" data-tags="editorial">
-        <a href="cayenne.html" class="bs-index-link">
+        <a href="#cayenne" class="bs-index-link">
           <div class="bs-index-num t-meta">01</div>
           <div class="bs-index-media">
             <div class="bs-cardmedia">
-              <iframe
-                src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
-                allow="autoplay"
-                title="Cayenne preview">
-              </iframe>
+              <img src="cayenne_work_index.png" alt="Cayenne">
             </div>
           </div>
           <div class="bs-index-body">
@@ -167,7 +125,7 @@
               An independent paper on serviceability, planned obsolescence, and the software-defined vehicle, framed through the restoration of a first-generation Porsche Cayenne and a conversation with powertrain engineer Lynette Cox.
             </p>
             <dl class="bs-index-meta">
-              <div><dt>Released</dt><dd>Summer 2026</dd></div>
+              <div><dt>Released</dt><dd>April 2026</dd></div>
               <div><dt>Format</dt><dd>Paper · 64 pp</dd></div>
               <div class="bs-index-tags-cell">
                 <dt>Tags</dt>
@@ -181,25 +139,36 @@
         </a>
       </li>
 
-      <li class="bs-index-row bs-index-row-forthcoming" data-tags="">
-        <div class="bs-index-link" style="cursor:default">
-          <div class="bs-index-num t-meta" style="color:var(--text-dim)">02</div>
+      <li class="bs-index-row" data-tags="design">
+        <a href="beacon.html" class="bs-index-link">
+          <div class="bs-index-num t-meta">02</div>
           <div class="bs-index-media">
-            <div class="bs-placeholder" style="width:100%;height:100%">
-              <span class="bs-placeholder-label">Forthcoming</span>
+            <div class="bs-cardmedia">
+              <img src="beacon_work_index.png" alt="Beacon">
             </div>
           </div>
           <div class="bs-index-body">
             <div class="bs-index-titleline">
-              <h3 class="t-display bs-index-projecttitle" style="color:var(--text-dim)">In development</h3>
-              <span class="bs-index-status" style="opacity:0.6">Forthcoming</span>
+              <h3 class="t-display bs-index-projecttitle">Beacon</h3>
+              <span class="bs-index-status">Concept</span>
             </div>
-            <p class="t-body bs-index-summary" style="color:var(--text-dim)">
-              Next paper in development. Sign up below to be notified at release.
+            <p class="t-lede bs-index-subtitle">Local-range wireless fob</p>
+            <p class="t-body bs-index-summary">
+              A permissionless remote function keyfob that cuts out the server middleman. BLE and LoRaWAN mesh, serviceable hardware, no subscriptions. Developed in conjunction with the Cayenne paper.
             </p>
+            <dl class="bs-index-meta">
+              <div><dt>Year</dt><dd>2026</dd></div>
+              <div><dt>Format</dt><dd>Design Concept</dd></div>
+              <div class="bs-index-tags-cell">
+                <dt>Tags</dt>
+                <dd><span class="tag" data-kind="design">Design</span></dd>
+              </div>
+            </dl>
           </div>
-          <div class="bs-index-arrow" aria-hidden="true" style="opacity:0.3">—</div>
-        </div>
+          <div class="bs-index-arrow" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
       </li>
     </ol>
   </div>
@@ -210,7 +179,8 @@
   <div class="bs-container-wide bs-footer-grid">
     <div>
       <p class="t-label" style="margin-bottom:1rem">Contact</p>
-      <a href="mailto:bearingstudio@pm.me" class="bs-link" style="font-size:0.9375rem">bearingstudio@pm.me</a>
+      <a href="mailto:bearingstudio@pm.me" class="bs-link" style="font-size:0.9375rem;display:block;margin-bottom:0.5rem">bearingstudio@pm.me</a>
+      <a href="https://instagram.com/bearingstudio.co" target="_blank" rel="noopener" class="bs-link" style="font-size:0.9375rem">@bearingstudio.co</a>
     </div>
     <div class="bs-footer-right">
       <p class="t-meta" style="font-size:0.7rem;color:var(--text-dim)">

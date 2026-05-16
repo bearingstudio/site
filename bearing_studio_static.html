@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bearing Studio</title>
+
+
+<link rel="stylesheet" href="system.css">
+
+</head>
+<body>
+
+<a href="#work-index" class="skip-link">Skip to main content</a>
+
+<!-- ── NAV ── -->
+<nav class="bs-nav" aria-label="Main navigation">
+  <div class="bs-nav-row">
+    <div class="bs-island bs-nav-unified">
+
+      <!-- Logo -->
+      <a href="#" class="bs-logo-island" aria-label="Bearing Studio — home">
+        <img src="bearing-logo-white.png" alt="Bearing Studio">
+      </a>
+
+      <!-- Links — absolutely centered within the island -->
+      <div class="bs-nav-links" role="list">
+        <a href="#work-index" role="listitem" data-color="red">Work Index</a>
+        <a href="#about" role="listitem" data-color="yellow">About</a>
+        <a href="#contact" role="listitem" data-color="blue">Contact</a>
+      </div>
+
+      <!-- Accessibility — icon only, no separate island -->
+      <div class="bs-a11y-wrap">
+        <button id="a11y-toggle" class="bs-a11y-btn" aria-expanded="false" aria-label="Accessibility options">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="5" r="1.5"/>
+            <path d="M12 8v4m0 0-3 5m3-5 3 5M9 11H6m12 0h-3"/>
+          </svg>
+        </button>
+        <div id="a11y-menu" class="bs-a11y-menu" role="menu" aria-label="Accessibility options">
+          <p class="label">Display</p>
+          <button class="bs-a11y-option" role="menuitem" aria-pressed="false" data-toggle="large-text">
+            <span class="icon">Aa</span><span class="label">Larger text</span><span class="check">✓</span>
+          </button>
+          <button class="bs-a11y-option" role="menuitem" aria-pressed="false" data-toggle="high-contrast">
+            <span class="icon">◑</span><span class="label">High contrast</span><span class="check">✓</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section style="position:relative;margin-top:-90px">
+  <a href="#cayenne" class="bs-hero-link">
+    <div class="bs-hero">
+      <div class="bs-hero-video">
+        <iframe
+          src="https://player.vimeo.com/video/1164849421?h=f8b6935897&autoplay=1&loop=1&muted=1&background=1&controls=0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          title="Cayenne — archival footage">
+        </iframe>
+      </div>
+      <div class="bs-hero-overlay"></div>
+
+      <div class="bs-hero-top">
+        <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+          <span class="tag" data-kind="new">New release</span>
+          <span class="tag" data-kind="editorial">Editorial</span>
+        </div>
+        <p class="bs-hero-meta">Issue 01 · April 2026</p>
+      </div>
+
+      <div class="bs-hero-bottom">
+        <div>
+          <h1 class="t-display bs-hero-title">Cayenne</h1>
+          <p class="t-lede bs-hero-lede">Design empathy in the digital age.</p>
+        </div>
+        <div class="bs-hero-aside">
+          <p class="t-meta bs-hero-blurb">
+            An independent paper on serviceability, planned obsolescence, and the software-defined vehicle.
+          </p>
+          <span class="bs-hero-cta">
+            Read the paper
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </a>
+</section>
+
+<!-- ── WORK INDEX ── -->
+<section id="work-index" class="bs-work-section">
+  <div class="bs-container-wide">
+    <div class="bs-index-head">
+      <h2 class="t-display bs-index-title">Work Index</h2>
+      <div class="bs-index-filters">
+        <button class="bs-filter is-active" data-filter="all">All</button>
+        <button class="bs-filter" data-filter="editorial">Editorial</button>
+        <button class="bs-filter" data-filter="design">Design</button>
+      </div>
+    </div>
+
+    <ol class="bs-index">
+      <li class="bs-index-row" data-tags="editorial">
+        <a href="#cayenne" class="bs-index-link">
+          <div class="bs-index-num t-meta">01</div>
+          <div class="bs-index-media">
+            <div class="bs-cardmedia">
+              <img src="cayenne_work_index.png" alt="Cayenne">
+            </div>
+          </div>
+          <div class="bs-index-body">
+            <div class="bs-index-titleline">
+              <h3 class="t-display bs-index-projecttitle">Cayenne</h3>
+              <span class="bs-index-status">Released</span>
+            </div>
+            <p class="t-lede bs-index-subtitle">Design Empathy in the Digital Age</p>
+            <p class="t-body bs-index-summary">
+              An independent paper on serviceability, planned obsolescence, and the software-defined vehicle, framed through the restoration of a first-generation Porsche Cayenne and a conversation with powertrain engineer Lynette Cox.
+            </p>
+            <dl class="bs-index-meta">
+              <div><dt>Released</dt><dd>April 2026</dd></div>
+              <div><dt>Format</dt><dd>Paper · 64 pp</dd></div>
+              <div class="bs-index-tags-cell">
+                <dt>Tags</dt>
+                <dd><span class="tag" data-kind="editorial" style="margin-right:0.4rem">Editorial</span></dd>
+              </div>
+            </dl>
+          </div>
+          <div class="bs-index-arrow" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+      </li>
+
+      <li class="bs-index-row" data-tags="design">
+        <a href="beacon.html" class="bs-index-link">
+          <div class="bs-index-num t-meta">02</div>
+          <div class="bs-index-media">
+            <div class="bs-cardmedia">
+              <img src="beacon_work_index.png" alt="Beacon">
+            </div>
+          </div>
+          <div class="bs-index-body">
+            <div class="bs-index-titleline">
+              <h3 class="t-display bs-index-projecttitle">Beacon</h3>
+              <span class="bs-index-status">Concept</span>
+            </div>
+            <p class="t-lede bs-index-subtitle">Local-range wireless fob</p>
+            <p class="t-body bs-index-summary">
+              A permissionless remote function keyfob that cuts out the server middleman. BLE and LoRaWAN mesh, serviceable hardware, no subscriptions. Developed in conjunction with the Cayenne paper.
+            </p>
+            <dl class="bs-index-meta">
+              <div><dt>Year</dt><dd>2026</dd></div>
+              <div><dt>Format</dt><dd>Design Concept</dd></div>
+              <div class="bs-index-tags-cell">
+                <dt>Tags</dt>
+                <dd><span class="tag" data-kind="design">Design</span></dd>
+              </div>
+            </dl>
+          </div>
+          <div class="bs-index-arrow" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="contact" class="bs-footer">
+  <div class="bs-container-wide bs-footer-grid">
+    <div>
+      <p class="t-label" style="margin-bottom:1rem">Contact</p>
+      <a href="mailto:bearingstudio@pm.me" class="bs-link" style="font-size:0.9375rem;display:block;margin-bottom:0.5rem">bearingstudio@pm.me</a>
+      <a href="https://instagram.com/bearingstudio.co" target="_blank" rel="noopener" class="bs-link" style="font-size:0.9375rem">@bearingstudio.co</a>
+    </div>
+    <div class="bs-footer-right">
+      <p class="t-meta" style="font-size:0.7rem;color:var(--text-dim)">
+        © 2026 Bearing Studio — All rights reserved
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ── A11y menu ──
+  var btn = document.getElementById('a11y-toggle');
+  var menu = document.getElementById('a11y-menu');
+  function openMenu(o) {
+    menu.classList.toggle('is-open', o);
+    btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    openMenu(!menu.classList.contains('is-open'));
+  });
+  document.addEventListener('click', function(e){
+    if (!menu.contains(e.target) && e.target !== btn) openMenu(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') openMenu(false);
+  });
+
+  // Toggle states
+  var toggles = {
+    'large-text': { cls: 'bs-a11y-large-text', target: document.documentElement, key: 'bs-large-text' },
+    'high-contrast': { cls: 'bs-a11y-high-contrast', target: document.body, key: 'bs-high-contrast' }
+  };
+  Object.keys(toggles).forEach(function(name){
+    var t = toggles[name];
+    try {
+      var saved = localStorage.getItem(t.key) === 'true';
+      if (saved) t.target.classList.add(t.cls);
+      var optBtn = document.querySelector('[data-toggle="' + name + '"]');
+      if (optBtn) optBtn.setAttribute('aria-pressed', saved ? 'true' : 'false');
+    } catch(e) {}
+  });
+  document.querySelectorAll('[data-toggle]').forEach(function(opt){
+    opt.addEventListener('click', function(e){
+      e.stopPropagation();
+      var name = opt.getAttribute('data-toggle');
+      var t = toggles[name];
+      var on = !t.target.classList.contains(t.cls);
+      t.target.classList.toggle(t.cls, on);
+      opt.setAttribute('aria-pressed', on ? 'true' : 'false');
+      try { localStorage.setItem(t.key, String(on)); } catch(err) {}
+    });
+  });
+
+  // ── Filter buttons ──
+  var filters = document.querySelectorAll('.bs-filter');
+  var rows = document.querySelectorAll('.bs-index-row');
+  filters.forEach(function(f){
+    f.addEventListener('click', function(){
+      filters.forEach(function(x){ x.classList.remove('is-active'); });
+      f.classList.add('is-active');
+      var sel = f.getAttribute('data-filter');
+      rows.forEach(function(r){
+        if (sel === 'all') {
+          r.removeAttribute('data-hidden');
+        } else {
+          var tags = (r.getAttribute('data-tags') || '').split(' ');
+          r.setAttribute('data-hidden', tags.indexOf(sel) === -1 ? 'true' : 'false');
+          if (tags.indexOf(sel) !== -1) r.removeAttribute('data-hidden');
+        }
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

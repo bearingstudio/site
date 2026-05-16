@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beacon — Bearing Studio</title>
+  <meta name="description" content="A permissionless wireless keyfob for local vehicle control. No servers. No subscriptions. No expiry date.">
+  <meta property="og:title" content="Beacon — Bearing Studio">
+  <meta property="og:description" content="A permissionless wireless keyfob for local vehicle control.">
+  <meta property="og:image" content="LogoSM.png">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://bearingstudio.co/beacon.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Beacon — Bearing Studio">
+  <meta name="twitter:description" content="A permissionless wireless keyfob for local vehicle control.">
+  <meta name="twitter:image" content="LogoSM.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="system.css">
+  <link rel="stylesheet" href="beacon.css">
+</head>
+<body class="beacon-page">
+
+<a href="#bcn-main" class="skip-link">Skip to main content</a>
+
+<!-- ── NAV ── -->
+<nav class="bs-nav" aria-label="Main navigation">
+  <div class="bs-nav-row">
+    <div class="bs-island bs-nav-unified">
+      <a href="index.html" class="bs-logo-island" aria-label="Bearing Studio — home">
+        <img src="bearing-logo-white.png" alt="Bearing Studio">
+      </a>
+      <div class="bs-nav-links" role="list">
+        <a href="index.html#work-index" role="listitem" data-color="red">Work Index</a>
+        <a href="index.html#about" role="listitem" data-color="yellow">About</a>
+        <a href="index.html#contact" role="listitem" data-color="blue">Contact</a>
+      </div>
+      <div class="bs-a11y-wrap">
+        <button id="a11y-toggle" class="bs-a11y-btn" aria-expanded="false" aria-label="Accessibility options">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="5" r="1.5"/>
+            <path d="M12 8v4m0 0-3 5m3-5 3 5M9 11H6m12 0h-3"/>
+          </svg>
+        </button>
+        <div id="a11y-menu" class="bs-a11y-menu" role="menu" aria-label="Accessibility options">
+          <p class="label">Display</p>
+          <button class="bs-a11y-option" role="menuitem" aria-pressed="false" data-toggle="large-text">
+            <span class="icon">Aa</span><span class="label">Larger text</span><span class="check">✓</span>
+          </button>
+          <button class="bs-a11y-option" role="menuitem" aria-pressed="false" data-toggle="high-contrast">
+            <span class="icon">◑</span><span class="label">High contrast</span><span class="check">✓</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="bcn-hero" id="bcn-main">
+  <!-- Replace src with your hero banner image -->
+  <img src="beacon-hero.png" alt="Beacon" class="bcn-hero-img" onerror="this.style.display='none'">
+  <div class="bcn-hero-overlay">
+    <div class="bcn-hero-content">
+      <p class="bcn-label">Bearing Studio — Design Concept</p>
+      <h1 class="bcn-title">Beacon</h1>
+      <p class="bcn-subtitle">Local-range wireless fob</p>
+    </div>
+  </div>
+</header>
+
+<!-- ── DATELINE ── -->
+<div class="bcn-dateline">
+  <div class="bcn-container">
+    <div class="bcn-dateline-inner">
+      <span>Design Concept</span>
+      <span class="bcn-dateline-sep">·</span>
+      <span>2026</span>
+      <span class="bcn-dateline-sep">·</span>
+      <span>Hardware · Software</span>
+      <span class="bcn-dateline-sep">·</span>
+      <span>Bearing Studio</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── CONCEPT ── -->
+<section class="bcn-section" id="bcn-concept">
+  <div class="bcn-container">
+    <div class="bcn-grid-2">
+      <div>
+        <p class="bcn-section-label">The Concept</p>
+      </div>
+      <div>
+        <p class="bcn-lede">Your car shouldn't need the internet to know you're standing next to it.</p>
+        <p class="bcn-body">Beacon is a permissionless remote function keyfob that eliminates the third-party server dependency built into modern connected vehicles. Instead of routing commands through a manufacturer's cloud infrastructure, Beacon communicates directly with the vehicle over BLE and LoRaWAN mesh — local, private, and hardware-bound.</p>
+        <p class="bcn-body">The result is a device with no subscription model, no expiry date, and no single point of failure. Theoretically functional forty years from now. The serviceable battery is not an afterthought — it's the thesis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="bcn-hr">
+
+<!-- ── PROBLEM ── -->
+<section class="bcn-section">
+  <div class="bcn-container">
+    <div class="bcn-grid-2">
+      <div>
+        <p class="bcn-section-label">The Problem</p>
+      </div>
+      <div>
+        <p class="bcn-lede">Remote access is a feature until the company goes under.</p>
+        <p class="bcn-body">Cloud-dependent vehicle control ties functionality to corporate continuity. When a manufacturer discontinues a service, sunsets an app, or simply goes bankrupt, the remote features customers paid for vanish. The hardware is still there. The capability is still there. The permission isn't.</p>
+        <p class="bcn-body">Beacon proposes that the permission should never have left the owner's hands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="bcn-hr">
+
+<!-- ── SPECS ── -->
+<section class="bcn-section">
+  <div class="bcn-container">
+    <div class="bcn-grid-2">
+      <div>
+        <p class="bcn-section-label">Specifications</p>
+      </div>
+      <div class="bcn-specs">
+        <div class="bcn-spec-row">
+          <span class="bcn-spec-label">Communication</span>
+          <span class="bcn-spec-value">BLE 5.2 + LoRaWAN mesh</span>
+        </div>
+        <div class="bcn-spec-row">
+          <span class="bcn-spec-label">Range</span>
+          <span class="bcn-spec-value">Local — no internet required</span>
+        </div>
+        <div class="bcn-spec-row">
+          <span class="bcn-spec-label">Power</span>
+          <span class="bcn-spec-value">Serviceable battery, user-replaceable</span>
+        </div>
+        <div class="bcn-spec-row">
+          <span class="bcn-spec-label">Dependencies</span>
+          <span class="bcn-spec-value">None — permissionless by design</span>
+        </div>
+        <div class="bcn-spec-row">
+          <span class="bcn-spec-label">Lifespan</span>
+          <span class="bcn-spec-value">Hardware-bound, theoretically indefinite</span>
+        </div>
+        <div class="bcn-spec-row">
+          <span class="bcn-spec-label">Form factor</span>
+          <span class="bcn-spec-value">Puck, 40mm diameter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRINT AD (full bleed) ── -->
+<div class="bcn-ad">
+  <img src="Beacon_paper_ad_4.png" alt="Beacon print advertisement — Take Control">
+</div>
+
+<!-- ── CONTEXT ── -->
+<section class="bcn-section">
+  <div class="bcn-container">
+    <div class="bcn-grid-2">
+      <div>
+        <p class="bcn-section-label">Context</p>
+      </div>
+      <div>
+        <p class="bcn-body">Beacon is a design concept developed in conjunction with <a href="cayenne.html" class="bcn-link">Cayenne: Design Empathy in the Digital Age</a>, Bearing Studio's inaugural publication. The print advertisement above appears as a closing editorial element in the paper — a fictional product that makes the argument concrete.</p>
+        <p class="bcn-body">It is not currently in production.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BACK ── -->
+<div class="bcn-back">
+  <div class="bcn-container">
+    <a href="index.html" class="bcn-back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      <span>Back to Bearing Studio</span>
+    </a>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="bs-footer">
+  <div class="bs-container-wide bs-footer-grid">
+    <div>
+      <p class="t-label" style="margin-bottom:1rem">Contact</p>
+      <a href="mailto:bearingstudio@pm.me" class="bs-link" style="font-size:0.9375rem">bearingstudio@pm.me</a>
+    </div>
+    <div class="bs-footer-right">
+      <p class="t-meta" style="font-size:0.7rem;color:var(--text-dim)">
+        © 2026 Bearing Studio — All rights reserved
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn  = document.getElementById('a11y-toggle');
+  var menu = document.getElementById('a11y-menu');
+  function openMenu(o) {
+    menu.classList.toggle('is-open', o);
+    btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(e){ e.stopPropagation(); openMenu(!menu.classList.contains('is-open')); });
+  document.addEventListener('click', function(e){ if (!menu.contains(e.target) && e.target !== btn) openMenu(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') openMenu(false); });
+  var toggles = {
+    'large-text':    { cls: 'bs-a11y-large-text',   target: document.documentElement, key: 'bs-large-text' },
+    'high-contrast': { cls: 'bs-a11y-high-contrast', target: document.body,            key: 'bs-high-contrast' }
+  };
+  Object.keys(toggles).forEach(function(name){
+    var t = toggles[name];
+    try {
+      if (localStorage.getItem(t.key) === 'true') t.target.classList.add(t.cls);
+      var optBtn = document.querySelector('[data-toggle="' + name + '"]');
+      if (optBtn) optBtn.setAttribute('aria-pressed', localStorage.getItem(t.key) === 'true' ? 'true' : 'false');
+    } catch(e) {}
+  });
+  document.querySelectorAll('[data-toggle]').forEach(function(opt){
+    opt.addEventListener('click', function(e){
+      e.stopPropagation();
+      var name = opt.getAttribute('data-toggle');
+      var t = toggles[name];
+      var on = !t.target.classList.contains(t.cls);
+      t.target.classList.toggle(t.cls, on);
+      opt.setAttribute('aria-pressed', on ? 'true' : 'false');
+      try { localStorage.setItem(t.key, String(on)); } catch(err) {}
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -504,7 +504,7 @@ a.bs-index-link:hover .bs-index-arrow  { transform: translateX(4px); color: var(
 .bs-cardmedia img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
 }

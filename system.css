@@ -1,9 +1,3 @@
-/* ============================================
-   BEARING STUDIO — design system
-   Dark editorial · warm-black palette
-   Fonts: Lastik (display) + Inter (body) + JetBrains Mono
-   ============================================ */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @font-face {
@@ -507,7 +501,13 @@ a.bs-index-link:hover .bs-index-arrow  { transform: translateX(4px); color: var(
   width: 100%; height: 100%;
   border: none; pointer-events: none; display: block;
 }
-
+.bs-cardmedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
 .bs-index-body { min-width: 0; }
 .bs-index-titleline {
   display: flex;

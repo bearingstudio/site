@@ -37,7 +37,7 @@ body.bs-a11y-high-contrast {
 }
 
 /* ── Base body ──────────────────────────────── */
-body {
+body { padding-top: env(safe-area-inset-top); }
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

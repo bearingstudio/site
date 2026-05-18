@@ -9,6 +9,7 @@
 
 /* ── Hero ── */
 .bcn-hero {
+    object-position: 20% center;
     position: relative;
     height: 90vh;
     overflow: hidden;

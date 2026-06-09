@@ -4,7 +4,14 @@
    ============================================ */
 
 .beacon-page {
-    background-color: var(--bg);
+   .beacon-page {
+  --bg: #ffffff;
+  --bg-2: #f5f5f5;
+  --text: #1a1a1a;
+  --text-muted: #555555;
+  --text-dim: #999999;
+  --line: #e0e0e0;
+}
 }
 
 /* ── Hero ── */

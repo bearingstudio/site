@@ -195,7 +195,7 @@
     letter-spacing: -0.01em;
 }
 
-/* ── Print ad ── */
+/* ── images ── */
 .bcn-ad {
     width: 100%;
     border-top: 0.5px solid var(--line);
@@ -211,6 +211,15 @@
     max-width: 900px;
     height: auto;
     display: block;
+}
+.bcn-spread {
+  width: 100%;
+  overflow: hidden;
+}
+.bcn-spread img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ── Back link ── */

@@ -482,3 +482,68 @@
     .cay-colophon-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .cay-dateline-inner { gap: 0.5rem; }
 }
+
+/* ── PDF canvas ── */
+#cay-canvas {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.cay-reader-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+  width: 100%;
+}
+
+/* ── Rotate overlay ── */
+.cay-rotate {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  text-align: center;
+  padding: 2rem;
+}
+.cay-rotate.is-visible { display: flex; }
+
+.cay-rotate-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text);
+}
+
+.cay-rotate svg {
+  opacity: 0.5;
+  animation: cay-spin 2.4s ease-in-out infinite;
+}
+
+@keyframes cay-spin {
+  0%, 100% { transform: rotate(0deg); }
+  45%, 55% { transform: rotate(90deg); }
+}
+
+.cay-rotate-label {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.cay-rotate-sub {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+  max-width: 260px;
+  line-height: 1.6;
+}

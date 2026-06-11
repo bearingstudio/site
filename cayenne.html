@@ -20,6 +20,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="stylesheet" href="system.css">
   <link rel="stylesheet" href="cayenne.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body class="cayenne-page">
 
@@ -142,10 +143,13 @@
     </div>
   </div>
   <div class="cay-reader-frame" id="cay-reader-frame">
-    <div class="cay-reader-placeholder">
-      <p class="cay-section-label" style="margin-bottom:1rem">Paper coming Summer 2026</p>
-      <p class="cay-body" style="text-align:center;max-width:400px">The full publication will be embedded here at release, with a PDF available for download. </p>
+    <div class="cay-reader-loading" id="cay-loading">
+      <div class="cay-reader-placeholder">
+        <p class="cay-section-label" style="margin-bottom:1rem">Paper coming Summer 2026</p>
+        <p class="cay-body" style="text-align:center;max-width:400px">The full publication will be embedded here at release, with a PDF available for download.</p>
+      </div>
     </div>
+    <canvas id="cay-canvas" style="display:none;"></canvas>
   </div>
 </section>
 
@@ -235,6 +239,117 @@
       try { localStorage.setItem(t.key, String(on)); } catch(err) {}
     });
   });
+})();
+</script>
+
+<!-- ── ROTATE OVERLAY ── -->
+<div class="cay-rotate" id="cay-rotate" aria-hidden="true">
+  <div class="cay-rotate-inner">
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M20 7H9a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+      <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v2"/>
+    </svg>
+    <p class="cay-rotate-label">Rotate to read</p>
+    <p class="cay-rotate-sub">This publication is designed for landscape viewing</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var PDF_URL = 'cayenne-paper.pdf';
+  if (typeof pdfjsLib === 'undefined') return;
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  var pdfDoc  = null;
+  var current = 1;
+  var total   = 0;
+  var busy    = false;
+
+  var canvas  = document.getElementById('cay-canvas');
+  var ctx     = canvas ? canvas.getContext('2d') : null;
+  var loading = document.getElementById('cay-loading');
+  var frame   = document.getElementById('cay-reader-frame');
+  var pageCur = document.getElementById('cay-page-current');
+  var pageTot = document.getElementById('cay-page-total');
+  var prevBtn = document.getElementById('cay-prev');
+  var nextBtn = document.getElementById('cay-next');
+
+  if (!canvas || !ctx) return;
+
+  function updateControls() {
+    if (prevBtn) prevBtn.disabled = current <= 1;
+    if (nextBtn) nextBtn.disabled = current >= total;
+    if (pageCur) pageCur.textContent = current;
+  }
+
+  function setPage(n) {
+    if (busy || !pdfDoc) return;
+    if (n < 1 || n > total) return;
+    current = n;
+    busy = true;
+    updateControls();
+
+    pdfDoc.getPage(current).then(function(page) {
+      var dpr    = window.devicePixelRatio || 1;
+      var frameW = frame.clientWidth;
+      var vp1    = page.getViewport({ scale: 1 });
+      var scale  = frameW / vp1.width;
+      var vp     = page.getViewport({ scale: scale });
+
+      canvas.width        = Math.floor(vp.width  * dpr);
+      canvas.height       = Math.floor(vp.height * dpr);
+      canvas.style.width  = vp.width  + 'px';
+      canvas.style.height = vp.height + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      page.render({ canvasContext: ctx, viewport: vp }).promise.then(function() {
+        busy = false;
+        if (loading) loading.style.display = 'none';
+        canvas.style.display = 'block';
+        updateControls();
+      });
+    }).catch(function() { busy = false; });
+  }
+
+  pdfjsLib.getDocument(PDF_URL).promise.then(function(pdf) {
+    pdfDoc = pdf;
+    total  = pdf.numPages;
+    if (pageTot) pageTot.textContent = total;
+    setPage(1);
+  }).catch(function() {
+    // PDF not ready — placeholder stays visible
+  });
+
+  if (prevBtn) prevBtn.addEventListener('click', function() { setPage(current - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function() { setPage(current + 1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') setPage(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   setPage(current - 1);
+  });
+
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() { if (pdfDoc && !busy) setPage(current); }, 200);
+  });
+
+  // ── Rotate overlay ──
+  var rotateEl = document.getElementById('cay-rotate');
+  function checkRotate() {
+    if (!rotateEl) return;
+    var narrow   = window.innerWidth < 1024;
+    var portrait = window.innerHeight > window.innerWidth;
+    var show     = narrow && portrait;
+    rotateEl.classList.toggle('is-visible', show);
+    rotateEl.setAttribute('aria-hidden', String(!show));
+  }
+  window.addEventListener('resize', checkRotate);
+  window.addEventListener('orientationchange', function() { setTimeout(checkRotate, 100); });
+  checkRotate();
 })();
 </script>
 </body>

@@ -466,7 +466,40 @@
 .cay-reader-frame {
     width: 100%; min-height: 85vh; background: var(--bg-2);
     display: flex; align-items: center; justify-content: center;
+    position: relative;
 }
+
+/* ── Side nav buttons ── */
+.cay-reader-side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(3rem, 6vw, 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dim);
+  z-index: 10;
+  transition: color 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.cay-reader-side--prev { left: 0; }
+.cay-reader-side--next { right: 0; }
+.cay-reader-side:hover {
+  color: var(--text);
+  background: linear-gradient(to right, rgba(0,0,0,0.06), transparent);
+}
+.cay-reader-side--next:hover {
+  background: linear-gradient(to left, rgba(0,0,0,0.06), transparent);
+}
+.cay-reader-side:disabled {
+  opacity: 0.15;
+  cursor: default;
+}
+.cay-reader-side svg { pointer-events: none; }
 .cay-reader-placeholder {
     display: flex; flex-direction: column; align-items: center;
     gap: 0.5rem; padding: 4rem 2rem; text-align: center;

@@ -128,13 +128,7 @@
     <div class="cay-container cay-reader-controls">
       <p class="cay-section-label">The Paper</p>
       <div class="cay-reader-actions">
-        <button class="cay-reader-btn" id="cay-prev" aria-label="Previous page">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
         <span class="cay-reader-pagecount"><span id="cay-page-current">—</span> / <span id="cay-page-total">—</span></span>
-        <button class="cay-reader-btn" id="cay-next" aria-label="Next page">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
         <a href="cayenne-paper.pdf" download class="cay-reader-btn" aria-label="Download PDF">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v13M5 16l7 7 7-7"/><path d="M3 21h18"/></svg>
           <span>Download</span>
@@ -143,6 +137,9 @@
     </div>
   </div>
   <div class="cay-reader-frame" id="cay-reader-frame">
+    <button class="cay-reader-side cay-reader-side--prev" id="cay-prev" aria-label="Previous page">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
     <div class="cay-reader-loading" id="cay-loading">
       <div class="cay-reader-placeholder">
         <p class="cay-section-label" style="margin-bottom:1rem">Paper coming Summer 2026</p>
@@ -150,6 +147,9 @@
       </div>
     </div>
     <canvas id="cay-canvas" style="display:none;"></canvas>
+    <button class="cay-reader-side cay-reader-side--next" id="cay-next" aria-label="Next page">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
   </div>
 </section>
 

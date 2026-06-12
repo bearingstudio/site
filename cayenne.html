@@ -295,7 +295,9 @@
       var dpr    = window.devicePixelRatio || 1;
       var frameW = frame.clientWidth;
       var vp1    = page.getViewport({ scale: 1 });
-      var scale  = frameW / vp1.width;
+      var scaleByW = frameW / vp1.width;
+      var scaleByH = (window.innerHeight * 0.82) / vp1.height;
+      var scale    = Math.min(scaleByW, scaleByH);
       var vp     = page.getViewport({ scale: scale });
 
       canvas.width        = Math.floor(vp.width  * dpr);

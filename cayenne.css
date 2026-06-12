@@ -601,3 +601,8 @@
   max-width: 260px;
   line-height: 1.6;
 }
+
+/* ── Hide nav in mobile landscape (reading mode) ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .bs-nav { display: none; }
+}

@@ -494,7 +494,6 @@
 }
 .cay-reader-side:hover {
   color: var(--text);
-  background: linear-gradient(to right, rgba(0,0,0,0.06), transparent);
 }
 .cay-reader-side--next:hover {
   background: linear-gradient(to left, rgba(0,0,0,0.06), transparent);

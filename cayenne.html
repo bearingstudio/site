@@ -129,6 +129,11 @@
       <p class="cay-section-label">The Paper</p>
       <div class="cay-reader-actions">
         <span class="cay-reader-pagecount"><span id="cay-page-current">—</span> / <span id="cay-page-total">—</span></span>
+        <button class="cay-reader-btn" id="cay-fs" aria-label="Fullscreen">
+          <svg class="fs-expand" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+          <svg class="fs-compress" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+          <span class="fs-label">Fullscreen</span>
+        </button>
         <a href="cayenne-paper.pdf" download class="cay-reader-btn" aria-label="Download PDF">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v13M5 16l7 7 7-7"/><path d="M3 21h18"/></svg>
           <span>Download</span>
@@ -140,13 +145,15 @@
     <button class="cay-reader-side cay-reader-side--prev" id="cay-prev" aria-label="Previous page">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
-    <div class="cay-reader-loading" id="cay-loading">
-      <div class="cay-reader-placeholder">
-        <p class="cay-section-label" style="margin-bottom:1rem">Paper coming Summer 2026</p>
-        <p class="cay-body" style="text-align:center;max-width:400px">The full publication will be embedded here at release, with a PDF available for download.</p>
+    <div class="cay-reader-canvas-wrap" id="cay-canvas-wrap">
+      <div class="cay-reader-loading" id="cay-loading">
+        <div class="cay-reader-placeholder">
+          <p class="cay-section-label" style="margin-bottom:1rem">Paper coming Summer 2026</p>
+          <p class="cay-body" style="text-align:center;max-width:400px">The full publication will be embedded here at release, with a PDF available for download.</p>
+        </div>
       </div>
+      <canvas id="cay-canvas" style="display:none;"></canvas>
     </div>
-    <canvas id="cay-canvas" style="display:none;"></canvas>
     <button class="cay-reader-side cay-reader-side--next" id="cay-next" aria-label="Next page">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
     </button>
@@ -293,10 +300,12 @@
 
     pdfDoc.getPage(current).then(function(page) {
       var dpr    = window.devicePixelRatio || 1;
-      var frameW = frame.clientWidth;
+      var wrap   = document.getElementById('cay-canvas-wrap');
+      var frameW = wrap ? wrap.clientWidth : frame.clientWidth;
       var vp1    = page.getViewport({ scale: 1 });
+      var inFS     = !!(document.fullscreenElement || document.webkitFullscreenElement);
       var scaleByW = frameW / vp1.width;
-      var scaleByH = (window.innerHeight * 0.82) / vp1.height;
+      var scaleByH = (window.innerHeight * (inFS ? 0.92 : 0.82)) / vp1.height;
       var scale    = Math.min(scaleByW, scaleByH);
       var vp     = page.getViewport({ scale: scale });
 
@@ -338,6 +347,34 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() { if (pdfDoc && !busy) setPage(current); }, 200);
   });
+
+  // ── Fullscreen ──
+  var fsBtn = document.getElementById('cay-fs');
+  if (fsBtn) {
+    fsBtn.addEventListener('click', function() {
+      var section = document.getElementById('cay-paper');
+      if (!document.fullscreenElement) {
+        if (section.requestFullscreen) section.requestFullscreen();
+        else if (section.webkitRequestFullscreen) section.webkitRequestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
+    });
+    function onFSChange() {
+      var inFS = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      fsBtn.setAttribute('aria-label', inFS ? 'Exit fullscreen' : 'Fullscreen');
+      var ex = fsBtn.querySelector('.fs-expand');
+      var co = fsBtn.querySelector('.fs-compress');
+      var la = fsBtn.querySelector('.fs-label');
+      if (ex) ex.style.display = inFS ? 'none' : '';
+      if (co) co.style.display = inFS ? '' : 'none';
+      if (la) la.textContent = inFS ? 'Exit' : 'Fullscreen';
+      setTimeout(function() { if (pdfDoc && !busy) setPage(current); }, 150);
+    }
+    document.addEventListener('fullscreenchange', onFSChange);
+    document.addEventListener('webkitfullscreenchange', onFSChange);
+  }
 
   // ── Rotate overlay ──
   var rotateEl = document.getElementById('cay-rotate');

@@ -210,7 +210,7 @@ body {
   margin-right: auto;
   pointer-events: auto;
 }
-.bs-logo-island img { height: 42px; width: auto; display: block; }
+.bs-logo-island img { height: 46px; width: auto; display: block; }
 
 /* Links pinned to absolute center of island */
 .bs-nav-links {

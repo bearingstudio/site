@@ -532,7 +532,24 @@
 .cay-reader-frame {
     width: 100%; height: 85vh; background: var(--bg-2);
     display: flex; flex-direction: row; align-items: stretch;
+}
+
+.cay-reader-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
     padding: 0 clamp(0.75rem, 2.5vw, 2.5rem);
+}
+
+.cay-reader-frame-ghost {
+    flex-shrink: 0;
+    width: 0;
+    transition: width 0.2s;
+}
+@media (min-width: 901px) {
+    .cay-reader-frame.has-sidebar .cay-reader-frame-ghost { width: clamp(220px, 20vw, 300px); }
 }
 
 .cay-reader-canvas-wrap {

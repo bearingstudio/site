@@ -42,7 +42,7 @@
         <button id="a11y-toggle" class="bs-a11y-btn" aria-expanded="false" aria-label="Accessibility options">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <circle cx="12" cy="5" r="1.5"/>
-            <path d="M12 8v4m0 0-3 5m3-5 3 5M9 11H6m12 0h-3"/>
+            <path d="M12 8v6M7 10h10M12 14l-4 5m4-5 4 5"/>
           </svg>
         </button>
         <div id="a11y-menu" class="bs-a11y-menu" role="menu" aria-label="Accessibility options">
@@ -130,14 +130,14 @@
           <span class="fs-label">Fullscreen</span>
         </button>
         <a href="cayenne-paper.pdf" download class="cay-reader-btn" aria-label="Download PDF">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v13M5 16l7 7 7-7"/><path d="M3 21h18"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
           <span>Download</span>
         </a>
       </div>
     </div>
     <div class="cay-container">
       <div class="cay-reader-hint" id="cay-reader-hint" role="note">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H9a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v2"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
         <span>Rotate your device for the best experience.</span>
         <button type="button" class="cay-reader-hint-close" id="cay-reader-hint-close" aria-label="Dismiss">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -146,21 +146,24 @@
     </div>
   </div>
   <div class="cay-reader-frame" id="cay-reader-frame">
-    <button class="cay-reader-side cay-reader-side--prev" id="cay-prev" aria-label="Previous page">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
-    <div class="cay-reader-canvas-wrap" id="cay-canvas-wrap">
-      <div class="cay-reader-loading" id="cay-loading">
-        <div class="cay-reader-placeholder">
-          <p class="cay-section-label" style="margin-bottom:1rem">Paper coming Summer 2026</p>
-          <p class="cay-body" style="text-align:center;max-width:400px">The full publication will be embedded here at release, with a PDF available for download.</p>
+    <div class="cay-reader-main">
+      <div class="cay-reader-frame-ghost" aria-hidden="true"></div>
+      <button class="cay-reader-side cay-reader-side--prev" id="cay-prev" aria-label="Previous page">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="cay-reader-canvas-wrap" id="cay-canvas-wrap">
+        <div class="cay-reader-loading" id="cay-loading">
+          <div class="cay-reader-placeholder">
+            <p class="cay-section-label" style="margin-bottom:1rem">Paper coming Summer 2026</p>
+            <p class="cay-body" style="text-align:center;max-width:400px">The full publication will be embedded here at release, with a PDF available for download.</p>
+          </div>
         </div>
+        <canvas id="cay-canvas" style="display:none;"></canvas>
       </div>
-      <canvas id="cay-canvas" style="display:none;"></canvas>
+      <button class="cay-reader-side cay-reader-side--next" id="cay-next" aria-label="Next page">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
     </div>
-    <button class="cay-reader-side cay-reader-side--next" id="cay-next" aria-label="Next page">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
-    </button>
     <aside class="cay-thumb-panel" id="cay-thumb-panel" aria-label="Page thumbnails">
       <div class="cay-thumb-panel-head">
         <p class="cay-section-label" style="margin-bottom:0">Pages</p>
@@ -369,12 +372,10 @@
   }
 
   // ── Rotate hint (non-blocking) ──
-  var HINT_KEY = 'bs-reader-hint-dismissed';
+  // Dismissal is in-memory only, so the hint reappears on the next page load.
+  var hintDismissed = false;
   function checkHint() {
-    if (!hintEl) return;
-    try {
-      if (localStorage.getItem(HINT_KEY) === 'true') { hintEl.classList.remove('is-visible'); return; }
-    } catch(e) {}
+    if (!hintEl || hintDismissed) return;
     var narrow   = window.innerWidth < 1024;
     var portrait = window.innerHeight > window.innerWidth;
     hintEl.classList.toggle('is-visible', narrow && portrait);
@@ -384,8 +385,8 @@
   checkHint();
   if (hintClose) {
     hintClose.addEventListener('click', function() {
+      hintDismissed = true;
       hintEl.classList.remove('is-visible');
-      try { localStorage.setItem(HINT_KEY, 'true'); } catch(e) {}
     });
   }
 
@@ -494,6 +495,7 @@
   function openThumbPanel() {
     if (!pdfDoc || !thumbPanel) return;
     thumbPanel.classList.add('is-open');
+    if (frame) frame.classList.add('has-sidebar');
     if (thumbToggle) thumbToggle.setAttribute('aria-pressed', 'true');
     buildThumbs();
     syncThumbHighlight();
@@ -504,6 +506,7 @@
   function closeThumbPanel() {
     if (!thumbPanel) return;
     thumbPanel.classList.remove('is-open');
+    if (frame) frame.classList.remove('has-sidebar');
     if (thumbToggle) thumbToggle.setAttribute('aria-pressed', 'false');
     setTimeout(function() { if (pdfDoc && !busy) setPage(current); }, 150);
   }

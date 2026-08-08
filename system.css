@@ -552,6 +552,7 @@ a.bs-index-link:hover .bs-index-arrow  { transform: translateX(4px); color: var(
 }
 .bs-index-meta dd { font-family: var(--font-body); font-size: 0.875rem; color: var(--text); font-weight: 400; }
 .bs-index-tags-cell dd { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.bs-index-tags-cell .tag[data-kind] { border-color: rgba(255, 255, 255, 0.18); }
 
 .bs-index-arrow { color: var(--text-dim); padding-top: 0.5rem; transition: transform 0.25s ease, color 0.25s ease; }
 

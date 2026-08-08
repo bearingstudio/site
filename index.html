@@ -4,8 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bearing Studio</title>
-
-
+<meta name="description" content="Bearing Studio is the independent industrial design practice of Zane Zahran.">
+<meta property="og:title" content="Bearing Studio">
+<meta property="og:description" content="Bearing Studio is the independent industrial design practice of Zane Zahran.">
+<meta property="og:image" content="LogoSM.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bearingstudio.co/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bearing Studio">
+<meta name="twitter:description" content="Bearing Studio is the independent industrial design practice of Zane Zahran.">
+<meta name="twitter:image" content="LogoSM.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="stylesheet" href="system.css">
 
 </head>
@@ -55,7 +67,7 @@
 
 <!-- ── HERO ── -->
 <section style="position:relative;margin-top:-90px">
-  <a href="cayenne" class="bs-hero-link">
+  <a href="cayenne.html" class="bs-hero-link">
     <div class="bs-hero">
       <div class="bs-hero-video">
         <iframe
@@ -108,7 +120,7 @@
 
     <ol class="bs-index">
       <li class="bs-index-row" data-tags="editorial">
-        <a href="cayenne" class="bs-index-link">
+        <a href="cayenne.html" class="bs-index-link">
           <div class="bs-index-num t-meta">01</div>
           <div class="bs-index-media">
             <div class="bs-cardmedia">
@@ -206,52 +218,9 @@
   </div>
 </footer>
 
+<script src="a11y.js"></script>
 <script>
 (function(){
-  // ── A11y menu ──
-  var btn = document.getElementById('a11y-toggle');
-  var menu = document.getElementById('a11y-menu');
-  function openMenu(o) {
-    menu.classList.toggle('is-open', o);
-    btn.setAttribute('aria-expanded', o ? 'true' : 'false');
-  }
-  btn.addEventListener('click', function(e){
-    e.stopPropagation();
-    openMenu(!menu.classList.contains('is-open'));
-  });
-  document.addEventListener('click', function(e){
-    if (!menu.contains(e.target) && e.target !== btn) openMenu(false);
-  });
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') openMenu(false);
-  });
-
-  // Toggle states
-  var toggles = {
-    'large-text': { cls: 'bs-a11y-large-text', target: document.documentElement, key: 'bs-large-text' },
-    'high-contrast': { cls: 'bs-a11y-high-contrast', target: document.body, key: 'bs-high-contrast' }
-  };
-  Object.keys(toggles).forEach(function(name){
-    var t = toggles[name];
-    try {
-      var saved = localStorage.getItem(t.key) === 'true';
-      if (saved) t.target.classList.add(t.cls);
-      var optBtn = document.querySelector('[data-toggle="' + name + '"]');
-      if (optBtn) optBtn.setAttribute('aria-pressed', saved ? 'true' : 'false');
-    } catch(e) {}
-  });
-  document.querySelectorAll('[data-toggle]').forEach(function(opt){
-    opt.addEventListener('click', function(e){
-      e.stopPropagation();
-      var name = opt.getAttribute('data-toggle');
-      var t = toggles[name];
-      var on = !t.target.classList.contains(t.cls);
-      t.target.classList.toggle(t.cls, on);
-      opt.setAttribute('aria-pressed', on ? 'true' : 'false');
-      try { localStorage.setItem(t.key, String(on)); } catch(err) {}
-    });
-  });
-
   // ── Filter buttons ──
   var filters = document.querySelectorAll('.bs-filter');
   var rows = document.querySelectorAll('.bs-index-row');

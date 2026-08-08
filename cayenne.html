@@ -115,7 +115,14 @@
     <div class="cay-container cay-reader-controls">
       <p class="cay-section-label">Publication</p>
       <div class="cay-reader-actions">
-        <span class="cay-reader-pagecount"><span id="cay-page-current">—</span> / <span id="cay-page-total">—</span></span>
+        <span class="cay-reader-pagecount">
+          <button type="button" class="cay-page-jump-btn" id="cay-page-jump-btn" aria-label="Jump to page" disabled><span id="cay-page-current">—</span></button><input type="number" class="cay-page-jump-input" id="cay-page-jump-input" aria-label="Page number" inputmode="numeric">
+          / <span id="cay-page-total">—</span>
+        </span>
+        <button class="cay-reader-btn" id="cay-thumbs-toggle" aria-label="Toggle page thumbnails" aria-pressed="false" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span>Pages</span>
+        </button>
         <button class="cay-reader-btn" id="cay-fs" aria-label="Fullscreen">
           <svg class="fs-expand" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
           <svg class="fs-compress" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
@@ -125,6 +132,15 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v13M5 16l7 7 7-7"/><path d="M3 21h18"/></svg>
           <span>Download</span>
         </a>
+      </div>
+    </div>
+    <div class="cay-container">
+      <div class="cay-reader-hint" id="cay-reader-hint" role="note">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H9a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v2"/></svg>
+        <span>Rotate your phone to landscape for the best reading experience.</span>
+        <button type="button" class="cay-reader-hint-close" id="cay-reader-hint-close" aria-label="Dismiss">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -144,6 +160,15 @@
     <button class="cay-reader-side cay-reader-side--next" id="cay-next" aria-label="Next page">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
     </button>
+    <aside class="cay-thumb-panel" id="cay-thumb-panel" aria-label="Page thumbnails">
+      <div class="cay-thumb-panel-head">
+        <p class="cay-section-label" style="margin-bottom:0">Pages</p>
+        <button type="button" class="cay-thumb-close" id="cay-thumb-close" aria-label="Close page thumbnails">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="cay-thumb-grid" id="cay-thumb-grid"></div>
+    </aside>
   </div>
 </section>
 
@@ -199,54 +224,7 @@
   </div>
 </footer>
 
-<script>
-(function(){
-  var btn  = document.getElementById('a11y-toggle');
-  var menu = document.getElementById('a11y-menu');
-  function openMenu(o) {
-    menu.classList.toggle('is-open', o);
-    btn.setAttribute('aria-expanded', o ? 'true' : 'false');
-  }
-  btn.addEventListener('click', function(e){ e.stopPropagation(); openMenu(!menu.classList.contains('is-open')); });
-  document.addEventListener('click', function(e){ if (!menu.contains(e.target) && e.target !== btn) openMenu(false); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') openMenu(false); });
-  var toggles = {
-    'large-text':    { cls: 'bs-a11y-large-text',   target: document.documentElement, key: 'bs-large-text' },
-    'high-contrast': { cls: 'bs-a11y-high-contrast', target: document.body,            key: 'bs-high-contrast' }
-  };
-  Object.keys(toggles).forEach(function(name){
-    var t = toggles[name];
-    try {
-      if (localStorage.getItem(t.key) === 'true') t.target.classList.add(t.cls);
-      var optBtn = document.querySelector('[data-toggle="' + name + '"]');
-      if (optBtn) optBtn.setAttribute('aria-pressed', localStorage.getItem(t.key) === 'true' ? 'true' : 'false');
-    } catch(e) {}
-  });
-  document.querySelectorAll('[data-toggle]').forEach(function(opt){
-    opt.addEventListener('click', function(e){
-      e.stopPropagation();
-      var name = opt.getAttribute('data-toggle');
-      var t = toggles[name];
-      var on = !t.target.classList.contains(t.cls);
-      t.target.classList.toggle(t.cls, on);
-      opt.setAttribute('aria-pressed', on ? 'true' : 'false');
-      try { localStorage.setItem(t.key, String(on)); } catch(err) {}
-    });
-  });
-})();
-</script>
-
-<!-- ── ROTATE OVERLAY ── -->
-<div class="cay-rotate" id="cay-rotate" aria-hidden="true">
-  <div class="cay-rotate-inner">
-    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-      <path d="M20 7H9a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-      <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v2"/>
-    </svg>
-    <p class="cay-rotate-label">Rotate to read</p>
-    <p class="cay-rotate-sub">This publication is designed for landscape viewing</p>
-  </div>
-</div>
+<script src="a11y.js"></script>
 
 <script>
 (function(){
@@ -269,6 +247,17 @@
   var pageTot = document.getElementById('cay-page-total');
   var prevBtn = document.getElementById('cay-prev');
   var nextBtn = document.getElementById('cay-next');
+  var jumpBtn    = document.getElementById('cay-page-jump-btn');
+  var jumpInput  = document.getElementById('cay-page-jump-input');
+  var thumbToggle = document.getElementById('cay-thumbs-toggle');
+  var thumbPanel   = document.getElementById('cay-thumb-panel');
+  var thumbClose   = document.getElementById('cay-thumb-close');
+  var thumbGrid    = document.getElementById('cay-thumb-grid');
+  var thumbsBuilt  = false;
+  var thumbObserver = null;
+  var thumbEls = [];
+  var hintEl    = document.getElementById('cay-reader-hint');
+  var hintClose = document.getElementById('cay-reader-hint-close');
 
   if (!canvas || !ctx) return;
 
@@ -276,6 +265,7 @@
     if (prevBtn) prevBtn.disabled = current <= 1;
     if (nextBtn) nextBtn.disabled = current >= total;
     if (pageCur) pageCur.textContent = current;
+    syncThumbHighlight();
   }
 
   function setPage(n) {
@@ -315,6 +305,8 @@
     pdfDoc = pdf;
     total  = pdf.numPages;
     if (pageTot) pageTot.textContent = total;
+    if (jumpBtn) jumpBtn.disabled = false;
+    if (thumbToggle) thumbToggle.disabled = false;
     setPage(1);
   }).catch(function() {
     // PDF not ready — placeholder stays visible
@@ -363,19 +355,145 @@
     document.addEventListener('webkitfullscreenchange', onFSChange);
   }
 
-  // ── Rotate overlay ──
-  var rotateEl = document.getElementById('cay-rotate');
-  function checkRotate() {
-    if (!rotateEl) return;
+  // ── Rotate hint (non-blocking) ──
+  var HINT_KEY = 'bs-reader-hint-dismissed';
+  function checkHint() {
+    if (!hintEl) return;
+    try {
+      if (localStorage.getItem(HINT_KEY) === 'true') { hintEl.classList.remove('is-visible'); return; }
+    } catch(e) {}
     var narrow   = window.innerWidth < 1024;
     var portrait = window.innerHeight > window.innerWidth;
-    var show     = narrow && portrait;
-    rotateEl.classList.toggle('is-visible', show);
-    rotateEl.setAttribute('aria-hidden', String(!show));
+    hintEl.classList.toggle('is-visible', narrow && portrait);
   }
-  window.addEventListener('resize', checkRotate);
-  window.addEventListener('orientationchange', function() { setTimeout(checkRotate, 100); });
-  checkRotate();
+  window.addEventListener('resize', checkHint);
+  window.addEventListener('orientationchange', function() { setTimeout(checkHint, 100); });
+  checkHint();
+  if (hintClose) {
+    hintClose.addEventListener('click', function() {
+      hintEl.classList.remove('is-visible');
+      try { localStorage.setItem(HINT_KEY, 'true'); } catch(e) {}
+    });
+  }
+
+  // ── Jump to page ──
+  function closeJump(commit) {
+    if (commit) {
+      var n = parseInt(jumpInput.value, 10);
+      if (!isNaN(n)) setPage(Math.min(Math.max(n, 1), total));
+    }
+    jumpInput.classList.remove('is-active');
+    jumpBtn.style.display = '';
+  }
+  if (jumpBtn && jumpInput) {
+    jumpBtn.addEventListener('click', function() {
+      if (!pdfDoc) return;
+      jumpInput.min = 1;
+      jumpInput.max = total;
+      jumpInput.value = current;
+      jumpBtn.style.display = 'none';
+      jumpInput.classList.add('is-active');
+      jumpInput.focus();
+      jumpInput.select();
+    });
+    jumpInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); closeJump(true); }
+      else if (e.key === 'Escape') { closeJump(false); }
+    });
+    jumpInput.addEventListener('blur', function() { closeJump(true); });
+  }
+
+  // ── Thumbnail panel ──
+  function renderThumb(n, canvasEl) {
+    pdfDoc.getPage(n).then(function(page) {
+      var vp1     = page.getViewport({ scale: 1 });
+      var scale   = 160 / vp1.width;
+      var vp      = page.getViewport({ scale: scale });
+      var dpr     = window.devicePixelRatio || 1;
+      canvasEl.width        = Math.floor(vp.width  * dpr);
+      canvasEl.height       = Math.floor(vp.height * dpr);
+      canvasEl.style.width  = '100%';
+      canvasEl.style.height = '100%';
+      var tctx = canvasEl.getContext('2d');
+      tctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      page.render({ canvasContext: tctx, viewport: vp });
+    });
+  }
+
+  function buildThumbs() {
+    if (thumbsBuilt || !pdfDoc || !thumbGrid) return;
+    thumbsBuilt = true;
+    var frag = document.createDocumentFragment();
+    for (var n = 1; n <= total; n++) {
+      (function(pageNum){
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cay-thumb';
+        btn.setAttribute('data-page', pageNum);
+        btn.setAttribute('aria-label', 'Go to page ' + pageNum);
+        var num = document.createElement('span');
+        num.className = 'cay-thumb-num';
+        num.textContent = pageNum;
+        btn.appendChild(num);
+        btn.addEventListener('click', function() {
+          setPage(pageNum);
+          if (window.innerWidth < 900) closeThumbPanel();
+        });
+        frag.appendChild(btn);
+        thumbEls.push(btn);
+      })(n);
+    }
+    thumbGrid.appendChild(frag);
+
+    thumbObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        thumbObserver.unobserve(el);
+        var n = parseInt(el.getAttribute('data-page'), 10);
+        var canvasEl = document.createElement('canvas');
+        el.insertBefore(canvasEl, el.firstChild);
+        renderThumb(n, canvasEl);
+      });
+    }, { root: thumbGrid, rootMargin: '300px 0px', threshold: 0.01 });
+
+    thumbEls.forEach(function(el) { thumbObserver.observe(el); });
+  }
+
+  function syncThumbHighlight() {
+    if (!thumbsBuilt) return;
+    thumbEls.forEach(function(el) {
+      var n = parseInt(el.getAttribute('data-page'), 10);
+      el.classList.toggle('is-current', n === current);
+    });
+  }
+
+  function openThumbPanel() {
+    if (!pdfDoc || !thumbPanel) return;
+    thumbPanel.classList.add('is-open');
+    if (thumbToggle) thumbToggle.setAttribute('aria-pressed', 'true');
+    buildThumbs();
+    syncThumbHighlight();
+    var curEl = thumbGrid.querySelector('.cay-thumb.is-current');
+    if (curEl) curEl.scrollIntoView({ block: 'center' });
+    setTimeout(function() { if (pdfDoc && !busy) setPage(current); }, 150);
+  }
+  function closeThumbPanel() {
+    if (!thumbPanel) return;
+    thumbPanel.classList.remove('is-open');
+    if (thumbToggle) thumbToggle.setAttribute('aria-pressed', 'false');
+    setTimeout(function() { if (pdfDoc && !busy) setPage(current); }, 150);
+  }
+  if (thumbToggle) {
+    thumbToggle.addEventListener('click', function() {
+      if (thumbPanel.classList.contains('is-open')) closeThumbPanel();
+      else openThumbPanel();
+    });
+  }
+  if (thumbClose) thumbClose.addEventListener('click', closeThumbPanel);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && thumbPanel && thumbPanel.classList.contains('is-open')) closeThumbPanel();
+  });
 })();
 </script>
 </body>

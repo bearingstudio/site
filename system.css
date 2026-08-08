@@ -551,7 +551,6 @@ a.bs-index-link:hover .bs-index-arrow  { transform: translateX(4px); color: var(
 
 @media (max-width: 1024px) {
   .bs-index-link { grid-template-columns: 32px 220px 1fr 24px; gap: 1.25rem; }
-  .bs-index-summary { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 }
 @media (max-width: 720px) {
   .bs-index-link { grid-template-columns: 1fr; gap: 1rem; padding: 1.5rem 0; }

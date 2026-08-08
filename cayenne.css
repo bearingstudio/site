@@ -380,7 +380,7 @@
     .cay-hero-overlay {
         position: static;
         background: none;
-        padding: 1.75rem 1.5rem 0;
+        padding: 1.75rem 1.5rem 1.75rem;
         gap: 1.5rem;
         align-items: flex-start;
         justify-content: flex-start;
@@ -509,7 +509,7 @@
 .cay-reader-hint svg { flex-shrink: 0; opacity: 0.75; }
 .cay-reader-hint span {
   flex: 1;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: 0.01em;
@@ -634,7 +634,18 @@
   flex-direction: column;
   gap: 0.85rem;
   padding: 1rem;
+  scrollbar-color: var(--line) transparent;
+  scrollbar-width: thin;
 }
+.cay-thumb-grid::-webkit-scrollbar { width: 10px; }
+.cay-thumb-grid::-webkit-scrollbar-track { background: transparent; }
+.cay-thumb-grid::-webkit-scrollbar-thumb {
+  background-color: var(--line);
+  border-radius: 999px;
+  border: 2px solid var(--bg);
+  background-clip: padding-box;
+}
+.cay-thumb-grid::-webkit-scrollbar-thumb:hover { background-color: var(--text-dim); }
 
 .cay-thumb {
   position: relative;

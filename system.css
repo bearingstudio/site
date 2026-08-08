@@ -125,8 +125,8 @@ body {
   background: #fff;
   flex-shrink: 0;
 }
-.tag[data-kind="editorial"]         { border-color: rgba(245,166,35,0.65); }
-.tag[data-kind="editorial"]::before { background: #f5a623; }
+.tag[data-kind="editorial"]         { border-color: rgba(255,183,3,0.65); }
+.tag[data-kind="editorial"]::before { background: #FFB703; }
 .tag[data-kind="design"]            { border-color: rgba(31,111,235,0.65); }
 .tag[data-kind="design"]::before    { background: #1f6feb; }
 .tag[data-kind="new"]               { border-color: rgba(26,168,74,0.7); }
@@ -234,7 +234,7 @@ body {
   white-space: nowrap;
 }
 .bs-nav-links a[data-color="red"]:hover    { color: #fff; background: #ee2d3a; }
-.bs-nav-links a[data-color="yellow"]:hover { color: #fff; background: #f5a623; }
+.bs-nav-links a[data-color="yellow"]:hover { color: #fff; background: #FFB703; }
 .bs-nav-links a[data-color="blue"]:hover   { color: #fff; background: #1f6feb; }
 
 /* A11y — icon-only button, uniform with the rest of the island */
@@ -314,6 +314,7 @@ body {
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   min-height: 560px;
   overflow: hidden;
   background: #000;
@@ -322,9 +323,9 @@ body {
   position: absolute;
   top: 40%; left: 50%;
   transform: translate(-50%, -40%);
-  width: max(177.78vh, 100vw);
-  height: max(56.25vw, 100vh);
-  min-width: 100%; min-height: 100%;
+  width: max(204vh, 115vw);
+  height: max(65vw, 115vh);
+  min-width: 115%; min-height: 115%;
 }
 .bs-hero-video iframe {
   width: 100%; height: 100%;
@@ -463,7 +464,7 @@ body {
 .bs-filter[data-color="red"]:hover,
 .bs-filter[data-color="red"].is-active    { color: #fff; background: #ee2d3a; }
 .bs-filter[data-color="yellow"]:hover,
-.bs-filter[data-color="yellow"].is-active { color: #fff; background: #f5a623; }
+.bs-filter[data-color="yellow"].is-active { color: #fff; background: #FFB703; }
 .bs-filter[data-color="blue"]:hover,
 .bs-filter[data-color="blue"].is-active   { color: #fff; background: #1f6feb; }
 

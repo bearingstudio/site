@@ -392,8 +392,8 @@ body {
 }
 .bs-hero-blurb {
   color: rgba(255,255,255,0.7);
-  max-width: 32ch;
-  text-align: right;
+  max-width: 40ch;
+  text-align: center;
   line-height: 1.6;
 }
 .bs-hero-cta {
